@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/topBar"
+            layout="@layout/top_bar" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/testmainback2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="350dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="START"
+                    android:textColor="#747474"
+                    android:textSize="24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <android.widget.Button
+                        android:id="@+id/noviceBtn"
+                        android:layout_width="176dp"
+                        android:layout_height="119dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/round_10px"
+                        android:clickable="true"
+                        android:text="입문자용"
+                        android:textColor="#E4A5B0"
+                        android:textSize="24dp" />
+
+                    <android.widget.Button
+                        android:id="@+id/buffBtn"
+                        android:layout_width="176dp"
+                        android:layout_height="119dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/round_10px"
+                        android:clickable="true"
+                        android:text="매니아용"
+                        android:textColor="#E4A5B0"
+                        android:textSize="24dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/bottom_bar"
+            layout="@layout/bottom_bar_on_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
