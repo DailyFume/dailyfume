@@ -16,6 +16,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="false"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
             app:srcCompat="@drawable/pickboximg" />
 
         <TextView
@@ -58,8 +59,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="178dp"
+            android:layout_marginBottom="10dp"
             android:layout_toStartOf="@+id/BoxDeleteBtn"
             android:backgroundTint="#FCFAF8"
+            android:checkable="false"
+            android:clickable="false"
+            android:focusable="false"
             android:text="수정"
             android:textColor="#979695"
             android:textSize="14dp"
@@ -75,6 +80,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="14dp"
             android:backgroundTint="#FCFAF8"
+            android:clickable="false"
+            android:focusable="false"
             android:text="삭제"
             android:textColor="#979695"
             android:textSize="14dp"

@@ -16,7 +16,6 @@ public class MyPageActivity extends AppCompatActivity {
 
     ImageView backBtn, home_icon;
     TextView title_change;
-    Button nickNameBtn;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
@@ -79,9 +78,6 @@ public class MyPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        nickNameBtn = (Button) findViewById(R.id.nickNameBtn); // 사용자의 닉네임이 보여지는 창
 
         findViewById(R.id.menu1Btn).setOnClickListener(menuClick); // 개인정보 수정 페이지
         findViewById(R.id.menu2Btn).setOnClickListener(menuClick); // 찜 목록 페이지

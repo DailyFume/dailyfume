@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily_fume">
         <activity
+            android:name=".PickFumeActivity"
+            android:exported="false" /> <!-- 찜한 향수 페이지 -->
+        <activity
             android:name=".PickListActivity"
             android:exported="false" /> <!-- 찜 목록 페이지 -->
         <activity

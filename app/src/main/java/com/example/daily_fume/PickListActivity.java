@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -38,6 +40,7 @@ public class PickListActivity extends AppCompatActivity {
     List<Integer> PickNumValue = new ArrayList<>();
 
     String boxTxt;
+    TextView BoxModifyBtn, BoxDeleteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,13 +116,13 @@ public class PickListActivity extends AppCompatActivity {
                 ((TextView)parent.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 switch(position) {
                     case 0 :
-                        // ★ 임시
+                        // ★ 임시 (기본)
                         break;
                     case 1 :
-                        // ★ 임시
+                        // ★ 임시 (최신순)
                         break;
                     case 2 :
-                        // ★ 임시
+                        // ★ 임시 (이름순)
                         break;
                 }
             }
@@ -141,16 +144,55 @@ public class PickListActivity extends AppCompatActivity {
 
         // 찜폴더 관리
         pickBoxList = (ListView) findViewById(R.id.pickBoxList);
+        BoxModifyBtn = (TextView) findViewById(R.id.BoxModifyBtn);
+        BoxDeleteBtn = (TextView) findViewById(R.id.BoxDeleteBtn);
 
         TitleValues.add("기본 서랍");
         pickBoxLoading();
 
+        // ★ 리스트뷰와 버튼 조합일 시 주의사항
+        // 1. 리스트뷰 포커스를 false로 해야 함
+        // 2. 리스트뷰에 들어간 레이아웃에서 버튼들 xml에 clickable과 focusable은 false로 해야 함
+        // 3. 버튼을 자바코드로 찾아올때는 텍스트뷰 형식으로 찾아와야 함.
+        pickBoxList.setFocusable(false);
+
+        pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override  // ★ 각각의 폴더 선택하면 해당 찜한 상품이 저장된 폴더로 이동 나중에 수정하기
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // ★ 잘 선택되었는지 임시 확인용
+                Toast.makeText(getApplicationContext(), TitleValues.get(position) +" 폴더 클릭", Toast.LENGTH_SHORT).show();
+
+                switch (TitleValues.get(position)){
+                    case "기본 서랍" :
+                        Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
+                        startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
+                        break;
+                }
+            }
+        });
+
     }
+
+
+    // 메서드
 
     void pickBoxLoading() { // 폴더 추가 메서드 - ★ 단 새로고침하면 기존 폴더들이 사라짐 (개선하기)
         ArrayAdapter<String> pickboxadapter = new ArrayAdapter<String>(this,
                 R.layout.picbox_layout, R.id.boxTitle, TitleValues);
         pickBoxList.setAdapter(pickboxadapter);
+
+    }
+
+    void pickBoxClick() {
+        pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override  // ★ 각각의 폴더 선택하면 해당 찜한 상품이 저장된 폴더로 이동 나중에 수정하기
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
+                // intent.putExtra("it_listData", TitleValues.get(position));
+                // startActivity(intent); // 임시
+                Toast.makeText(getApplicationContext(), "번째 폴더 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

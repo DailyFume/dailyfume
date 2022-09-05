@@ -29,24 +29,32 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/solid"
-                    android:gravity="center"
-                    android:singleLine="false"
-                    android:text="회원 님"
-                    android:textSize="15dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/solid_bottom"
+                        android:gravity="center"
+                        android:singleLine="false"
+                        android:text="회원 님"
+                        android:textColor="#D77F8F"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/menuLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <ImageView
