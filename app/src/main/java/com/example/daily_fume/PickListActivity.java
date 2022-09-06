@@ -147,7 +147,7 @@ public class PickListActivity extends AppCompatActivity {
         BoxModifyBtn = (TextView) findViewById(R.id.BoxModifyBtn);
         BoxDeleteBtn = (TextView) findViewById(R.id.BoxDeleteBtn);
 
-        TitleValues.add("기본 서랍");
+        TitleValues.add("기본 폴더");
         pickBoxLoading();
 
         // ★ 리스트뷰와 버튼 조합일 시 주의사항
@@ -163,7 +163,7 @@ public class PickListActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), TitleValues.get(position) +" 폴더 클릭", Toast.LENGTH_SHORT).show();
 
                 switch (TitleValues.get(position)){
-                    case "기본 서랍" :
+                    case "기본 폴더" :
                         Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
                         startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
                         break;
