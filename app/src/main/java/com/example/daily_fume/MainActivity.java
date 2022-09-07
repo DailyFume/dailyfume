@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             }
         },3000); // 쉬었다가 로그인 화면으로 이동 (★ 확인해보고 나중에 시간 더 줄이기)
 
+
         // 로딩 버튼 클릭시 로그인화면으로 이동
         startBtn = (Button) findViewById(R.id.startBtn);
         startBtn.setOnClickListener(new View.OnClickListener() {

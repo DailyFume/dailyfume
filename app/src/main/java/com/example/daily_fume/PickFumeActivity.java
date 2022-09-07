@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class PickFumeActivity extends AppCompatActivity {
 
-    ImageView backBtn, pickFumeDel;
+    ImageView backBtn, pickFumeDel, zero_love;
     TextView title_change;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
@@ -287,12 +287,48 @@ public class PickFumeActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "눌렸어요", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        // 스피너 - 폴더정렬
+        spinnerPickFume = (Spinner) findViewById(R.id.spinnerPickFume);
+
+        ArrayAdapter<String> fadapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, PfItemsFume);
+        fadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPickFume.setAdapter(fadapter);
+
+        spinnerPickFume.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //PfItemsBox.setText(PfItems[position]);
+                ((TextView)parent.getChildAt(0)).setTextColor(Color.rgb(199, 131, 142));
+                ((TextView)parent.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                switch(position) {
+                    case 0 :
+                        // ★ 임시 (기본)
+                        break;
+                    case 1 :
+                        // ★ 임시 (최신순)
+                        break;
+                    case 2 :
+                        // ★ 임시 (이름순)
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        zero_love = (ImageView) findViewById(R.id.zero_love);
+        zero_love.setColorFilter(Color.parseColor("#FAF1F3"));
+
     }
 
 

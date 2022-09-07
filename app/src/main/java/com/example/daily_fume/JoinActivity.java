@@ -48,7 +48,7 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 manBtn.setTextColor(Color.rgb(255,255,255));
-                manBtn.setBackgroundColor(Color.rgb(215,127,143));
+                manBtn.setBackgroundColor(Color.rgb(230,182,190));
                 womanBtn.setTextColor(Color.rgb(179,179,179));
                 womanBtn.setBackgroundColor(Color.rgb(255,255,255));
             }
@@ -58,7 +58,7 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 womanBtn.setTextColor(Color.rgb(255,255,255));
-                womanBtn.setBackgroundColor(Color.rgb(215,127,143));
+                womanBtn.setBackgroundColor(Color.rgb(230,182,190));
                 manBtn.setTextColor(Color.rgb(179,179,179));
                 manBtn.setBackgroundColor(Color.rgb(255,255,255));
             }

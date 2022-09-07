@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/round_10px.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/round_10px_pink.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/round_4px.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/solid.xml" value="0.264" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/storke.xml" value="0.26979166666666665" />
@@ -59,5 +60,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.23802083333333332" />
+      </ProjectState>
+    </option>
   </component>
 </project>
