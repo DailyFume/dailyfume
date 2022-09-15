@@ -265,7 +265,8 @@
                     android:paddingLeft="10dp"
                     android:text="동의하지 않습니다"
                     android:textColor="#7A7A7A"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/checkYes"
@@ -276,7 +277,7 @@
                     android:buttonTint="#e3e3e3"
                     android:buttonTintMode="src_in"
                     android:paddingLeft="10dp"
-                    android:text="동의합니다"
+                    android:text="위 약관을 확인 후 동의해주세요"
                     android:textColor="#7A7A7A"
                     android:textSize="15dp" />
 

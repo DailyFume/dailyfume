@@ -20,7 +20,9 @@ public class TestActivity extends AppCompatActivity {
     ImageView prevBtn, nextBtn;
     TextView prevText, nextText, testNumber;
     LinearLayout prevLayout, nextLayout;
-    ImageView aImgSelect, bImgSelect, selectorVisible01, selectorVisible02;
+    //ImageView aImgSelect, bImgSelect, selectorVisible01, selectorVisible02;
+    ImageView aTestSelect, bTestSelect, cTestSelect, dTestSelect, selectorVisibleT1, selectorVisibleT2, selectorVisibleT3, selectorVisibleT4;
+
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
@@ -98,11 +100,11 @@ public class TestActivity extends AppCompatActivity {
                 testProgressBar.setProgress(progressn);
             }
         });
-
-        aImgSelect = (ImageView) findViewById(R.id.aImgSelect);
-        bImgSelect = (ImageView) findViewById(R.id.bImgSelect);
-        selectorVisible01 = (ImageView) findViewById(R.id.selectorVisible01);
-        selectorVisible02 = (ImageView) findViewById(R.id.selectorVisible02);
+/*
+        aImgSelect = (ImageView) findViewById(R.id.aTestSelect);
+        bImgSelect = (ImageView) findViewById(R.id.bTestSelect);
+        selectorVisible01 = (ImageView) findViewById(R.id.selectorVisibleT1);
+        selectorVisible02 = (ImageView) findViewById(R.id.selectorVisibleT2);
 
         aImgSelect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +120,57 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectorVisible02.setVisibility(View.VISIBLE);
                 selectorVisible01.setVisibility(View.GONE);
+            }
+        });
+
+ */
+
+        aTestSelect = (ImageView) findViewById(R.id.aTestSelect);
+        bTestSelect = (ImageView) findViewById(R.id.bTestSelect);
+        cTestSelect = (ImageView) findViewById(R.id.cTestSelect);
+        dTestSelect = (ImageView) findViewById(R.id.dTestSelect);
+        selectorVisibleT1 = (ImageView) findViewById(R.id.selectorVisibleT1);
+        selectorVisibleT2 = (ImageView) findViewById(R.id.selectorVisibleT2);
+        selectorVisibleT3 = (ImageView) findViewById(R.id.selectorVisibleT3);
+        selectorVisibleT4 = (ImageView) findViewById(R.id.selectorVisibleT4);
+
+        aTestSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectorVisibleT1.setVisibility(View.VISIBLE);
+                selectorVisibleT2.setVisibility(View.GONE);
+                selectorVisibleT3.setVisibility(View.GONE);
+                selectorVisibleT4.setVisibility(View.GONE);
+            }
+        });
+
+        bTestSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectorVisibleT1.setVisibility(View.GONE);
+                selectorVisibleT2.setVisibility(View.VISIBLE);
+                selectorVisibleT3.setVisibility(View.GONE);
+                selectorVisibleT4.setVisibility(View.GONE);
+            }
+        });
+
+        cTestSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectorVisibleT1.setVisibility(View.GONE);
+                selectorVisibleT2.setVisibility(View.GONE);
+                selectorVisibleT3.setVisibility(View.VISIBLE);
+                selectorVisibleT4.setVisibility(View.GONE);
+            }
+        });
+
+        dTestSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectorVisibleT1.setVisibility(View.GONE);
+                selectorVisibleT2.setVisibility(View.GONE);
+                selectorVisibleT3.setVisibility(View.GONE);
+                selectorVisibleT4.setVisibility(View.VISIBLE);
             }
         });
     }

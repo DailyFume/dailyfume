@@ -61,7 +61,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                app:srcCompat="@drawable/on_04" />
+                app:srcCompat="@drawable/on_041" />
 
             <ImageView
                 android:id="@+id/mypageIcon"

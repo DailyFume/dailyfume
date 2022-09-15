@@ -51,7 +51,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                app:srcCompat="@drawable/on_03" />
+                app:srcCompat="@drawable/on_031" />
 
             <ImageView
                 android:id="@+id/loveIcon"

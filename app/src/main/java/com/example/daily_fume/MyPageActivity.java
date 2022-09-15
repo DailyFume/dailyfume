@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MyPageActivity extends AppCompatActivity {
 
-    ImageView backBtn, home_icon;
+    ImageView backBtn;
     TextView title_change;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
@@ -35,15 +35,6 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        home_icon = (ImageView) findViewById(R.id.home_icon);
-        home_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MyPageActivity.this, HomeActivity.class);
-                startActivity(intent);
             }
         });
 

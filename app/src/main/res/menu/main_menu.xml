@@ -5,15 +5,15 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_1"
-            android:icon="@drawable/off_02"
+            android:icon="@drawable/navicon2"
             android:title="추천" />
         <item
             android:id="@+id/nav_2"
-            android:icon="@drawable/off_04"
+            android:icon="@drawable/navicon1"
             android:title="찜목록" />
         <item
             android:id="@+id/nav_3"
-            android:icon="@drawable/off_05"
+            android:icon="@drawable/navicon3"
             android:title="마이페이지" />
     </group>
 </menu>

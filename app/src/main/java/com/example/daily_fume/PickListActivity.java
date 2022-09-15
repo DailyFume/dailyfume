@@ -4,16 +4,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.Editable;
 import android.text.InputFilter;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PickListActivity extends AppCompatActivity {
@@ -40,7 +41,7 @@ public class PickListActivity extends AppCompatActivity {
     List<Integer> PickNumValue = new ArrayList<>();
 
     String boxTxt;
-    TextView BoxModifyBtn, BoxDeleteBtn;
+    Button BoxModifyBtn, BoxDeleteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +134,8 @@ public class PickListActivity extends AppCompatActivity {
             }
         });
 
+
+
         // 새폴더 추가
         pickBoxNew = (ImageView) findViewById(R.id.pickBoxNew);
         pickBoxNew.setOnClickListener(new View.OnClickListener() {
@@ -144,16 +147,12 @@ public class PickListActivity extends AppCompatActivity {
 
         // 찜폴더 관리
         pickBoxList = (ListView) findViewById(R.id.pickBoxList);
-        BoxModifyBtn = (TextView) findViewById(R.id.BoxModifyBtn);
-        BoxDeleteBtn = (TextView) findViewById(R.id.BoxDeleteBtn);
-
         TitleValues.add("기본 폴더");
         pickBoxLoading();
 
         // ★ 리스트뷰와 버튼 조합일 시 주의사항
         // 1. 리스트뷰 포커스를 false로 해야 함
         // 2. 리스트뷰에 들어간 레이아웃에서 버튼들 xml에 clickable과 focusable은 false로 해야 함
-        // 3. 버튼을 자바코드로 찾아올때는 텍스트뷰 형식으로 찾아와야 함.
         pickBoxList.setFocusable(false);
 
         pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -170,6 +169,9 @@ public class PickListActivity extends AppCompatActivity {
                 }
             }
         });
+        // ★ 버튼 클릭이 안됨. 리스트뷰 안에 있는 버튼을 클릭할 때는 어댑터 클래스를 따로 빼고
+        // getView 메서드로 클릭하게 해줘야 됨. (이 페이지 전체를 뜯어고쳐야할지도 ㅠㅠㅠ)
+        // 버튼 클릭되는 거 좀더 시도해보기
 
     }
 
@@ -178,7 +180,7 @@ public class PickListActivity extends AppCompatActivity {
 
     void pickBoxLoading() { // 폴더 추가 메서드 - ★ 단 새로고침하면 기존 폴더들이 사라짐 (개선하기)
         ArrayAdapter<String> pickboxadapter = new ArrayAdapter<String>(this,
-                R.layout.picbox_layout, R.id.boxTitle, TitleValues);
+                R.layout.picbox_layout2, R.id.boxTitle, TitleValues);
         pickBoxList.setAdapter(pickboxadapter);
 
     }
