@@ -1,27 +1,20 @@
 package com.example.daily_fume;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
@@ -32,12 +25,12 @@ import java.util.TimerTask;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button testGoButton;
+    Button testGoButton, testGoButton2;
     ImageView openD, closeD, topButton;
     DrawerLayout drawerLayout;
     View dView;
     NavigationView naviView;
-    ScrollView HomeScrollView;
+    ScrollView HomeSView;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
@@ -50,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     final long DELAY_MS = 500;
     final long PERIOD_MS = 3000;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +130,12 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
+
+                    case R.id.nav_4:
+                        //intent = new Intent(getApplicationContext(), .class);
+                        //startActivity(intent);
+                        drawerLayout.closeDrawer(dView);
+                        return true;
                 }
                 return false;
             }
@@ -180,11 +180,43 @@ public class HomeActivity extends AppCompatActivity {
 
         // top 버튼 클릭시 상단으로 이동
         topButton = (ImageView) findViewById (R.id.topButton);
-        HomeScrollView = (ScrollView) findViewById(R.id.HomeScrollView);
+        HomeSView = (ScrollView) findViewById(R.id.HomeSView);
+
         topButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeScrollView.fullScroll(ScrollView.FOCUS_UP);
+                HomeSView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
+
+        // 스크롤 내려도 버튼 생겨나기 & 시간 지나면 사라지기
+        testGoButton2 = (Button) findViewById(R.id.testGoButton2);
+        HomeSView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_MOVE: // 스크롤뷰 움직이는 동안
+                        testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
+                        break;
+                    case MotionEvent.ACTION_UP: // 손을 떼면 조금 있다가 사라짐
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                testGoButton2.setVisibility(View.GONE);
+                            }
+                        },2500);
+
+                }
+                return false;
+            }
+        });
+
+        testGoButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                startActivity(intent);
             }
         });
 

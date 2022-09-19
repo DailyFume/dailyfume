@@ -6,50 +6,59 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/fumeLayout"
-        android:layout_width="190dp"
-        android:layout_height="290dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@drawable/round_10px"
-        android:backgroundTint="#FCFAF8"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/lovepickicon"
-            android:orientation="vertical"></LinearLayout>
-
-        <ImageView
-            android:id="@+id/fumeImages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/fumeLayout"
+            android:layout_width="190dp"
+            android:layout_height="270dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/fume01" />
+            android:background="@drawable/round_10px"
+            android:backgroundTint="#FCFAF8"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/pickFumeBrand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="TextView"
-            android:textColor="#747474"
-            android:textSize="14dp" />
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/lovepickicon"
+                android:orientation="vertical"></LinearLayout>
 
-        <TextView
-            android:id="@+id/pickFumeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:text="TextView"
-            android:textColor="#D976A2"
-            android:textSize="14dp" />
+            <ImageView
+                android:id="@+id/fumeImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/fume01" />
+
+            <TextView
+                android:id="@+id/pickFumeBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="TextView"
+                android:textColor="#747474"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/pickFumeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="TextView"
+                android:textColor="#D976A2"
+                android:textSize="14dp" />
+        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

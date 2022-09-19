@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -20,9 +21,8 @@ public class TestActivity extends AppCompatActivity {
     ImageView prevBtn, nextBtn;
     TextView prevText, nextText, testNumber;
     LinearLayout prevLayout, nextLayout;
-    //ImageView aImgSelect, bImgSelect, selectorVisible01, selectorVisible02;
+    Integer tNum;
     ImageView aTestSelect, bTestSelect, cTestSelect, dTestSelect, selectorVisibleT1, selectorVisibleT2, selectorVisibleT3, selectorVisibleT4;
-
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
@@ -82,6 +82,9 @@ public class TestActivity extends AppCompatActivity {
         testNumber = (TextView) findViewById(R.id.testNumber);
         prevLayout = (LinearLayout) findViewById(R.id.prevLayout);
         nextLayout = (LinearLayout) findViewById(R.id.nextLayout);
+        tNum = 1; // 초기값 설정
+        testNumber.setText(tNum.toString());
+        testNumPlay();
 
         nextLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +92,10 @@ public class TestActivity extends AppCompatActivity {
                 if (progressn != 100)
                 progressn = progressn + 10;
                 testProgressBar.setProgress(progressn);
+                tNum += 1;
+                testNumber.setText(tNum.toString());
+                //Toast.makeText(getApplicationContext(), tNum+"", Toast.LENGTH_SHORT).show();
+                testNumPlay();
             }
         });
 
@@ -98,32 +105,16 @@ public class TestActivity extends AppCompatActivity {
                 if (progressn != 10)
                 progressn = progressn - 10;
                 testProgressBar.setProgress(progressn);
-            }
-        });
-/*
-        aImgSelect = (ImageView) findViewById(R.id.aTestSelect);
-        bImgSelect = (ImageView) findViewById(R.id.bTestSelect);
-        selectorVisible01 = (ImageView) findViewById(R.id.selectorVisibleT1);
-        selectorVisible02 = (ImageView) findViewById(R.id.selectorVisibleT2);
-
-        aImgSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //aImgSelect.setAlpha(50);
-                selectorVisible01.setVisibility(View.VISIBLE);
-                selectorVisible02.setVisibility(View.GONE);
+                tNum -= 1;
+                testNumber.setText(tNum.toString());
+                //Toast.makeText(getApplicationContext(), tNum+"", Toast.LENGTH_SHORT).show();
+                testNumPlay();
             }
         });
 
-        bImgSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectorVisible02.setVisibility(View.VISIBLE);
-                selectorVisible01.setVisibility(View.GONE);
-            }
-        });
 
- */
+
+
 
         aTestSelect = (ImageView) findViewById(R.id.aTestSelect);
         bTestSelect = (ImageView) findViewById(R.id.bTestSelect);
@@ -174,4 +165,30 @@ public class TestActivity extends AppCompatActivity {
             }
         });
     }
+
+    void testNumPlay() {
+        switch (tNum.intValue()) {
+            case 1:
+                prevLayout.setVisibility(View.INVISIBLE);
+                nextLayout.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                prevLayout.setVisibility(View.VISIBLE);
+                nextLayout.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                prevLayout.setVisibility(View.VISIBLE);
+                nextLayout.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                prevLayout.setVisibility(View.VISIBLE);
+                nextLayout.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                prevLayout.setVisibility(View.VISIBLE);
+                nextLayout.setVisibility(View.INVISIBLE);
+                break;
+        }
+    }
+
 }

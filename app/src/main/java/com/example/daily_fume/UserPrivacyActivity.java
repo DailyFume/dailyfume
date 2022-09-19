@@ -38,7 +38,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         title_change = (TextView) findViewById(R.id.title_change);
-        title_change.setText("개인 정보");
+        title_change.setText("      개인 정보");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {

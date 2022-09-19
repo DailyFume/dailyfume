@@ -20,8 +20,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="540dp"
-            android:layout_marginBottom="7dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -77,11 +77,12 @@
             </LinearLayout>
 
             <ScrollView
-                android:id="@+id/HomeScrollView"
+                android:id="@+id/FumeScrollView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:clipToPadding="false"
                 android:fillViewport="true"

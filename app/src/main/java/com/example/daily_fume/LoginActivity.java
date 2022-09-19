@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
-    ImageView backBtn, joinBtn;
+    ImageView backBtn;
+    Button joinPageBtn;
     TextView title_change;
 
     @Override
@@ -37,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinBtn = (ImageView) findViewById(R.id.joinPageBtn);
-        joinBtn.setOnClickListener(new View.OnClickListener() {
+        joinPageBtn = (Button) findViewById(R.id.joinPageBtn);
+        joinPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
