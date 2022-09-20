@@ -154,7 +154,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // 뷰페이저
-        viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.ResultViewPager);
         pagerAdapter = new TextViewPagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
 

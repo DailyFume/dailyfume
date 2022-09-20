@@ -48,7 +48,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:overScrollMode="never"
-                    android:text="1. 둘 중 더 끌리는 향기를 골라주세요"
+                    android:text="1. 맘에 드는 향기를 골라주세요"
                     android:textColor="#333333"
                     android:textSize="18dp" />
 
@@ -64,6 +64,7 @@
                         android:id="@+id/prevLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -101,14 +102,16 @@
                         android:layout_marginRight="80dp"
                         android:text=" / 5"
                         android:textAlignment="center"
-                        android:textColor="#333333"
+                        android:textColor="#979696"
                         android:textSize="18dp" />
 
                     <LinearLayout
                         android:id="@+id/nextLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        tools:visibility="visible">
 
                         <TextView
                             android:id="@+id/nextText"
@@ -128,6 +131,20 @@
                             app:srcCompat="@drawable/rightbtn" />
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/ResultText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="[결과 보기]"
+                        android:textColor="#D77F8F"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
