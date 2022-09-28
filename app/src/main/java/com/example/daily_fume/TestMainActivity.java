@@ -78,7 +78,14 @@ public class TestMainActivity extends AppCompatActivity {
         noviceBtn.setOnClickListener(new View.OnClickListener() { // 초보자 버튼 클릭시
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TestMainActivity.this, TestActivity.class);
+                Intent intent = new Intent(TestMainActivity.this, TestNoviceActivity.class);
+                startActivity(intent);
+            }
+        });
+        buffBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TestMainActivity.this, TestBuffActivity.class);
                 startActivity(intent);
             }
         });

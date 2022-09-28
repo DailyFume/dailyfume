@@ -21,8 +21,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#0FFFFFFF"
-            android:gravity="center_horizontal" >
+            android:background="@drawable/testbackg"
+            android:gravity="center_horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"

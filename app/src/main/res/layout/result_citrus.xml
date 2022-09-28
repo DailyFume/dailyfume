@@ -26,6 +26,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/testbackg"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -45,8 +46,10 @@
                 <LinearLayout
                     android:id="@+id/Ra"
                     android:layout_width="match_parent"
-                    android:layout_height="145dp"
-                    android:background="@drawable/testbackg"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -55,12 +58,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="30dp"
-                        android:layout_marginBottom="30dp"
-                        android:lineSpacingExtra="3sp"
-                        android:text="당신의 활기찬 성격만큼 발랄하고 톡톡튀는 매력적인 과일향을\n 좋아하시는 군요. 시트러스향은 감귤류의 향을 \n 말해요. 레몬, 라임, 베르가못, 오렌지 등의 \n 과일이랍니다. 오늘은 ‘시트러스’로 기분전환 어때요? "
+                        android:layout_marginBottom="50dp"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="10sp"
+                        android:text="당신의 활기찬 성격만큼 발랄하고 톡톡튀는\n 매력적인 과일향을 좋아하시는군요.\n \n 시트러스향은 감귤류의 향을 말해요.\n 레몬, 라임, 베르가못, 오렌지 등의 과일이랍니다.\n 사전적 의미로는 ‘감귤류, 밀감속’ 의 뜻으로,\n 와인용어로 ‘와인에서 오렌지, 레몬, 라임, 자몽 등의\n  향과 풍미를 느낄 수 있습니다.\n \n 풋풋하고 싱싱하며, 청량감 있는 Dry White Wine에서\n 맡을 수 있는 가장 기본적인 아로마(Aroma)를 말한다”라고\n 정의되어 있는 이름만큼이나 상큼한 유래를 가진  시트러스 !\n 오늘은 ‘시트러스’로 기분전환 어때요?"
                         android:textAlignment="center"
                         android:textColor="#666666"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <ImageView
                         android:id="@+id/imageView7"
@@ -75,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/testbackg"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -83,8 +87,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
                         android:text="추천 해시태그"
                         android:textColor="#4D4D4D"
                         android:textSize="14dp" />
@@ -157,8 +161,7 @@
                     android:id="@+id/Rc"
                     android:layout_width="match_parent"
                     android:layout_height="320dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/testbackg"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -182,8 +185,7 @@
                 <LinearLayout
                     android:id="@+id/Rd"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:background="@drawable/testbackg"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -221,24 +223,13 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textView23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="공유하기"
-                        android:textColor="#4D4D4D"
-                        android:textSize="14dp" />
-
                     <ImageView
                         android:id="@+id/ResultTopButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
                         app:srcCompat="@drawable/topbuttonimg" />
 
                 </LinearLayout>

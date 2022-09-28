@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,15 +34,21 @@ public class TestResultActivity extends AppCompatActivity {
     final long DELAY_MS = 500;
     final long PERIOD_MS = 3000;
 
+    // 임시 랜덤함수
+    Integer[] resultPage = {R.layout.result_citrus, R.layout.result_floral, R.layout.result_green };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_test_result);
 
         // ★ 나중에 if문 이용하거나 답변 갯수에 따라 setContentView 바꿔주고 아래 메서드 실행하면 가능
-        setContentView(R.layout.result_citrus);
+        // 현재 임시로 결과 페이지 랜덤하게 나오게 함
+        Random ram = new Random();
+        int num = ram.nextInt(resultPage.length);
+        //setContentView(R.layout.result_citrus);
+        setContentView(resultPage[num]);
         resultPage();
-
     }
 
     // 메서드 (결과페이지 이벤트)
@@ -51,7 +60,8 @@ public class TestResultActivity extends AppCompatActivity {
         ResultBackIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -65,6 +75,7 @@ public class TestResultActivity extends AppCompatActivity {
         });
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        testIcon = (ImageView) findViewById(R.id.testIcon);
         // searchIcon = (ImageView) findViewById(R.id.);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
@@ -73,6 +84,15 @@ public class TestResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 startActivity(intent);
                 finish();
             }
