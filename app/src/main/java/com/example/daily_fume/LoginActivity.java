@@ -9,13 +9,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.kakao.auth.Session;
 
 public class LoginActivity extends AppCompatActivity {
 
     ImageView backBtn, joinBtn;
     TextView title_change;
+
+    //카카오톡 로그인 버튼
+    Button kakaoLogin;
+    //LinearLayout linearLayout;
+    private KakaoCallBack KakaoCallBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,26 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //카카오톡 로그인 구현
+
+        viewInit();
+
+        //linearLayout.bringToFront();
+        //linearLayout.setVisibility(View.INVISIBLE);
+
+        KakaoCallBack = new KakaoCallBack();
+        Session.getCurrentSession().addCallback(KakaoCallBack);
+        Session.getCurrentSession().checkAndImplicitOpen();
+
+        kakaoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kakaoLogin.performClick();
+            }
+        });
+
+
     }
 
 
@@ -68,5 +98,30 @@ public class LoginActivity extends AppCompatActivity {
                 });
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
+    }
+
+
+    //카카오톡 로그인 구현
+    private void viewInit(){
+        //linearLayout = findViewById(R.id.linearLayout);
+        kakaoLogin = findViewById(R.id.kakaoLogin);
+    }
+
+    public void kakaoError(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Session.getCurrentSession().removeCallback(KakaoCallBack);
     }
 }
