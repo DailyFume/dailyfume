@@ -84,7 +84,7 @@
                         android:id="@+id/testNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
+                        android:layout_marginLeft="80dp"
                         android:text="1"
                         android:textAlignment="center"
                         android:textColor="#333333"
@@ -94,7 +94,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="100dp"
+                        android:layout_marginRight="80dp"
                         android:text=" / 10"
                         android:textAlignment="center"
                         android:textColor="#333333"
@@ -134,19 +134,110 @@
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/aTestSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginBottom="5dp"
+                                app:srcCompat="@drawable/test01" />
+
+                            <ImageView
+                                android:id="@+id/selectorVisibleT1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/selectors" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/bTestSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                app:srcCompat="@drawable/test02" />
+
+                            <ImageView
+                                android:id="@+id/selectorVisibleT2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/selectors" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/cTestSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginBottom="5dp"
+                                app:srcCompat="@drawable/test01" />
+
+                            <ImageView
+                                android:id="@+id/selectorVisibleT3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/selectors" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/dTestSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                app:srcCompat="@drawable/test02" />
+
+                            <ImageView
+                                android:id="@+id/selectorVisibleT4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/selectors" />
+                        </FrameLayout>
+                    </LinearLayout>
+
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
 
                         <ImageView
-                            android:id="@+id/aImgSelect"
+                            android:id="@+id/aSelect"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             app:srcCompat="@drawable/testimg01" />
 
                         <ImageView
-                            android:id="@+id/selectorVisible01"
+                            android:id="@+id/selectorVisible1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -155,16 +246,17 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
 
                         <ImageView
-                            android:id="@+id/bImgSelect"
+                            android:id="@+id/bSelect"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:srcCompat="@drawable/testimg02" />
 
                         <ImageView
-                            android:id="@+id/selectorVisible02"
+                            android:id="@+id/selectorVisible2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:visibility="gone"

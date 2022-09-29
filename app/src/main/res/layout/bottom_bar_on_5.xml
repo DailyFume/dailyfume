@@ -71,7 +71,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                app:srcCompat="@drawable/on_05" />
+                app:srcCompat="@drawable/on_051" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>

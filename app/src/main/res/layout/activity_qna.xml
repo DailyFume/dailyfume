@@ -73,7 +73,7 @@
                     app:srcCompat="@drawable/email_qna" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/mailSendBtn"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"

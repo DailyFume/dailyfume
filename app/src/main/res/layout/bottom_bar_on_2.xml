@@ -41,7 +41,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                app:srcCompat="@drawable/on_02" />
+                app:srcCompat="@drawable/on_021" />
 
             <ImageView
                 android:id="@+id/searchIcon"
