@@ -23,6 +23,9 @@
             tools:ignore="Instantiatable" />
 
         <activity
+            android:name=".TestResultActivity"
+            android:exported="false" /> <!-- 테스트 결과 페이지 -->
+        <activity
             android:name=".PickFumeActivity"
             android:exported="false" /> <!-- 찜한 향수 페이지 -->
         <activity
@@ -38,8 +41,11 @@
             android:name=".HomeActivity"
             android:exported="false" /> <!-- 메인 홈화면 페이지 -->
         <activity
-            android:name=".TestActivity"
-            android:exported="false" /> <!-- 향수 테스트 페이지 -->
+            android:name=".TestBuffActivity"
+            android:exported="false" /> <!-- 향수 매니아 테스트 페이지 -->
+        <activity
+            android:name=".TestNoviceActivity"
+            android:exported="false" /> <!-- 향수 입문자 테스트 페이지 -->
         <activity
             android:name=".MyPageActivity"
             android:exported="false" /> <!-- 마이페이지 인덱스 -->

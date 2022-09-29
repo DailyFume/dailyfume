@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 
 public class MyPageActivity extends AppCompatActivity {
 
-    ImageView backBtn;
+    ImageView backBtn, imgVdf;
     TextView title_change;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
@@ -28,7 +29,8 @@ public class MyPageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         title_change = (TextView) findViewById(R.id.title_change);
-        title_change.setText("마이페이지");
+        title_change.setTextColor(Color.parseColor("#D77F8F"));
+        title_change.setText("회원 님");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,9 @@ public class MyPageActivity extends AppCompatActivity {
         findViewById(R.id.menu2Btn).setOnClickListener(menuClick); // 찜 목록 페이지
         findViewById(R.id.menu3Btn).setOnClickListener(menuClick); // 후기 리스트 페이지
         findViewById(R.id.menu4Btn).setOnClickListener(menuClick); // 문의사항
-        findViewById(R.id.menu5Btn).setOnClickListener(menuClick); // 공지사항
+
+        imgVdf = (ImageView) findViewById(R.id.imgVdf);
+        imgVdf.setColorFilter(Color.LTGRAY);
 
     }
 
@@ -96,9 +100,6 @@ public class MyPageActivity extends AppCompatActivity {
                 case R.id.menu4Btn:
                     intent = new Intent(getApplicationContext(), QnaActivity.class);
                     startActivity(intent);
-                    break;
-                case R.id.menu5Btn:
-                    //
                     break;
             }
         }

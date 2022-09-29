@@ -81,6 +81,7 @@ public class JoinActivity extends AppCompatActivity {
                 if (checkYes.isChecked()) { // 동의합니다 체크 된 경우
                     Intent intent = new Intent(JoinActivity.this, JoinYesActivity.class);
                     startActivity(intent); // 회원완료 페이지로 (정확히는 회원가입에 성공한 경우만)
+                    finish();
                 } else { // 동의합니다 체크 안한 경우
                     showJoinNoCheck(); // 팝업창 뜨기
                 }
