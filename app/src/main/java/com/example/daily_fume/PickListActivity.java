@@ -24,6 +24,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +47,7 @@ public class PickListActivity extends AppCompatActivity {
     List<String> TitleValues = new ArrayList<>();
     List<Integer> PickNumValue = new ArrayList<>();
 
-    String boxTxt;
+    String listname;
     Button BoxModifyBtn, BoxDeleteBtn;
 
     @Override
@@ -211,13 +218,33 @@ public class PickListActivity extends AppCompatActivity {
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // ★ 확인 버튼 클릭시 액션
-                boxTxt = boxName.getText().toString();
-                TitleValues.add(boxTxt);
-                pickBoxLoading();
-                Toast.makeText(getApplicationContext(), boxTxt + "폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                listname = boxName.getText().toString();
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
 
+                            if(success){
+                                TitleValues.add(listname);
+                                pickBoxLoading();
+                                Toast.makeText(getApplicationContext(), listname + "폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "폴더 생성에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                };
+
+                LikeRequest likeRequest = new LikeRequest(listname, responseListener);
+                RequestQueue queue = Volley.newRequestQueue( PickListActivity.this );
+                queue.add(likeRequest);
             }
         });
+
         alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // ★ 취소 버튼 클릭시 액션

@@ -51,6 +51,13 @@
                         android:paddingLeft="15dp"
                         android:textSize="13dp" />
                 </LinearLayout>
+            <Button
+                android:id="@+id/kakaoLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/kakao_login_medium_wide" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
