@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.daily_fume">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily_fume">
+
+        <!-- 카카오톡 로그인 -->
+       <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakaoApi" />
+        <activity android:name=".KakaoSDKInit"
+            tools:ignore="Instantiatable" />
+
         <activity
             android:name=".PickFumeActivity"
             android:exported="false" /> <!-- 찜한 향수 페이지 -->
@@ -53,10 +63,10 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
