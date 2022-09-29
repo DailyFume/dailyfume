@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">daily_fume</string>
+    //카카오톡 네이티브 앱 키
+    <string name="kakaoApi">2d66d7f18521bf353781f2ea7af034b6</string>
 </resources>
