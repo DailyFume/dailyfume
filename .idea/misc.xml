@@ -3,6 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/drawable/round_10px.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/drawable/round_4px.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/drawable/roundbtn.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/drawable/storke.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_join.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_join_yes.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_login.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_my_page.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_notice.xml" value="0.22" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_pick_fume.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_pick_list.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_resign.xml" value="0.22" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_resign_popup.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_search_1.xml" value="0.22" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_search_2.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_test.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/activity_user_privacy.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/bottom_bar_off.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/bottom_bar_on_1.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/bottom_bar_on_3.xml" value="0.22" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/bottom_bar_on_5.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/notice.xml" value="0.1" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/picbox_layout.xml" value="0.22" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/top_bar.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/top_bar_etc.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/top_bar_home.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/top_bar_main.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/top_bar_main2.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/top_bar_slide.xml" value="0.165625" />
+        <entry key="..\:/Users/gsj13/AndroidStudioProjects/ww/backup01/app/src/main/res/layout/view_pager.xml" value="0.165625" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/round_10px.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/round_10px_pink.xml" value="0.26979166666666665" />
