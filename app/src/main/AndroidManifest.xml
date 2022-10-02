@@ -13,14 +13,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Daily_fume">
+        android:theme="@style/Theme.Daily_fume"
+        android:name=".KakaoSDKInit">
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <!-- 카카오톡 로그인 -->
-       <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakaoApi" />
-        <activity android:name=".KakaoSDKInit"
-            tools:ignore="Instantiatable" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{네이티브 앱 키}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakao{2d66d7f18521bf353781f2ea7af034b6}" />
+            </intent-filter>
+        </activity>
+
+<!--        &lt;!&ndash; 카카오톡 로그인 &ndash;&gt;-->
+<!--       <meta-data-->
+<!--            android:name="com.kakao.sdk.AppKey"-->
+<!--            android:value="@string/kakaoApi" />-->
+<!--        <activity android:name=".KakaoSDKInit"-->
+<!--            tools:ignore="Instantiatable" />-->
 
         <activity
             android:name=".PickFumeActivity"
@@ -55,9 +78,9 @@
         <activity
             android:name=".JoinActivity"
             android:exported="false" /> <!-- 회원가입 페이지 -->
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" /> <!-- 로그인 페이지 -->
+<!--        <activity-->
+<!--            android:name=".LoginActivity"-->
+<!--            android:exported="false" /> &lt;!&ndash; 로그인 페이지 &ndash;&gt;-->
         <activity
             android:name=".MainActivity"
             android:exported="true"> <!-- 첫화면 페이지 -->

@@ -51,4 +51,5 @@ dependencies {
     // 카카오톡
     implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: '1.30.0'
 
+    implementation "com.kakao.sdk:v2-user:2.8.3" // 카카오 로그인
 }
