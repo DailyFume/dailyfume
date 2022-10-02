@@ -9,6 +9,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -122,8 +126,8 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_2:
-                        //intent = new Intent(getApplicationContext(), TestMainActivity.class);
-                        //startActivity(intent);
+                            intent = new Intent(getApplicationContext(), PickListActivity.class);
+                        startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
 

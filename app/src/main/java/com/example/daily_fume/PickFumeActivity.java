@@ -329,6 +329,43 @@ public class PickFumeActivity extends AppCompatActivity {
         zero_love = (ImageView) findViewById(R.id.zero_love);
         zero_love.setColorFilter(Color.parseColor("#FAF1F3"));
 
+        // 하단바 액션
+        homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        testIcon = (ImageView) findViewById(R.id.testIcon);
+        // searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        // loveIcon = (ImageView) findViewById(R.id.loveIcon);
+        mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // searchIcon.setOnClickListener();
+        // loveIcon.setOnClickListener();
+
+        mypageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
 

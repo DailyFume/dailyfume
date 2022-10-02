@@ -31,7 +31,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                app:srcCompat="@drawable/on_01" />
+                app:srcCompat="@drawable/on_011" />
 
             <ImageView
                 android:id="@+id/testIcon"

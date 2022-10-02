@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ public class QnaActivity extends AppCompatActivity {
 
     ImageView backBtn;
     TextView title_change;
+    Button mailSendBtn;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
@@ -65,6 +68,16 @@ public class QnaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mailSendBtn = (Button) findViewById(R.id.mailSendBtn);
+        mailSendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { // 메일을 보낼 수 있도록 G메일로 연결
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://mail.google.com/"));
+                // 또는 https://www.google.com/intl/ko/gmail/about/
                 startActivity(intent);
             }
         });
