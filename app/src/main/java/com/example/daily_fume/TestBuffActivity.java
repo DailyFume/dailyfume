@@ -3,6 +3,7 @@ package com.example.daily_fume;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,10 +49,18 @@ public class TestBuffActivity extends AppCompatActivity {
         });
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        testIcon = (ImageView) findViewById(R.id.testIcon);
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         // searchIcon = (ImageView) findViewById(R.id.);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
-
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,15 +250,15 @@ public class TestBuffActivity extends AppCompatActivity {
                 selectorVisibleT3.setVisibility(View.GONE);
                 selectorVisibleT4.setVisibility(View.GONE);
                 break;
-            case 4: /* ★ 이미지 수정하기 */
+            case 4:
                 testText.setText("4 . 잠들기 전에 맡고 싶은 향은?");
                 prevLayout.setVisibility(View.VISIBLE);
                 nextLayout.setVisibility(View.VISIBLE);
                 ResultText.setVisibility(View.GONE);
-                aTestSelect.setImageResource(R.drawable.test_novice_4_1);
-                bTestSelect.setImageResource(R.drawable.test_novice_4_2);
-                cTestSelect.setImageResource(R.drawable.test_novice_4_3);
-                dTestSelect.setImageResource(R.drawable.test_novice_4_4);
+                aTestSelect.setImageResource(R.drawable.test_buff_4_1);
+                bTestSelect.setImageResource(R.drawable.test_buff_4_2);
+                cTestSelect.setImageResource(R.drawable.test_buff_4_3);
+                dTestSelect.setImageResource(R.drawable.test_buff_4_4);
                 selectorVisibleT1.setVisibility(View.GONE);
                 selectorVisibleT2.setVisibility(View.GONE);
                 selectorVisibleT3.setVisibility(View.GONE);

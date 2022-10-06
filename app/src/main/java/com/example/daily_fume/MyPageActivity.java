@@ -95,7 +95,9 @@ public class MyPageActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.menu3Btn:
-                    //
+                    intent = new Intent(getApplicationContext(), ReviewCreateActivity.class); // ★ 확인용 나중에는
+                    // 회원 유저 자신이 쓴 후기만 볼 수 있는 후기 페이지로 이동 수정하기
+                    startActivity(intent);
                     break;
                 case R.id.menu4Btn:
                     intent = new Intent(getApplicationContext(), QnaActivity.class);

@@ -34,8 +34,11 @@ public class TestResultActivity extends AppCompatActivity {
     final long DELAY_MS = 500;
     final long PERIOD_MS = 3000;
 
-    // 임시 랜덤함수
-    Integer[] resultPage = {R.layout.result_citrus, R.layout.result_floral, R.layout.result_green };
+
+    // 임시 랜덤함수 (결과페이지 10개)
+    Integer[] resultPage = {R.layout.result_citrus, R.layout.result_floral, R.layout.result_green, R.layout.result_woody,
+            R.layout.result_oriental, R.layout.result_fruity, R.layout.result_oceanic, R.layout.result_spicy,
+            R.layout.result_aldeyde, R.layout.result_musk };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

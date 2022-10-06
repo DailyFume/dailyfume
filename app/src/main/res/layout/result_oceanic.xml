@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestResultActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/TestResultView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:fillViewport="false"
+            android:scrollbarStyle="outsideOverlay"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/testbackg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/result_oceanic">
+
+                    <ImageView
+                        android:id="@+id/ResultBackIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        app:srcCompat="@drawable/result_back_wh" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="50dp"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="10sp"
+                        android:text="이름에 걸맞게 여름 바다의 톡 쏘는 분위기를 가진\n 오셔닉 향수! 해조류, 바다의 짠 느낌, 청량감등의\n 느낌이 나는 것이 대표적에요.\n \n  이 계열의 향은 넓은 공간에 대한 욕망이 있었던  1980년대 말에 인기를 끌었다고 해요. 현재도 대중적인 향조는 아니지만 여름에 종종 애용되는 계열이랍니다. 대부분 오셔닉, 마린, 아쿠아 계열은 물의 냄새를 표현한 유사한 향으로 구성되어 있어요.\n \n   물향이 주가되는 여름에 쓰기 적합하지만,\n 추운계절에 뿌리면 향을 더욱 강하게 즐길 수 있고,\n 독특한 시그니처 향으로 사용할 수도 있답니다!\n 궁금하다면 오셔닉 향수로 분위기 전환 어때요?"
+                        android:textAlignment="center"
+                        android:textColor="#666666"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/result_line" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="추천 해시태그"
+                        android:textColor="#4D4D4D"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <android.widget.Button
+                            android:id="@+id/tag1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/result_tag"
+                            android:text="#오셔닉"
+                            android:textColor="#8C8B8B"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <android.widget.Button
+                            android:id="@+id/tag2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/result_tag"
+                            android:text="#시원한"
+                            android:textColor="#8C8B8B"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <android.widget.Button
+                            android:id="@+id/tag3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/result_tag"
+                            android:text="#청량한"
+                            android:textColor="#8C8B8B"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <android.widget.Button
+                            android:id="@+id/tag4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/result_tag"
+                            android:text="#여름"
+                            android:textColor="#8C8B8B"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Rc"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:text="이 향수를 추천드려요."
+                        android:textColor="#333333"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/ResultViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Rd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/send_kakao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/send_kakao" />
+
+                        <ImageView
+                            android:id="@+id/send_insta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/send_insta" />
+
+                        <ImageView
+                            android:id="@+id/send_url"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/send_url" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ResultTopButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        app:srcCompat="@drawable/topbuttonimg" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/bottom_bar"
+            layout="@layout/bottom_bar_on_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

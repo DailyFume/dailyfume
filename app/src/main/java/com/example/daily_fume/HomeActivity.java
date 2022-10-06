@@ -201,6 +201,15 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE: // 스크롤뷰 움직이는 동안
+                        /*
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                testGoButton.setVisibility(View.GONE);
+                                testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
+                            }
+                        },2000); */
                         testGoButton.setVisibility(View.GONE);
                         testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
                         break;

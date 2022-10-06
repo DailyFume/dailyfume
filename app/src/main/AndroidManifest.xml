@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily_fume">
         <activity
+            android:name=".ReviewCreateActivity"
+            android:exported="false" /> <!-- 후기 작성 페이지 -->
+        <activity
             android:name=".TestResultActivity"
             android:exported="false" /> <!-- 테스트 결과 페이지 -->
         <activity

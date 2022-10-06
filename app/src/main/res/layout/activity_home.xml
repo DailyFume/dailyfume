@@ -30,7 +30,7 @@
                 android:layout_height="67dp"
                 android:layout_gravity="center"
                 android:background="@drawable/round_4px"
-                android:backgroundTint="#F4D6DB"
+                android:backgroundTint="#D77F8F"
                 android:text="취향테스트 시작"
                 android:textColor="#FFFFFF"
                 android:textSize="24dp"
@@ -63,24 +63,6 @@
                         android:orientation="vertical">
 
                         <android.widget.Button
-                            android:id="@+id/testGoButton3"
-                            android:layout_width="match_parent"
-                            android:layout_height="67dp"
-                            android:layout_alignParentLeft="false"
-                            android:layout_alignParentRight="false"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="false"
-                            android:background="@drawable/round_4px"
-                            android:backgroundTint="#F4D6DB"
-                            android:text="취향테스트 시작"
-                            android:textColor="#FFFFFF"
-                            android:textSize="24dp"
-                            android:textStyle="bold"
-                            android:visibility="gone"
-                            app:strokeWidth="1dp" />
-
-                        <android.widget.Button
                             android:id="@+id/testGoButton"
                             android:layout_width="match_parent"
                             android:layout_height="67dp"
@@ -90,7 +72,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="false"
                             android:background="@drawable/round_4px"
-                            android:backgroundTint="#DED0E1"
+                            android:backgroundTint="#D77F8F"
                             android:text="취향테스트 시작"
                             android:textColor="#FFFFFF"
                             android:textSize="24dp"
@@ -152,7 +134,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginBottom="30dp"
+                                android:layout_marginBottom="15dp"
                                 app:srcCompat="@drawable/morebuttonimg" />
 
                         </LinearLayout>
@@ -161,7 +143,6 @@
                             android:id="@+id/b_01"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
                             android:layout_marginBottom="20dp"
                             android:orientation="vertical">
 
@@ -327,7 +308,7 @@
                             android:id="@+id/b_02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginBottom="20dp"
                             android:orientation="vertical">
 

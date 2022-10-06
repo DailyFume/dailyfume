@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,7 +19,9 @@ public class JoinActivity extends AppCompatActivity {
 
     ImageView backBtn;
     TextView title_change, memberTerms;
-    Button manBtn, womanBtn, joinBtn;
+    Button joinBtn;
+    // Button manBtn, womanBtn;
+    ImageView membertermBtn;
     CheckBox checkYes;
 
     @Override
@@ -41,6 +44,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        /*
         manBtn = (Button) findViewById(R.id.manBtn);
         womanBtn = (Button) findViewById(R.id.womanBtn);
 
@@ -63,9 +67,19 @@ public class JoinActivity extends AppCompatActivity {
                 manBtn.setBackgroundColor(Color.rgb(255,255,255));
             }
         });
+         */
 
         memberTerms = (TextView) findViewById(R.id.memberTerms);
         memberTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
+                startActivity(intent);
+            }
+        });
+
+        membertermBtn = (ImageView) findViewById(R.id.membertermBtn);
+        membertermBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
