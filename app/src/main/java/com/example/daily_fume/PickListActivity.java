@@ -9,7 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +46,10 @@ public class PickListActivity extends AppCompatActivity {
     Spinner spinnerPick;
     String[] PfItems = { "  기본  ", "  최신순  ", "  이름순  "};
     ListView pickBoxList;
-    List<String> TitleValues = new ArrayList<>();
-    List<Integer> PickNumValue = new ArrayList<>();
+    ArrayList<String> TitleValues = new ArrayList<String>();
+    ArrayList<Integer> PickNumValue = new ArrayList<Integer>();
 
-    String boxTxt;
-    Button BoxModifyBtn, BoxDeleteBtn;
+    String listname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +142,34 @@ public class PickListActivity extends AppCompatActivity {
             }
         });
 
+        // 찜폴더 관리
+        pickBoxList = (ListView) findViewById(R.id.pickBoxList);
+        TitleValues.add("기본 그룹");
 
+        for (int i = 0; i < TitleValues.size(); i++) {
+            pickBoxLoading();
+        }
+
+
+        // ★ 리스트뷰와 버튼 조합일 시 주의사항
+        // 1. 리스트뷰 포커스를 false로 해야 함
+        // 2. 리스트뷰에 들어간 레이아웃에서 버튼들 xml에 clickable과 focusable은 false로 해야 함
+        // 3. getView 메서드로 클릭하게 해줘야 됨.
+
+/*
+        // 어댑터 파일로 이동됨
+        pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override  // ★ 각각의 폴더 선택하면 해당 찜한 상품이 저장된 폴더로 이동 나중에 수정하기
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (TitleValues.get(position)){
+                    case "기본 그룹" :
+                        Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
+                        startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
+                        break;
+                }
+            }
+        }); */
 
         // 새폴더 추가
         pickBoxNew = (ImageView) findViewById(R.id.pickBoxNew);
@@ -145,42 +180,13 @@ public class PickListActivity extends AppCompatActivity {
             }
         });
 
-        // 찜폴더 관리
-        pickBoxList = (ListView) findViewById(R.id.pickBoxList);
-        TitleValues.add("기본 폴더");
-        pickBoxLoading();
-
-        // ★ 리스트뷰와 버튼 조합일 시 주의사항
-        // 1. 리스트뷰 포커스를 false로 해야 함
-        // 2. 리스트뷰에 들어간 레이아웃에서 버튼들 xml에 clickable과 focusable은 false로 해야 함
-        pickBoxList.setFocusable(false);
-
-        pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override  // ★ 각각의 폴더 선택하면 해당 찜한 상품이 저장된 폴더로 이동 나중에 수정하기
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // ★ 잘 선택되었는지 임시 확인용
-                Toast.makeText(getApplicationContext(), TitleValues.get(position) +" 폴더 클릭", Toast.LENGTH_SHORT).show();
-
-                switch (TitleValues.get(position)){
-                    case "기본 폴더" :
-                        Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
-                        startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
-                        break;
-                }
-            }
-        });
-        // ★ 버튼 클릭이 안됨. 리스트뷰 안에 있는 버튼을 클릭할 때는 어댑터 클래스를 따로 빼고
-        // getView 메서드로 클릭하게 해줘야 됨. (이 페이지 전체를 뜯어고쳐야할지도 ㅠㅠㅠ)
-        // 버튼 클릭되는 거 좀더 시도해보기
-
     }
 
 
     // 메서드
 
     void pickBoxLoading() { // 폴더 추가 메서드 - ★ 단 새로고침하면 기존 폴더들이 사라짐 (개선하기)
-        ArrayAdapter<String> pickboxadapter = new ArrayAdapter<String>(this,
-                R.layout.picbox_layout2, R.id.boxTitle, TitleValues);
+        ButtonListAdapter pickboxadapter = new ButtonListAdapter( this, TitleValues);
         pickBoxList.setAdapter(pickboxadapter);
 
     }
@@ -192,15 +198,15 @@ public class PickListActivity extends AppCompatActivity {
                 //Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
                 // intent.putExtra("it_listData", TitleValues.get(position));
                 // startActivity(intent); // 임시
-                Toast.makeText(getApplicationContext(), "번째 폴더 클릭", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), " 그룹 클릭", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
 
-    void showPickBoxNew() {
+    void showPickBoxNew() { // 새로 박스 만들기
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("폴더명을 입력하세요");
+        alert.setTitle("그룹명을 입력하세요");
         alert.setMessage("최대 8자까지 가능합니다.");
         final EditText boxName = new EditText(this);
         InputFilter[] FilterArray = new InputFilter[1];
@@ -211,10 +217,39 @@ public class PickListActivity extends AppCompatActivity {
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // ★ 확인 버튼 클릭시 액션
-                boxTxt = boxName.getText().toString();
-                TitleValues.add(boxTxt);
-                pickBoxLoading();
-                Toast.makeText(getApplicationContext(), boxTxt + "폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+                listname = boxName.getText().toString();
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+
+                            if(success){
+                                TitleValues.add(listname);
+                                pickBoxLoading();
+                                Toast.makeText(getApplicationContext(), "["+listname+"]"+"폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                // intent 값 전달 - 제목 데이터 보내기
+                                // 근데 이렇게 하면 자동으로 그 폴더로 들어가짐...음 다른 방법을 찾아야 될 듯
+                                GroupData groupData = new GroupData(listname);
+                                Intent groupDataIntent = new Intent(getApplicationContext(), PickZeroActivity.class);
+                                groupDataIntent.putExtra("groupData", groupData);
+                                startActivityForResult(groupDataIntent, 0);
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "폴더 생성에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                };
+
+                LikeRequest likeRequest = new LikeRequest(listname, responseListener);
+                RequestQueue queue = Volley.newRequestQueue( PickListActivity.this );
+                queue.add(likeRequest);
 
             }
         });
@@ -227,4 +262,5 @@ public class PickListActivity extends AppCompatActivity {
         alert.show();
 
     }
+
 }

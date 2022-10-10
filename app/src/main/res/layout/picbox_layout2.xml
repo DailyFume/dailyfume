@@ -52,7 +52,7 @@
             android:textSize="16dp" />
 
         <android.widget.Button
-            android:id="@+id/BoxModifyBtn"
+            android:id="@+id/BoxDeleteBtn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignTop="@id/pickBoxImg"
@@ -61,7 +61,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="178dp"
             android:layout_marginBottom="10dp"
-            android:layout_toStartOf="@+id/BoxDeleteBtn"
+            android:layout_toStartOf="@+id/BoxModifyBtn"
             android:background="@drawable/boxupicon"
             android:checkable="false"
             android:clickable="false"
@@ -72,7 +72,7 @@
             app:strokeWidth="2dp" />
 
         <android.widget.Button
-            android:id="@+id/BoxDeleteBtn"
+            android:id="@+id/BoxModifyBtn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignTop="@id/pickBoxImg"

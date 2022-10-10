@@ -34,6 +34,18 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/result_spicy">
 
+                    <Button
+                        android:id="@+id/MoreResultsBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:text="다른 결과 보기"
+                        android:textColor="#8E8E8E"
+                        tools:ignore="TextContrastCheck" />
+
                     <ImageView
                         android:id="@+id/ResultBackIcon"
                         android:layout_width="wrap_content"
@@ -178,7 +190,7 @@
                         android:textStyle="bold" />
 
                     <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/ResultViewPager"
+                        android:id="@+id/ViewPager"
                         android:layout_width="match_parent"
                         android:layout_height="240dp" />
 
