@@ -19,13 +19,15 @@
             layout="@layout/top_bar" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/testbackg"
                 android:orientation="vertical">
 
@@ -33,8 +35,9 @@
                     android:id="@+id/testProgressBar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="100"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-4.6dp"
+                    android:max="50"
                     android:progress="10"
                     android:progressTint="#E6B6BE" />
 
@@ -44,7 +47,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:text="1. 둘 중 더 끌리는 향기를 골라주세요"
+                    android:overScrollMode="never"
+                    android:text="1. 맘에 드는 향기를 골라주세요"
                     android:textColor="#333333"
                     android:textSize="18dp" />
 
@@ -53,13 +57,14 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/prevLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -87,24 +92,26 @@
                         android:layout_marginLeft="80dp"
                         android:text="1"
                         android:textAlignment="center"
-                        android:textColor="#333333"
+                        android:textColor="#D77F8F"
                         android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="80dp"
-                        android:text=" / 10"
+                        android:text=" / 5"
                         android:textAlignment="center"
-                        android:textColor="#333333"
+                        android:textColor="#979696"
                         android:textSize="18dp" />
 
                     <LinearLayout
                         android:id="@+id/nextLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="80dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        tools:visibility="visible">
 
                         <TextView
                             android:id="@+id/nextText"
@@ -125,30 +132,49 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/ResultText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="[ 결과 보기 ]"
+                        android:textColor="#D77F8F"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ab"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:id="@+id/a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1">
 
                             <ImageView
                                 android:id="@+id/aTestSelect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginBottom="5dp"
                                 app:srcCompat="@drawable/test01" />
 
                             <ImageView
@@ -160,14 +186,16 @@
                         </FrameLayout>
 
                         <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:id="@+id/b"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1">
 
                             <ImageView
                                 android:id="@+id/bTestSelect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="2dp"
                                 app:srcCompat="@drawable/test02" />
 
                             <ImageView
@@ -177,23 +205,28 @@
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/selectors" />
                         </FrameLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/cd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/ab"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:id="@+id/c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="3dp"
+                            android:layout_weight="1">
 
                             <ImageView
                                 android:id="@+id/cTestSelect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginBottom="5dp"
                                 app:srcCompat="@drawable/test01" />
 
                             <ImageView
@@ -205,14 +238,15 @@
                         </FrameLayout>
 
                         <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:id="@+id/d"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
 
                             <ImageView
                                 android:id="@+id/dTestSelect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="2dp"
                                 app:srcCompat="@drawable/test02" />
 
                             <ImageView
@@ -222,51 +256,18 @@
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/selectors" />
                         </FrameLayout>
+
                     </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:id="@+id/aSelect"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/testimg01" />
-
-                        <ImageView
-                            android:id="@+id/selectorVisible1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/selector" />
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:id="@+id/bSelect"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/testimg02" />
-
-                        <ImageView
-                            android:id="@+id/selectorVisible2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/selector" />
-                    </FrameLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:background="@drawable/testbackg"
+                    android:orientation="vertical"></LinearLayout>
 
+            </LinearLayout>
         </LinearLayout>
 
         <include

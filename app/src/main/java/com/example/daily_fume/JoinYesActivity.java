@@ -36,6 +36,7 @@ public class JoinYesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(JoinYesActivity.this, TestMainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -45,6 +46,7 @@ public class JoinYesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(JoinYesActivity.this, HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
