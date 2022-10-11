@@ -87,13 +87,13 @@
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/google_join" />
 
-            <ImageView
-                android:id="@+id/kakaoJoin"
+            <Button
+                android:id="@+id/kakaoLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/kakao_join" />
+                app:srcCompat="@drawable/kakao_login_medium_wide" />
 
             <ImageView
                 android:id="@+id/naverJoin"
