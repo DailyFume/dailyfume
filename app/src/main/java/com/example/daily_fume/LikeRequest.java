@@ -7,7 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
 public class LikeRequest extends StringRequest {
-    final static private String URL = "http://10.0.2.2/likelist.php";
+    final static private String URL = "http://43.201.60.239/likelist.php";
     private Map<String, String> parameters;
 
     public LikeRequest(String listname, Response.Listener<String> listener) {
