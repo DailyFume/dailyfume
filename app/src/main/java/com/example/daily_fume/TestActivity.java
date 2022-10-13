@@ -99,10 +99,10 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        aImgSelect = (ImageView) findViewById(R.id.aImgSelect);
-        bImgSelect = (ImageView) findViewById(R.id.bImgSelect);
-        selectorVisible01 = (ImageView) findViewById(R.id.selectorVisible01);
-        selectorVisible02 = (ImageView) findViewById(R.id.selectorVisible02);
+        aImgSelect = (ImageView) findViewById(R.id.aTestSelect);
+        bImgSelect = (ImageView) findViewById(R.id.bTestSelect);
+        selectorVisible01 = (ImageView) findViewById(R.id.selectorVisibleT1);
+        selectorVisible02 = (ImageView) findViewById(R.id.selectorVisibleT2);
 
         aImgSelect.setOnClickListener(new View.OnClickListener() {
             @Override

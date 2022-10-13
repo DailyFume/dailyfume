@@ -31,6 +31,24 @@
                 app:srcCompat="@drawable/detail_top_bg2" />
 
             <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="상품명" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DIOR jadore" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="브랜드" />
+
+            <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,14 +86,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/review2" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -94,16 +104,6 @@
                 android:text="비슷한 향수찾기"
                 android:textColor="#000000"
                 android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="20dp"
-                android:backgroundTint="#DADADA"
-                android:text="공식 홈페이지" />
 
         </LinearLayout>
 
