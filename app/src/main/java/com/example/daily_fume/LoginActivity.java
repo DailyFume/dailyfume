@@ -4,33 +4,60 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.kakao.auth.Session;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
-    ImageView backBtn;
-    Button joinPageBtn;
+    private static String TAG = "phplogin";
+
+    private static final String TAG_JSON = "user";
+    private static final String TAG_EMAIL = "uemail";
+    private static final String TAG_PASS = "upassword";
+    private static final String TAG_NAME = "uname";
+    private static final String TAG_BIRTH = "ubirth";
+
+    ArrayList<HashMap<String, String>> mArrayList;
+    private EditText mEditTextID, mEditTextPass;
+    Button loginBtn;
+
+    String loginSort;
+    String result;
+
+    ImageView backBtn, joinBtn;
     TextView title_change;
-    private long backKeyPressedTime = 0; // 뒤로가기 키 시간 변수
-    //카카오톡 로그인 버튼
-    Button kakaoLogin;
-    //LinearLayout linearLayout;
-    private KakaoCallBack KakaoCallBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mEditTextID = (EditText) findViewById(R.id.idTextBox);
+        mEditTextPass = (EditText) findViewById(R.id.pwTextBox);
+
+        mEditTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
@@ -47,44 +74,103 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinPageBtn = (Button) findViewById(R.id.joinPageBtn);
-        joinPageBtn.setOnClickListener(new View.OnClickListener() {
+        joinBtn = (ImageView) findViewById(R.id.joinPageBtn);
+        joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
                 startActivity(intent);
-
             }
         });
 
-        //카카오톡 로그인 구현
-
-        viewInit();
-
-        //linearLayout.bringToFront();
-        //linearLayout.setVisibility(View.INVISIBLE);
-
-        KakaoCallBack = new KakaoCallBack();
-        Session.getCurrentSession().addCallback(KakaoCallBack);
-        Session.getCurrentSession().checkAndImplicitOpen();
-
-        kakaoLogin.setOnClickListener(new View.OnClickListener() {
+        loginBtn = findViewById(R.id.loginBtn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kakaoLogin.performClick();
+                mArrayList.clear();
+                GetData task = new GetData();
+                task.execute(mEditTextID.getText().toString(), mEditTextPass.getText().toString());
             }
         });
-
+        mArrayList = new ArrayList<>();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            showLoginBack();
+    private class GetData extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(LoginActivity.this, "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "response" + result);
+
+
+            if(result == null) {
+                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String uemail = (String)params[0];
+            String upassword = (String)params[1];
+
+            String serverURL = "http://43.201.60.239/login.php";
+            String postParameters = "uemail=" + uemail + "&upassword=" + upassword;
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString();
+
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
         }
     }
 
@@ -108,30 +194,5 @@ public class LoginActivity extends AppCompatActivity {
                 });
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
-    }
-
-
-    //카카오톡 로그인 구현
-    private void viewInit(){
-        //linearLayout = findViewById(R.id.linearLayout);
-        kakaoLogin = findViewById(R.id.kakaoLogin);
-    }
-
-    public void kakaoError(String msg){
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
-            return;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Session.getCurrentSession().removeCallback(KakaoCallBack);
     }
 }

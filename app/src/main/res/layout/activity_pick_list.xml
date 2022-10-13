@@ -51,7 +51,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:backgroundTint="#cccccc"
-                            android:textAlignment="textEnd" />
+                            android:textAlignment="textEnd"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     </LinearLayout>
 

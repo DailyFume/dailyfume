@@ -4,10 +4,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class PickListActivity extends AppCompatActivity {
 
     String listname;
     Button BoxModifyBtn, BoxDeleteBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,6 +225,7 @@ public class PickListActivity extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        System.out.print(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
