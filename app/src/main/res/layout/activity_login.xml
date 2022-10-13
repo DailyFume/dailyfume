@@ -61,6 +61,21 @@
                     app:srcCompat="@drawable/kakao_login_medium_wide"
                     tools:ignore="SpeakableTextPresentCheck" />
 
+<!--            <com.kakao.usermgmt.LoginButton-->
+<!--                android:id="@+id/kakaoLogin"-->
+<!--                android:layout_width="351dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="5dp" />-->
+
+            <ImageButton
+                android:id="@+id/kakaoLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/kakao_login_medium_wide" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -15,11 +15,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,6 +28,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.sdk.user.model.Account;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -173,6 +178,87 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+        //카카오톡 로그인 구현
+
+        ImageButton kakaoLogin = (ImageButton) findViewById(R.id.kakaoLogin);
+        kakaoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
+                    login();
+                } else {
+                    accountLogin();
+                }
+            }
+        });
+    }
+
+    public void login() {
+        String TAG = "login()";
+        UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, (oAuthToken, error) -> {
+            if (error != null) {
+                Log.e(TAG, "로그인 실패", error);
+            } else if (oAuthToken != null) {
+                Log.i(TAG, "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
+                getUserInfo();
+            }
+            return null;
+        });
+    }
+
+    public void accountLogin() {
+        String TAG = "accountLogin()";
+        UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, (oAuthToken, error) -> {
+            if (error != null) {
+                Log.e(TAG, "로그인 실패", error);
+            } else if (oAuthToken != null) {
+                Log.i(TAG, "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
+                getUserInfo();
+            }
+            return null;
+        });
+    }
+
+    public void getUserInfo() {
+        String TAG = "getUserInfo()";
+        UserApiClient.getInstance().me((user, meError) -> {
+            if (meError != null) {
+                Log.e(TAG, "사용자 정보 요청 실패", meError);
+            } else {
+                System.out.println("로그인 완료");
+                Log.i(TAG, user.toString());
+                {
+                    Log.i(TAG, "사용자 정보 요청 성공" +
+                            "\n회원번호: " + user.getId() +
+                            "\n이메일: " + user.getKakaoAccount().getEmail());
+                }
+                Account user1 = user.getKakaoAccount();
+                System.out.println("사용자 계정" + user1);
+            }
+            return null;
+        });
+    }
+
+
+//        viewInit();
+//
+//        //linearLayout.bringToFront();
+//        //linearLayout.setVisibility(View.INVISIBLE);
+//
+//        KakaoCallBack = new KakaoCallBack();
+//        //Session.getCurrentSession().addCallback(KakaoCallBack);
+//        //Session.getCurrentSession().checkAndImplicitOpen();
+//
+//        kakaoLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                kakaoLogin.performClick();
+//            }
+//        });
+
+
+    //}
+
 
     void showLoginBack() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(LoginActivity.this)
