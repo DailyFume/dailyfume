@@ -6,13 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class JoinActivity extends AppCompatActivity {
@@ -22,6 +21,7 @@ public class JoinActivity extends AppCompatActivity {
     Button joinBtn;
     // Button manBtn, womanBtn;
     ImageView membertermBtn;
+    LinearLayout terms_box;
     CheckBox checkYes;
 
     @Override
@@ -78,6 +78,15 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        terms_box = (LinearLayout) findViewById(R.id.terms_box);
+        terms_box.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
+                startActivity(intent);
+            }
+        });
+/*
         membertermBtn = (ImageView) findViewById(R.id.membertermBtn);
         membertermBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +94,7 @@ public class JoinActivity extends AppCompatActivity {
                 Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
         checkYes = (CheckBox) findViewById(R.id.checkYes);
         joinBtn = (Button) findViewById(R.id.joinBtn);

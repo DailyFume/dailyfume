@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -42,11 +43,13 @@ public class FumeActivity extends AppCompatActivity {
 
     // 리뷰
     ListView review_listview;
-    ArrayList<ReviewData> reviewDataList;
+    ArrayList<ReviewData> reviewData;
+    TextView reviewCountNum;
     ImageView review_more_Btn;
     ImageView review_create_go; // 리뷰 없을때 리뷰 작성 버튼
     int ReviewHeight;
     int totalHeight;
+    LinearLayout review_on, review_off;
 
     // 뷰페이저 변수
     private ViewPager FumeDetailPager;
@@ -187,10 +190,13 @@ public class FumeActivity extends AppCompatActivity {
         // 리뷰 기능
         // ★ 리뷰가 존재할 때는 review_on이 Visible이어야 하고 review_off가 Gone이어야 함.
         // 리뷰가 하나도 없을 때는 review_off가 Visible이어야 하고 review_on이 Gone이어야 함.
+        review_on = (LinearLayout) findViewById(R.id.review_on);
+        review_off = (LinearLayout) findViewById(R.id.review_off);
+        reviewCountNum = (TextView) findViewById(R.id.reviewCountNum); // 리뷰 갯수 카운트
 
         this.InitReviewData();
         review_listview = (ListView) findViewById(R.id.review_listview);
-        final ReviewAdapter reviewAdapter = new ReviewAdapter(this, reviewDataList);
+        final ReviewAdapter reviewAdapter = new ReviewAdapter(this, reviewData);
         review_listview.setAdapter(reviewAdapter);
         review_listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -215,7 +221,7 @@ public class FumeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ReviewHeight = review_listview.getHeight();
-                totalHeight = ReviewHeight + 700;
+                totalHeight = ReviewHeight + 600;
                 ViewGroup.LayoutParams params = review_listview.getLayoutParams();
                 params.height = totalHeight;
                 review_listview.setLayoutParams(params);
@@ -285,26 +291,26 @@ public class FumeActivity extends AppCompatActivity {
     }
 
     void InitReviewData() { // 임시 데이터
-        reviewDataList = new ArrayList<ReviewData>();
-        reviewDataList.add(new ReviewData(R.drawable.review_img_01, "cutehyejin**님",
+        reviewData = new ArrayList<ReviewData>();
+        reviewData.add(new ReviewData(R.drawable.review_img_01, "cutehyejin**님",
                 "말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 !"));
-        reviewDataList.add(new ReviewData(R.drawable.review_img_02, "manju01** 님",
+        reviewData.add(new ReviewData(R.drawable.review_img_02, "manju01** 님",
                 "알데하이드 계열 향수를 처음 구매해봤어요! 향수를  어떤걸 사야할 지 몰랐는데 델리퓸에서 비교하고 구매했더니 대만족 입니다 ㅎㅎ 향수 입문자에게 너무 좋네요 최애 앱입니다! "));
-        reviewDataList.add(new ReviewData(R.drawable.review_img_03, "sujiniii**님",
+        reviewData.add(new ReviewData(R.drawable.review_img_03, "sujiniii**님",
                 "향기라는게 취향을 많이타서.. 친구선물 고민하다가 델리퓸에서 향수테스트 친구한테 시켜보고 바로 주문했는데 성숙하고 깔꼼한 친구 이미지에 찰떡! 생일선물 사줄때 완전 유용하고 조아요"));
-        reviewDataList.add(new ReviewData(R.drawable.review_img_04, "dooju98**님",
+        reviewData.add(new ReviewData(R.drawable.review_img_04, "dooju98**님",
                 "반오십 된 기념으로 저에게 주는 선물이에요~~! 이제 이십대 중반이니까 나이에 맞는 향을 찾아다녔는데 추천 테스트에서 맞춤향수로 뜬거보고 샀더니 찰떡같이 제 스타일 이였어요!!"));
 
     }
 
     void moreReviewData() { // 임시 리뷰 데이터 추가
-        reviewDataList.add(new ReviewData(R.drawable.review_img_04, "cutehyejin**님",
+        reviewData.add(new ReviewData(R.drawable.review_img_04, "cutehyejin**님",
                 "말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 !"));
-        reviewDataList.add(new ReviewData(R.drawable.review_img_03, "manju01** 님",
+        reviewData.add(new ReviewData(R.drawable.review_img_03, "manju01** 님",
                 "알데하이드 계열 향수를 처음 구매해봤어요! 향수를  어떤걸 사야할 지 몰랐는데 델리퓸에서 비교하고 구매했더니 대만족 입니다 ㅎㅎ 향수 입문자에게 너무 좋네요 최애 앱입니다! "));
-        //reviewDataList.add(new ReviewData(R.drawable.review_img_02, "sujiniii**님",
+        //reviewData.add(new ReviewData(R.drawable.review_img_02, "sujiniii**님",
         //        "향기라는게 취향을 많이타서.. 친구선물 고민하다가 델리퓸에서 향수테스트 친구한테 시켜보고 바로 주문했는데 성숙하고 깔꼼한 친구 이미지에 찰떡! 생일선물 사줄때 완전 유용하고 조아요"));
-        //reviewDataList.add(new ReviewData(R.drawable.review_img_01, "dooju98**님",
+        //reviewData.add(new ReviewData(R.drawable.review_img_01, "dooju98**님",
         //        "반오십 된 기념으로 저에게 주는 선물이에요~~! 이제 이십대 중반이니까 나이에 맞는 향을 찾아다녔는데 추천 테스트에서 맞춤향수로 뜬거보고 샀더니 찰떡같이 제 스타일 이였어요!!"));
     }
 }

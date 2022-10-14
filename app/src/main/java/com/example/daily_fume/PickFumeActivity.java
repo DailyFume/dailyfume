@@ -47,7 +47,7 @@ public class PickFumeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         title_change = (TextView) findViewById(R.id.title_change);
-        title_change.setText("기본 폴더"); // ★ 나중에는 사용자가 입력한 박스이름으로 변경되게 하기
+        title_change.setText("기본 그룹"); // ★ 나중에는 사용자가 입력한 박스이름으로 변경되게 하기
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
