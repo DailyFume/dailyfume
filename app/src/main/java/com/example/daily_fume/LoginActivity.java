@@ -46,12 +46,12 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> mArrayList;
     private EditText mEditTextID, mEditTextPass;
-    Button loginBtn;
+    Button loginBtn, joinBtn;
 
     String loginSort;
     String result;
 
-    ImageView backBtn, joinBtn;
+    ImageView backBtn;
     TextView title_change;
 
     private long backKeyPressedTime = 0; // 뒤로가기 키 시간 변수
@@ -81,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinPageBtn = (Button) findViewById(R.id.joinPageBtn);
-        joinPageBtn.setOnClickListener(new View.OnClickListener() {
+        joinBtn = (Button) findViewById(R.id.joinBtn);
+        joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
@@ -101,6 +101,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         mArrayList = new ArrayList<>();
+
+        //카카오톡 로그인 구현
+        ImageButton kakaoLogin = (ImageButton) findViewById(R.id.kakaoLogin);
+        kakaoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
+                    login();
+                } else {
+                    accountLogin();
+                }
+            }
+        });
     }
 
     private class GetData extends AsyncTask<String, Void, String> {
@@ -119,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(TAG, "response" + result);
 
 
-            if(result == null) {
+            if (result == null) {
                 Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
@@ -130,8 +143,8 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String uemail = (String)params[0];
-            String upassword = (String)params[1];
+            String uemail = (String) params[0];
+            String upassword = (String) params[1];
 
             String serverURL = "http://43.201.60.239/login.php";
             String postParameters = "uemail=" + uemail + "&upassword=" + upassword;
@@ -155,10 +168,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "POST response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
-                }
-                else{
+                } else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
@@ -168,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 String line;
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
 
@@ -180,20 +192,6 @@ public class LoginActivity extends AppCompatActivity {
                 return new String("Error: " + e.getMessage());
             }
         }
-    }
-        //카카오톡 로그인 구현
-
-        ImageButton kakaoLogin = (ImageButton) findViewById(R.id.kakaoLogin);
-        kakaoLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
-                    login();
-                } else {
-                    accountLogin();
-                }
-            }
-        });
     }
 
     public void login() {
@@ -285,3 +283,4 @@ public class LoginActivity extends AppCompatActivity {
         msgDlg.show();
     }
 }
+
