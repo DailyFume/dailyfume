@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout android:id="@+id/drawerLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--배경이 될 Layout-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0FFFFFFF"
+        android:gravity="center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/layout01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/MainScrollView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:fillViewport="false"
+                android:scrollbarStyle="outsideOverlay"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/top_b_01"
+                        android:orientation="vertical">
+
+                        <include
+                            android:id="@+id/topBar"
+                            layout="@layout/top_bar_main" />
+
+                        <android.widget.Button
+                            android:id="@+id/testGoButton"
+                            android:layout_width="350dp"
+                            android:layout_height="67dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="200dp"
+                            android:background="@drawable/round_4px"
+                            android:backgroundTint="#F4D6DB"
+                            android:text="취향테스트 시작"
+                            android:textColor="#FFFFFF"
+                            android:textSize="24dp"
+                            app:strokeWidth="1dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="나에게 맞는 향수 찾기"
+                            android:textColor="#747474"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <androidx.viewpager.widget.ViewPager
+                                android:id="@+id/ViewPager"
+                                android:layout_width="match_parent"
+                                android:layout_height="240dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <include
+                android:id="@+id/bottom_bar"
+                layout="@layout/bottom_bar_on_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!--드로어 화면이 될 Layout-->
+    <RelativeLayout
+        android:id="@+id/dView"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:layout_gravity="start">
+
+        <LinearLayout
+            android:id="@+id/layout02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/topBar"
+                layout="@layout/top_bar_slide" />
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/nav_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:fitsSystemWindows="true"
+                app:itemBackground="@drawable/solid_bottom"
+                app:menu="@menu/main_menu">
+
+            </com.google.android.material.navigation.NavigationView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

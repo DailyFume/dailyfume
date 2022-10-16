@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
     ImageView backBtn, joinBtn;
     TextView title_change;
 
+    private long backKeyPressedTime = 0; // 뒤로가기 키 시간 변수
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +81,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinBtn = (ImageView) findViewById(R.id.joinPageBtn);
-        joinBtn.setOnClickListener(new View.OnClickListener() {
+        joinPageBtn = (Button) findViewById(R.id.joinPageBtn);
+        joinPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
                 startActivity(intent);
+
             }
         });
 

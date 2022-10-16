@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topBar"
+    android:layout_width="match_parent"
+    android:layout_height="406dp"
+    android:background="@color/white"
+    app:contentInsetStart="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="406dp"
+        android:background="@drawable/top_b_01">
+
+        <ImageView
+            android:id="@+id/slide_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="false"
+            app:srcCompat="@drawable/slidicon" />
+
+        <TextView
+            android:id="@+id/title_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="82.5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="82.5dp"
+            android:layout_toStartOf="@+id/search_icon"
+            android:layout_toEndOf="@+id/slide_icon"
+            android:background="@drawable/dailyfume"
+            android:gravity="center"
+            android:textColor="#4d4d4d"
+            android:textSize="25dp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="false"
+            app:srcCompat="@drawable/search" />
+
+        <android.widget.Button
+            android:id="@+id/button2"
+            android:layout_width="350dp"
+            android:layout_height="67dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/round_4px"
+            android:backgroundTint="#F4D6DB"
+            android:text="취향테스트 시작"
+            android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            app:strokeWidth="1dp" />
+    </RelativeLayout>
+</androidx.appcompat.widget.Toolbar>
