@@ -22,10 +22,12 @@
             app:layout_gravity="center">
 
             <LinearLayout
+                android:id="@+id/fume01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/fume_bg"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -58,10 +60,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/fume02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/fume_bg"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -94,10 +98,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/fume03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/fume_bg"
                 android:gravity="center"
                 android:orientation="vertical">

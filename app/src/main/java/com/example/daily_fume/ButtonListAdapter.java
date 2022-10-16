@@ -1,9 +1,11 @@
 package com.example.daily_fume;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ public class ButtonListAdapter extends BaseAdapter {
     Context context;
     LayoutInflater layoutInflater;
     ArrayList<String> TitleValues;
+
     public ButtonListAdapter(Context context, ArrayList<String> TitleValues){
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -39,19 +42,29 @@ public class ButtonListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = layoutInflater.inflate(R.layout.picbox_layout2, null);
+        View view = layoutInflater.inflate(R.layout.picbox_layout, null);
 
         TextView textView = view.findViewById(R.id.boxTitle);
         textView.setText(TitleValues.get(position));
 
-        View pickListLayout = view.findViewById(R.id.pickListLayout);
-        Button BoxModifyBtn = view.findViewById(R.id.BoxModifyBtn);
+        View pickBoxLayout = view.findViewById(R.id.pickBoxLayout);
         Button BoxDeleteBtn = view.findViewById(R.id.BoxDeleteBtn);
+        Button BoxModifyBtn = view.findViewById(R.id.BoxModifyBtn);
 
-        pickListLayout.setOnClickListener(new View.OnClickListener(){
+        pickBoxLayout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(context, TitleValues.get(position) + "폴더 클릭", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "["+TitleValues.get(position)+"]" + " 폴더 클릭", Toast.LENGTH_SHORT).show();
+                switch (TitleValues.get(position)) {
+                    case "기본 그룹" :
+                        Intent intent = new Intent(context.getApplicationContext(), PickFumeActivity.class);
+                        context.startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
+                        break;
+                    case "임시 그룹" :
+                        Intent intent1 = new Intent(context.getApplicationContext(), PickZeroActivity.class);
+                        context.startActivity(intent1); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
+                        break;
+                }
 
             }
         });
@@ -59,18 +72,24 @@ public class ButtonListAdapter extends BaseAdapter {
         BoxModifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "수정 클릭", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "["+TitleValues.get(position)+"]" + " 수정 클릭", Toast.LENGTH_SHORT).show();
             }
         });
 
         BoxDeleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "삭제 클릭", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "["+TitleValues.get(position)+"]" + " 삭제 클릭", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
 
     }
+
+    // 메서드
+
+
+
+
 }

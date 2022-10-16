@@ -10,8 +10,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import android.text.InputType;
 import android.util.Log;
+import android.provider.ContactsContract;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,7 +41,9 @@ public class JoinActivity extends AppCompatActivity {
 
     ImageView backBtn;
     TextView title_change, memberTerms;
-    Button manBtn, womanBtn, joinBtn;
+    Button joinBtn;
+    // Button manBtn, womanBtn;
+    ImageView membertermBtn;
     CheckBox checkYes;
 
     @Override
@@ -70,28 +75,29 @@ public class JoinActivity extends AppCompatActivity {
         // manBtn = (Button) findViewById(R.id.manBtn);
         // womanBtn = (Button) findViewById(R.id.womanBtn);
 
-        // manBtn.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        manBtn.setTextColor(Color.rgb(255,255,255));
-        //        manBtn.setBackgroundColor(Color.rgb(230,182,190));
-        //        womanBtn.setTextColor(Color.rgb(179,179,179));
-        //        womanBtn.setBackgroundColor(Color.rgb(255,255,255));
-        //    }
-        // });
-
-        // womanBtn.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        womanBtn.setTextColor(Color.rgb(255,255,255));
-        //        womanBtn.setBackgroundColor(Color.rgb(230,182,190));
-        //        manBtn.setTextColor(Color.rgb(179,179,179));
-        //        manBtn.setBackgroundColor(Color.rgb(255,255,255));
-        //    }
-        // });
+        /* 
+        womanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                womanBtn.setTextColor(Color.rgb(255,255,255));
+                womanBtn.setBackgroundColor(Color.rgb(230,182,190));
+                manBtn.setTextColor(Color.rgb(179,179,179));
+                manBtn.setBackgroundColor(Color.rgb(255,255,255));
+            }
+        });
+         */
 
         memberTerms = (TextView) findViewById(R.id.memberTerms);
         memberTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
+                startActivity(intent);
+            }
+        });
+
+        membertermBtn = (ImageView) findViewById(R.id.membertermBtn);
+        membertermBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JoinActivity.this, MemberTerms.class);

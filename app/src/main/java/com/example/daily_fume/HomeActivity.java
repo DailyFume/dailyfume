@@ -18,10 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -159,7 +156,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // 뷰페이저
-        viewPager = findViewById(R.id.ResultViewPager);
+        viewPager = findViewById(R.id.ViewPager);
         pagerAdapter = new TextViewPagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
 
@@ -182,6 +179,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         }, DELAY_MS, PERIOD_MS);
 
+        // ★임시 - 상세페이지 보기 위함
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Intent intent = new Intent(getApplicationContext(), FumeActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
 
         // top 버튼 클릭시 상단으로 이동
         topButton = (ImageView) findViewById (R.id.topButton);
@@ -201,6 +212,15 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE: // 스크롤뷰 움직이는 동안
+                        /*
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                testGoButton.setVisibility(View.GONE);
+                                testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
+                            }
+                        },2000); */
                         testGoButton.setVisibility(View.GONE);
                         testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
                         break;

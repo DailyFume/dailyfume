@@ -27,7 +27,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
     EditText email_box, nickname_box, date_box, pw_box;
-    Button manBtnbox, womanBtnbox;
+    // Button manBtnbox, womanBtnbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +86,10 @@ public class UserPrivacyActivity extends AppCompatActivity {
         // 분홍색으로 바뀌어서 활성화 되어야 함.
         email_box = (EditText) findViewById(R.id.email_box);
         nickname_box = (EditText) findViewById(R.id.nickname_box);
-        date_box = (EditText) findViewById(R.id.date_box);
+        //date_box = (EditText) findViewById(R.id.date_box);
         pw_box = (EditText) findViewById(R.id.pw_box);
-        manBtnbox = (Button) findViewById(R.id.manBtnbox);
-        womanBtnbox = (Button) findViewById(R.id.womanBtnbox);
+        //manBtnbox = (Button) findViewById(R.id.manBtnbox);
+        //womanBtnbox = (Button) findViewById(R.id.womanBtnbox);
 
         priModifyBtn = (Button) findViewById(R.id.priModifyBtn);
         priModifyBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,9 +98,9 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 showModify(); // 팝업창으로 정말 수정할건지 한번 더 물어보기
             }
         });
-        // 임시 기본 값
-        womanBtnbox.setTextColor(Color.rgb(255,255,255));
-        womanBtnbox.setBackgroundColor(Color.rgb(230,182,190));
+
+        //womanBtnbox.setTextColor(Color.rgb(255,255,255));
+        //womanBtnbox.setBackgroundColor(Color.rgb(230,182,190));
 
     }
 

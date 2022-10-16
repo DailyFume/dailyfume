@@ -141,7 +141,7 @@
                         android:layout_marginRight="5dp"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="[ 결과 보기 ]"
+                        android:text=" 결과 보기 "
                         android:textColor="#D77F8F"
                         android:textSize="16dp"
                         android:textStyle="bold"
