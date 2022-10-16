@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -39,6 +40,8 @@ public class ReviewCreateActivity extends AppCompatActivity {
     String Bnumber, Tnumber;
     RatingBar review_ratingBar;
     ImageView photo_choiceBtn;
+    Button reviewCreateBtn;
+    TextView brandText, titleText;
 
 
     @Override
@@ -107,8 +110,13 @@ public class ReviewCreateActivity extends AppCompatActivity {
         // 스피너
         search_spinner_brand = (Spinner) findViewById(R.id.search_spinner_brand);
         search_spinner_title = (Spinner) findViewById(R.id.search_spinner_title);
+        brandText = (TextView) findViewById(R.id.brandText);
+        titleText = (TextView) findViewById(R.id.titleText);
+        brandText.setVisibility(View.INVISIBLE);
+        titleText.setVisibility(View.INVISIBLE);
         // 기본값
         search_spinner_title.setEnabled(false); // 상품명 비활성화
+
 
         // 1) 브랜드 검색 스피너
         ArrayList<String> brandList = new ArrayList<>(); // 리스트 생성
@@ -131,6 +139,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
                 Bnumber = parent.getItemAtPosition(position).toString(); // 변수에 선택한 브랜드 담기
                 // ★ 나중에 이 변수를 이용해서 후기글이(DB에) 저장되어야 함
                 // Log.e(Bnumber,Bnumber+"값");
+                brandText.setText(Bnumber);
                 search_spinner_title.setEnabled(true);
                 title_spinner();
             }
@@ -233,6 +242,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Tnumber = parent.getItemAtPosition(position).toString(); // 변수에 선택한 상품명 담기
+                titleText.setText(Tnumber);
                 // ★ 나중에 이 변수를 이용해서 후기글이(DB에) 저장되어야 함
                 switch (String.valueOf(Tnumber)) {
                     case "":

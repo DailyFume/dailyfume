@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/solid_top"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/RBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="바이레도"
+                    android:textColor="#747474"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text=">"
+                    android:textColor="#100606"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/RTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="모하비 고스트"
+                    android:textColor="#D976A2"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <android.widget.Button
+                    android:id="@+id/Review_delete_Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:background="#00ff0000"
+                    android:paddingRight="10dp"
+                    android:text="삭제"
+                    android:textAlignment="textEnd"
+                    android:textColor="#B3B3B3"
+                    android:textSize="14dp" />
+
+                <android.widget.Button
+                    android:id="@+id/Review_modify_Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/white"
+                    android:text="수정"
+                    android:textColor="#B3B3B3"
+                    android:textSize="14dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/reviewBoxClick"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/solid"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="175dp"
+                    android:layout_gravity="center"
+                    android:background="#FCFAF8"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/RImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/fume01" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RatingBar
+                            android:id="@+id/Rstars"
+                            style="@style/starMiniRatingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:foregroundTint="#000000"
+                            android:isIndicator="true"
+                            android:max="5"
+                            android:numStars="5"
+                            android:rating="3"
+                            android:stepSize="1"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                        <TextView
+                            android:id="@+id/Rstr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:ellipsize="end"
+                            android:ems="20"
+                            android:lineSpacingExtra="4sp"
+                            android:maxLines="4"
+                            android:text="친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어요! 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
+                            android:textColor="#666666"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#fafafa"
+            android:orientation="vertical"
+            android:visibility="visible"></LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

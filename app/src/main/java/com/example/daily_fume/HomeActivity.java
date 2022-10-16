@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     View dView;
     NavigationView naviView;
     ScrollView HomeSView;
+    LinearLayout fumeb01, fumeb02, fumeb03;
     boolean position_flag = true;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
@@ -180,17 +182,13 @@ public class HomeActivity extends AppCompatActivity {
         }, DELAY_MS, PERIOD_MS);
 
         // ★임시 - 상세페이지 보기 위함
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
+        fumeb01 = (LinearLayout) findViewById(R.id.fumeb01);
+        fumeb01.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        Intent intent = new Intent(getApplicationContext(), FumeActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
-                }
-                return false;
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FumeActivity.class);
+                startActivity(intent);
+                // 나중에는 intent로 상품명을 넘겨서 fume액티비티에서 그 상품명을 받아서 if로 그 상품명이면 해당 페이지 레이아웃과 db정보 들어가게 하기
             }
         });
 

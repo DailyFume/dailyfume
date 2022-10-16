@@ -286,21 +286,76 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/terms_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="30dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/membertermBtn"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/terms_box_in"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:background="@drawable/storke"
-                        app:srcCompat="@drawable/memberterm" />
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView33"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="- 데일리퓸 회원 약관 -"
+                                android:textColor="#B3B3B3"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView34"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text='제1조(목적)\n 이 약관은 비타민C(사업자)가 운영하는 데일리퓸 앱(APP) (이하 "앱"이라 한다)에서 제공하는 온라인 관련 서비스 (이하 "서비스" 라 한다)를 이용함에 있어 앱과 이용자의  권리·의무 및 책임사항을 규정함을 목적으로 합니다. \n\n 제2조(정의)'
+                                android:textColor="#B3B3B3"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/membertermBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/storke"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/memberterm" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout

@@ -21,6 +21,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -44,6 +45,7 @@ public class JoinActivity extends AppCompatActivity {
     Button joinBtn;
     // Button manBtn, womanBtn;
     ImageView membertermBtn;
+    LinearLayout terms_box;
     CheckBox checkYes;
 
     @Override
@@ -75,7 +77,7 @@ public class JoinActivity extends AppCompatActivity {
         // manBtn = (Button) findViewById(R.id.manBtn);
         // womanBtn = (Button) findViewById(R.id.womanBtn);
 
-        /* 
+        /*
         womanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +98,15 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        terms_box = (LinearLayout) findViewById(R.id.terms_box);
+        terms_box.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
+                startActivity(intent);
+            }
+        });
+/*
         membertermBtn = (ImageView) findViewById(R.id.membertermBtn);
         membertermBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +114,7 @@ public class JoinActivity extends AppCompatActivity {
                 Intent intent = new Intent(JoinActivity.this, MemberTerms.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
         checkYes = (CheckBox) findViewById(R.id.checkYes);
 

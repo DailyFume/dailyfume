@@ -11,15 +11,16 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/startImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/startimg"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/loadingText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
