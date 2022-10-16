@@ -36,7 +36,6 @@ public class JoinActivity extends AppCompatActivity {
         title_change.setText("회원가입");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

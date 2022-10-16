@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView naviView;
     ScrollView HomeSView;
     LinearLayout fumeb01, fumeb02, fumeb03;
+    TextView fume_01_brand, fume_02_brand, fume_03_brand, fume_01_title, fume_02_title, fume_03_title;
     boolean position_flag = true;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
@@ -53,10 +57,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_home);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_2);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
+        LinearLayout whiteBACK = findViewById(R.id.whiteBACK);
 
         testIcon = (ImageView) findViewById(R.id.testIcon);
         // searchIcon = (ImageView) findViewById(R.id.);
@@ -183,12 +188,42 @@ public class HomeActivity extends AppCompatActivity {
 
         // ★임시 - 상세페이지 보기 위함
         fumeb01 = (LinearLayout) findViewById(R.id.fumeb01);
+        fumeb02 = (LinearLayout) findViewById(R.id.fumeb02);
+        fumeb03 = (LinearLayout) findViewById(R.id.fumeb03);
+        fume_01_brand = (TextView) findViewById(R.id.fume_01_brand);
+        fume_02_brand = (TextView) findViewById(R.id.fume_02_brand);
+        fume_03_brand = (TextView) findViewById(R.id.fume_03_brand);
+        fume_01_title = (TextView) findViewById(R.id.fume_01_title);
+        fume_02_title = (TextView) findViewById(R.id.fume_02_title);
+        fume_03_title = (TextView) findViewById(R.id.fume_03_title);
+
         fumeb01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FumeActivity.class);
+                intent.putExtra("brand is", fume_01_brand.getText());
+                intent.putExtra("title is", fume_01_title.getText());
                 startActivity(intent);
-                // 나중에는 intent로 상품명을 넘겨서 fume액티비티에서 그 상품명을 받아서 if로 그 상품명이면 해당 페이지 레이아웃과 db정보 들어가게 하기
+            }
+        });
+
+        fumeb02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FumeActivity.class);
+                intent.putExtra("brand is", fume_02_brand.getText());
+                intent.putExtra("title is", fume_02_title.getText());
+                startActivity(intent);
+            }
+        });
+
+        fumeb03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FumeActivity.class);
+                intent.putExtra("brand is", fume_03_brand.getText());
+                intent.putExtra("title is", fume_03_title.getText());
+                startActivity(intent);
             }
         });
 
@@ -210,15 +245,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE: // 스크롤뷰 움직이는 동안
-                        /*
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                testGoButton.setVisibility(View.GONE);
-                                testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
-                            }
-                        },2000); */
+                        whiteBACK.setVisibility(View.VISIBLE);
                         testGoButton.setVisibility(View.GONE);
                         testGoButton2.setVisibility(View.VISIBLE); // 테스트 버튼이 상단에 생겨남
                         break;
@@ -235,6 +262,7 @@ public class HomeActivity extends AppCompatActivity {
                     if ((!v.canScrollVertically(1))) {
                         //Toast.makeText(getApplicationContext(), "최하단", Toast.LENGTH_SHORT).show();
                     } else if ((!v.canScrollVertically(-1))) {
+                        whiteBACK.setVisibility(View.GONE);
                         testGoButton2.setVisibility(View.GONE);
                         testGoButton.setVisibility(View.VISIBLE);
                         //Toast.makeText(getApplicationContext(),"최상단 입니다.", Toast.LENGTH_SHORT).show();

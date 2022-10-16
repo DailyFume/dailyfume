@@ -42,6 +42,7 @@ public class ButtonListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         View view = layoutInflater.inflate(R.layout.picbox_layout, null);
 
         TextView textView = view.findViewById(R.id.boxTitle);

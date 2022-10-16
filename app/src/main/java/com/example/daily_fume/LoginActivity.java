@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         title_change.setText("LOGIN");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
-        // backBtn.setVisibility(View.GONE); // ★ 로그인 화면에는 뒤로가기 아이콘이 필요없어보임
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

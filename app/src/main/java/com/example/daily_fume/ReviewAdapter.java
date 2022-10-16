@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,10 +45,12 @@ public class ReviewAdapter extends BaseAdapter {
         ImageView reviewImg = (ImageView) view.findViewById(R.id.reviewImg);
         TextView nickName = (TextView) view.findViewById(R.id.nickName);
         TextView reviewStr = (TextView) view.findViewById(R.id.reviewStr);
+        RatingBar reviewStars = (RatingBar) view.findViewById(R.id.reviewStars);
 
         reviewImg.setImageResource(reviewData.get(position).getReviewImg());
         nickName.setText(reviewData.get(position).getNickName());
         reviewStr.setText(reviewData.get(position).getReviewStr());
+        reviewStars.setRating(reviewData.get(position).getReviewStars());
 
         return view;
     }

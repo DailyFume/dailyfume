@@ -104,8 +104,6 @@ public class UserPrivacyActivity extends AppCompatActivity {
 
     }
 
-    // ★ 옵션메뉴 하단 선(stoke) 넣어야 함
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

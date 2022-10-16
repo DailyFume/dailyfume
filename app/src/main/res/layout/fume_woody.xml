@@ -37,7 +37,7 @@
                         android:id="@+id/mainTitle"
                         android:layout_width="match_parent"
                         android:layout_height="400dp"
-                        android:background="@drawable/detail_aldehyde">
+                        android:background="@drawable/detail_woody">
 
                         <ImageView
                             android:id="@+id/FumeBackIcon"
@@ -86,7 +86,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:gravity="left"
-                            android:text="CHANNEL NO.5"
+                            android:text="BURBERRY HERO"
                             android:textColor="#ffffff"
                             android:textSize="24dp" />
 
@@ -96,7 +96,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/DetailTitle"
                             android:layout_marginLeft="20dp"
-                            android:text="(샤넬 넘버파이브)"
+                            android:text="(버버리 히어로)"
                             android:textColor="#ffffff"
                             android:textSize="14dp" />
 
@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/brand_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="channel"
+                            android:text="burberry"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -140,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/type_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="알데하이드"
+                            android:text="우디"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -176,7 +176,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="180dp"
                         android:layout_marginRight="30dp"
-                        app:srcCompat="@drawable/fume04" />
+                        app:srcCompat="@drawable/fume07" />
 
                 </RelativeLayout>
 
@@ -208,7 +208,7 @@
                             android:id="@+id/top_tv"
                             android:layout_width="100dp"
                             android:layout_height="80dp"
-                            android:background="#EFF5FE"
+                            android:background="#F0EAE6"
                             android:gravity="center"
                             android:text="탑노트"
                             android:textColor="#333333"
@@ -226,7 +226,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="알데하이드, 네롤리, 레몬, 베르가못, 일랑 일랑"
+                            android:text="베르가못"
                             android:textAlignment="center"
                             android:textSize="14dp" />
 
@@ -235,7 +235,7 @@
                             android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:layout_below="@id/top_tv"
-                            android:background="#B4CCDC"
+                            android:background="#D0BFB3"
                             android:gravity="center"
                             android:text="미들노트"
                             android:textColor="#333333"
@@ -252,7 +252,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="자스민,  로즈,  릴리 오브 더 벨리, 오리스 루트, 아이리스"
+                            android:text="향나무, 블랙페퍼"
                             android:textSize="14dp" />
 
                         <TextView
@@ -260,7 +260,7 @@
                             android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:layout_below="@id/middle_tv"
-                            android:background="#6899B9"
+                            android:background="#A17E66"
                             android:gravity="center"
                             android:text="베이스 노트"
                             android:textColor="#333333"
@@ -278,7 +278,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="바닐라,  베티베르, 머스크, 샌들우드, 패출리,  모스, 엠버, 시벳 "
+                            android:text="아틀라스시더, 버지니아시더, 히말라야시더"
                             android:textSize="14dp" />
                     </RelativeLayout>
 
@@ -308,7 +308,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/detail_aldehyde_tagbox"
+                        android:background="@drawable/detail_woody_tagbox"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -330,7 +330,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 파우더리"
+                                android:text="# 베르가못"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -341,7 +341,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 자스민"
+                                android:text="# 향나무"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -352,7 +352,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 머스크"
+                                android:text="# 블랙페퍼"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -363,7 +363,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_weight="1"
-                                android:text="# 아이리스"
+                                android:text="# 아틀라스시더"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>
@@ -387,7 +387,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 일랑일랑"
+                                android:text="# 버지니아시더"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -398,7 +398,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 샤넬"
+                                android:text="# 버버리"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -409,7 +409,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 바닐라"
+                                android:text="# 히말라야시더"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -420,7 +420,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_weight="1"
-                                android:text="# 베르가못"
+                                android:text="# 우디"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>

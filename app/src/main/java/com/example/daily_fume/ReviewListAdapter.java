@@ -74,7 +74,7 @@ public class ReviewListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(context, "["+reviewListData.get(position)+"]" + "번째 리뷰 수정", Toast.LENGTH_SHORT).show();
-
+                // intent로 클릭한 상품의 정보 전달
                 Intent intent = new Intent(context,ReviewEditActivity.class);
                 intent.putExtra("RBrand",reviewListData.get(position).getRBrand());
                 intent.putExtra("RTitle",reviewListData.get(position).getRTitle());
@@ -94,10 +94,9 @@ public class ReviewListAdapter extends BaseAdapter {
         Review_delete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "["+reviewListData.get(position)+"]" + "번째 리뷰 삭제", Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(context, "["+reviewListData.get(position)+"]" + "번째 리뷰 삭제", Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder RdelBuilder = new AlertDialog.Builder(context);
-                RdelBuilder.setTitle("")
+                RdelBuilder.setTitle("("+reviewListData.get(position).getRBrand() + "/" + reviewListData.get(position).getRTitle()+")")
                         .setMessage("해당 리뷰를 삭제하시겠습니까?")
                         .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                             @Override

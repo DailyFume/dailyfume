@@ -79,7 +79,6 @@ public class TestNoviceActivity extends AppCompatActivity {
             }
         });
 
-
         testProgressBar = (ProgressBar) findViewById(R.id.testProgressBar);
         ResultText = (TextView) findViewById(R.id.ResultText);
         testNumber = (TextView) findViewById(R.id.testNumber);
