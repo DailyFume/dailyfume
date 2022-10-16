@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:iconifiedByDefault="false"
-                    app:queryHint="검색어를 입력하시오" />
+                    app:queryHint="검색어를 입력하세요." />
             </LinearLayout>
 
             <TextView
@@ -189,8 +189,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="71dp"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -202,7 +202,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_btn_1"
-                    android:text="성별"
+                    android:text="계열"
                     android:textColor="#000"
                     android:textSize="16dp" />
 
@@ -214,33 +214,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_btn_1"
-                    android:text="여성"
+                    android:text="브랜드"
                     android:textColor="#000"
                     android:textSize="16dp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button24"
-                    android:layout_width="122dp"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/round_btn_1"
-                    android:text="남성"
-                    android:textColor="#000"
-                    android:textSize="16dp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button25"
-                    android:layout_width="122dp"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/round_btn_1"
-                    android:text="남여공용"
-                    android:textColor="#000"
-                    android:textSize="16dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -249,10 +226,7 @@
             android:id="@+id/bottom_bar"
             layout="@layout/bottom_bar_on_3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            tools:layout_editor_absoluteX="-43dp"
-            tools:layout_editor_absoluteY="606dp" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
