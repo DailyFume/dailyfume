@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinBtn = (ImageView) findViewById(R.id.joinPageBtn);
+        joinBtn = (ImageView)findViewById(R.id.joinPageBtn);
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
