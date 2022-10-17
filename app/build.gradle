@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -57,4 +56,6 @@ dependencies {
     implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: '1.30.0'
 
     implementation "com.kakao.sdk:v2-user:2.8.3" // 카카오 로그인
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0' //리사이클러뷰
 }

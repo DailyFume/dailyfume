@@ -39,7 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="430dp"
-                android:text="더보기" />
+                android:text="더보기"
+                tools:ignore="TextContrastCheck" />
 
 
         </LinearLayout>
