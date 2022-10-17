@@ -327,10 +327,10 @@
                                 android:id="@+id/DetailTag1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 스파이시"
+                                android:text="#스파이시"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -341,7 +341,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 시나몬"
+                                android:text="#시나몬"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -352,7 +352,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 가죽"
+                                android:text="#가죽"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -361,9 +361,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 바닐라"
+                                android:text="#바닐라"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>
@@ -384,10 +384,10 @@
                                 android:id="@+id/DetailTag5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 시트러스"
+                                android:text="#시트러스"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -398,7 +398,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 통카빈"
+                                android:text="#통카빈"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -409,7 +409,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 앰버"
+                                android:text="#앰버"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -418,9 +418,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="# 아르마니"
+                                android:text="#아르마니"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>
