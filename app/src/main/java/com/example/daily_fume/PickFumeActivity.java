@@ -159,7 +159,6 @@ public class PickFumeActivity extends AppCompatActivity {
 
     }
 
-
     // 그리드뷰 생성자 클래스
     public class Fume {
         String brand;

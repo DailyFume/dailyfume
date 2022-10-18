@@ -44,12 +44,13 @@ public class FumeActivity extends AppCompatActivity {
     // 리뷰
     ListView review_listview;
     ArrayList<ReviewData> reviewData;
-    TextView reviewCountNum;
+    TextView reviewCountNum; // 리뷰 숫자 표시
+    int fumeReviewN = 0; // 리뷰 숫자 변수
     ImageView review_more_Btn;
     ImageView review_create_go; // 리뷰 없을때 리뷰 작성 버튼
     int ReviewHeight;
     int totalHeight;
-    LinearLayout review_on, review_off;
+    LinearLayout review_on, review_off; // 리뷰 있을때와 없을때 레이아웃 VISIBLE로 관리
 
     // 뷰페이저 변수
     private ViewPager FumeDetailPager;
@@ -65,8 +66,41 @@ public class FumeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // ★ 임시로 상세페이지 이동
         // 사용자가 클릭한 상품의 이름과 계열에 맞는 상세페이지로 이동되게 변경하기
-        setContentView(R.layout.fume_aldehyde);
-        FumeDetailPage();
+        //setContentView(R.layout.fume_aldehyde);
+        //FumeDetailPage();
+
+        // intent로 향수
+        Intent intent = getIntent();
+        String F_brand = intent.getStringExtra("brand is");
+        String F_title = intent.getStringExtra("title is");
+        switch (F_brand) {
+            case "GUCCI" :
+                switch (F_title) {
+                    case "구찌 블룸 오 드 퍼퓸" :
+                        setContentView(R.layout.fume_floral);
+                        FumeDetailPage();
+                        break;
+                }
+                break;
+
+            case "CHANNEL" :
+                switch (F_title) {
+                    case "샹스 오 땅드르 오 드 퍼퓸" :
+                        setContentView(R.layout.fume_oriental);
+                        FumeDetailPage();
+                        break;
+                }
+                break;
+
+            case "ACQUA DI PARMA" :
+                switch (F_title) {
+                    case "미르토 디 파나레아 오드뚜왈렛" :
+                        setContentView(R.layout.fume_oceanic);
+                        FumeDetailPage();
+                        break;
+                }
+                break;
+        }
 
     }
 
@@ -195,6 +229,7 @@ public class FumeActivity extends AppCompatActivity {
         reviewCountNum = (TextView) findViewById(R.id.reviewCountNum); // 리뷰 갯수 카운트
 
         this.InitReviewData();
+        fumeReviewNumEvent(); // ★ 리뷰 총 갯수 (총 갯수는 db에서 바로 가지고오므로 more버튼 눌러도 변함이 없어야 함) - 수정하기
         review_listview = (ListView) findViewById(R.id.review_listview);
         final ReviewAdapter reviewAdapter = new ReviewAdapter(this, reviewData);
         review_listview.setAdapter(reviewAdapter);
@@ -227,6 +262,8 @@ public class FumeActivity extends AppCompatActivity {
                 review_listview.setLayoutParams(params);
                 moreReviewData();
                 reviewAdapter.notifyDataSetChanged();
+
+                // 리뷰가 더 없을 경우 토스트메시지로 "마지막 리뷰 입니다" 알려주기
             }
         });
 
@@ -238,6 +275,7 @@ public class FumeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         // 뷰페이저
         FumeDetailPager = findViewById(R.id.FumeDetailPager);
@@ -293,24 +331,36 @@ public class FumeActivity extends AppCompatActivity {
     void InitReviewData() { // 임시 데이터
         reviewData = new ArrayList<ReviewData>();
         reviewData.add(new ReviewData(R.drawable.review_img_01, "cutehyejin**님",
-                "말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 !"));
+                "말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 !",4));
         reviewData.add(new ReviewData(R.drawable.review_img_02, "manju01** 님",
-                "알데하이드 계열 향수를 처음 구매해봤어요! 향수를  어떤걸 사야할 지 몰랐는데 델리퓸에서 비교하고 구매했더니 대만족 입니다 ㅎㅎ 향수 입문자에게 너무 좋네요 최애 앱입니다! "));
+                "알데하이드 계열 향수를 처음 구매해봤어요! 향수를  어떤걸 사야할 지 몰랐는데 델리퓸에서 비교하고 구매했더니 대만족 입니다 ㅎㅎ 향수 입문자에게 너무 좋네요 최애 앱입니다! ",5));
         reviewData.add(new ReviewData(R.drawable.review_img_03, "sujiniii**님",
-                "향기라는게 취향을 많이타서.. 친구선물 고민하다가 델리퓸에서 향수테스트 친구한테 시켜보고 바로 주문했는데 성숙하고 깔꼼한 친구 이미지에 찰떡! 생일선물 사줄때 완전 유용하고 조아요"));
+                "향기라는게 취향을 많이타서.. 친구선물 고민하다가 델리퓸에서 향수테스트 친구한테 시켜보고 바로 주문했는데 성숙하고 깔꼼한 친구 이미지에 찰떡! 생일선물 사줄때 완전 유용하고 조아요",3));
         reviewData.add(new ReviewData(R.drawable.review_img_04, "dooju98**님",
-                "반오십 된 기념으로 저에게 주는 선물이에요~~! 이제 이십대 중반이니까 나이에 맞는 향을 찾아다녔는데 추천 테스트에서 맞춤향수로 뜬거보고 샀더니 찰떡같이 제 스타일 이였어요!!"));
+                "반오십 된 기념으로 저에게 주는 선물이에요~~! 이제 이십대 중반이니까 나이에 맞는 향을 찾아다녔는데 추천 테스트에서 맞춤향수로 뜬거보고 샀더니 찰떡같이 제 스타일 이였어요!!",4));
 
     }
 
     void moreReviewData() { // 임시 리뷰 데이터 추가
         reviewData.add(new ReviewData(R.drawable.review_img_04, "cutehyejin**님",
-                "말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 !"));
+                "말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 !",4));
         reviewData.add(new ReviewData(R.drawable.review_img_03, "manju01** 님",
-                "알데하이드 계열 향수를 처음 구매해봤어요! 향수를  어떤걸 사야할 지 몰랐는데 델리퓸에서 비교하고 구매했더니 대만족 입니다 ㅎㅎ 향수 입문자에게 너무 좋네요 최애 앱입니다! "));
+                "알데하이드 계열 향수를 처음 구매해봤어요! 향수를  어떤걸 사야할 지 몰랐는데 델리퓸에서 비교하고 구매했더니 대만족 입니다 ㅎㅎ 향수 입문자에게 너무 좋네요 최애 앱입니다! ",3));
         //reviewData.add(new ReviewData(R.drawable.review_img_02, "sujiniii**님",
-        //        "향기라는게 취향을 많이타서.. 친구선물 고민하다가 델리퓸에서 향수테스트 친구한테 시켜보고 바로 주문했는데 성숙하고 깔꼼한 친구 이미지에 찰떡! 생일선물 사줄때 완전 유용하고 조아요"));
+        //        "향기라는게 취향을 많이타서.. 친구선물 고민하다가 델리퓸에서 향수테스트 친구한테 시켜보고 바로 주문했는데 성숙하고 깔꼼한 친구 이미지에 찰떡! 생일선물 사줄때 완전 유용하고 조아요",4));
         //reviewData.add(new ReviewData(R.drawable.review_img_01, "dooju98**님",
-        //        "반오십 된 기념으로 저에게 주는 선물이에요~~! 이제 이십대 중반이니까 나이에 맞는 향을 찾아다녔는데 추천 테스트에서 맞춤향수로 뜬거보고 샀더니 찰떡같이 제 스타일 이였어요!!"));
+        //        "반오십 된 기념으로 저에게 주는 선물이에요~~! 이제 이십대 중반이니까 나이에 맞는 향을 찾아다녔는데 추천 테스트에서 맞춤향수로 뜬거보고 샀더니 찰떡같이 제 스타일 이였어요!!",5));
     }
+
+    void fumeReviewNumEvent() {
+        for (fumeReviewN = 0; fumeReviewN <= reviewData.size(); fumeReviewN++) {
+            fumeReviewNumRe();
+        }
+    }
+
+    void fumeReviewNumRe() { // 리뷰 갯수 보이기
+        reviewCountNum = (TextView) findViewById(R.id.reviewCountNum);
+        reviewCountNum.setText("총 리뷰 ("+fumeReviewN+")");
+    }
+
 }
