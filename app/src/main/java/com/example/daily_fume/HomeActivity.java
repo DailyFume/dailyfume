@@ -67,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         // searchIcon = (ImageView) findViewById(R.id.);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
 
         testIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +77,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loveIcon.setOnClickListener(new View.OnClickListener() {
             @Override

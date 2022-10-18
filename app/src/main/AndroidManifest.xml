@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily_fume"
-        android:name=".KakaoSDKInit">
+        android:name=".KakaoSDKInit"
+        android:largeHeap="true">
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -47,6 +48,10 @@
         <activity
             android:name=".ReviewSelectActivity"
             android:exported="false"/> <!-- 후기 상세 페이지 -->
+
+            android:name=".SearchActivity"
+            android:exported="false"/> <!-- 검색 페이지 -->
+            
         <activity
             android:name=".ReviewEditActivity"
             android:exported="false"/> <!-- 후기 수정 페이지 -->
