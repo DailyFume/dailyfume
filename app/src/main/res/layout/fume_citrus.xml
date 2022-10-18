@@ -37,7 +37,7 @@
                         android:id="@+id/mainTitle"
                         android:layout_width="match_parent"
                         android:layout_height="400dp"
-                        android:background="@drawable/detail_oceanic">
+                        android:background="@drawable/detail_citrus">
 
                         <ImageView
                             android:id="@+id/FumeBackIcon"
@@ -86,7 +86,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:gravity="left"
-                            android:text="CREED SILVER MOUNTAIN WATER"
+                            android:text="Jo MALONE Lime BASIL \u0026 MANDARIN"
                             android:textColor="#ffffff"
                             android:textSize="24dp" />
 
@@ -96,7 +96,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/DetailTitle"
                             android:layout_marginLeft="20dp"
-                            android:text="(크리드 실버마운틴 워터)"
+                            android:text="(조말론 라임바질 앤 만다린)"
                             android:textColor="#ffffff"
                             android:textSize="14dp" />
 
@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/brand_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="creed"
+                            android:text="jomalone"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -140,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/type_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="오셔닉"
+                            android:text="시트러스"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -162,7 +162,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/vol_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="50ml"
+                            android:text="30 / 50 / 100 ml"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -176,7 +176,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="180dp"
                         android:layout_marginRight="30dp"
-                        app:srcCompat="@drawable/fume11" />
+                        app:srcCompat="@drawable/fume08" />
 
                 </RelativeLayout>
 
@@ -208,7 +208,7 @@
                             android:id="@+id/top_tv"
                             android:layout_width="100dp"
                             android:layout_height="80dp"
-                            android:background="#DAEEF2"
+                            android:background="#F0BFB2"
                             android:gravity="center"
                             android:text="탑노트"
                             android:textColor="#333333"
@@ -226,7 +226,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="베르가못, 만다린 오렌지"
+                            android:text="만다린 오렌지, 라임, 베르가못"
                             android:textAlignment="center"
                             android:textSize="14dp" />
 
@@ -235,7 +235,7 @@
                             android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:layout_below="@id/top_tv"
-                            android:background="#81C6D5"
+                            android:background="#E5937C"
                             android:gravity="center"
                             android:text="미들노트"
                             android:textColor="#333333"
@@ -252,7 +252,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="그린티, 블랙 커런트"
+                            android:text="바질, 타임, 아이리스, 라일락"
                             android:textSize="14dp" />
 
                         <TextView
@@ -260,7 +260,7 @@
                             android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:layout_below="@id/middle_tv"
-                            android:background="#1997B2"
+                            android:background="#DA6D3F"
                             android:gravity="center"
                             android:text="베이스 노트"
                             android:textColor="#333333"
@@ -278,7 +278,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="갈바늄, 머스크, 샌달우드, 페티그레인"
+                            android:text="엠버우드, 패츌리, 베티베르"
                             android:textSize="14dp" />
                     </RelativeLayout>
 
@@ -308,7 +308,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/detail_oceanic_tagbox"
+                        android:background="@drawable/detail_citrus_tagbox"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -330,7 +330,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#오셔닉"
+                                android:text="#만다린"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -341,7 +341,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#아쿠아"
+                                android:text="#라임"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -352,7 +352,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#시원한"
+                                android:text="#베르가못"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -363,7 +363,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#청량한"
+                                android:text="#오렌지"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>
@@ -387,7 +387,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#여름"
+                                android:text="#바질"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -398,7 +398,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#크리드"
+                                android:text="#라일락"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -409,7 +409,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#워터리"
+                                android:text="#베티베르"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -420,7 +420,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#그린티"
+                                android:text="#아이리스"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>

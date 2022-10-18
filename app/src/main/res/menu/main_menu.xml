@@ -19,5 +19,6 @@
             android:id="@+id/nav_4"
             android:icon="@drawable/navicon4"
             android:title="공지사항" />
+
     </group>
 </menu>

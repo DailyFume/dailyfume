@@ -45,6 +45,9 @@
 <!--        <activity android:name=".KakaoSDKInit"-->
 <!--            tools:ignore="Instantiatable" />-->
         <activity
+            android:name=".ReviewSelectActivity"
+            android:exported="false"/> <!-- 후기 상세 페이지 -->
+        <activity
             android:name=".ReviewEditActivity"
             android:exported="false"/> <!-- 후기 수정 페이지 -->
         <activity

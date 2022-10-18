@@ -108,6 +108,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(dView);
+                dView.setClickable(true); // 메뉴바 열었으니 뒤에 홈화면 레이아웃 등 클릭 안되게 하기
             }
         });
 

@@ -77,7 +77,7 @@ public class FumeActivity extends AppCompatActivity {
             case "GUCCI" :
                 switch (F_title) {
                     case "구찌 블룸 오 드 퍼퓸" :
-                        setContentView(R.layout.fume_floral);
+                        setContentView(R.layout.fume_fruity); // 임시
                         FumeDetailPage();
                         break;
                 }
@@ -86,7 +86,7 @@ public class FumeActivity extends AppCompatActivity {
             case "CHANNEL" :
                 switch (F_title) {
                     case "샹스 오 땅드르 오 드 퍼퓸" :
-                        setContentView(R.layout.fume_oriental);
+                        setContentView(R.layout.fume_oriental); // 임시
                         FumeDetailPage();
                         break;
                 }
@@ -95,7 +95,7 @@ public class FumeActivity extends AppCompatActivity {
             case "ACQUA DI PARMA" :
                 switch (F_title) {
                     case "미르토 디 파나레아 오드뚜왈렛" :
-                        setContentView(R.layout.fume_oceanic);
+                        setContentView(R.layout.fume_oceanic); // 임시
                         FumeDetailPage();
                         break;
                 }
@@ -236,9 +236,13 @@ public class FumeActivity extends AppCompatActivity {
         review_listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        reviewAdapter.getItem(position).getNickName(),
-                        Toast.LENGTH_LONG).show(); // 임시용 (어디로 이동해야 할지? 아님 이동이 필요없는지)
+                // Toast.makeText(getApplicationContext(), reviewAdapter.getItem(position).getNickName(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), ReviewSelectActivity.class);
+                intent.putExtra("reviewImg", reviewData.get(position).getReviewImg());
+                intent.putExtra("nickName", reviewData.get(position).getNickName());
+                intent.putExtra("reviewStr", reviewData.get(position).getReviewStr());
+                intent.putExtra("reviewStars", reviewData.get(position).getReviewStars());
+                startActivity(intent); // 리뷰 상세보기 페이지로 이동
             }
         });
 
