@@ -87,17 +87,10 @@
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/google_join" />
 
-<!--            <com.kakao.usermgmt.LoginButton-->
-<!--                android:id="@+id/kakaoLogin"-->
-<!--                android:layout_width="351dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="5dp" />-->
-
             <ImageButton
                 android:id="@+id/kakaoLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="308dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 app:srcCompat="@drawable/kakao_login_medium_wide" />

@@ -33,7 +33,7 @@
 
                 <!-- Redirect URI: "kakao{네이티브 앱 키}://oauth" -->
                 <data android:host="oauth"
-                    android:scheme="kakao{2d66d7f18521bf353781f2ea7af034b6}" />
+                    android:scheme="kakao2d66d7f18521bf353781f2ea7af034b6" />
             </intent-filter>
         </activity>
 
@@ -44,6 +44,8 @@
 <!--        <activity android:name=".KakaoSDKInit"-->
 <!--            tools:ignore="Instantiatable" />-->
 
+        <activity android:name=".ResignActivity"
+            android:exported="false" /> <!-- 회원 탈퇴 페이지 -->
         <activity
             android:name=".PickFumeActivity"
             android:exported="false" /> <!-- 찜한 향수 페이지 -->
