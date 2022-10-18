@@ -25,14 +25,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view"
+                <EditText
+                    android:id="@+id/searchEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:hint="검색어를 입력하세요." />
+
+                <Button
+                    android:id="@+id/searchButton1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:iconifiedByDefault="false"
-                    app:queryHint="검색어를 입력하세요." />
+                    android:text="Button" />
             </LinearLayout>
 
             <TextView

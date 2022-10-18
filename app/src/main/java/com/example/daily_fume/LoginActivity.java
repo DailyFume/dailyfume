@@ -81,13 +81,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinBtn = (Button) findViewById(R.id.joinBtn);
+        joinBtn = (Button) findViewById(R.id.joinPageBtn);
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
                 startActivity(intent);
-
             }
         });
 

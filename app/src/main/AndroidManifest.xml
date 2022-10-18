@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily_fume"
-        android:name=".KakaoSDKInit">
+        android:name=".KakaoSDKInit"
+        android:largeHeap="true">
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -44,6 +45,9 @@
 <!--            android:value="@string/kakaoApi" />-->
 <!--        <activity android:name=".KakaoSDKInit"-->
 <!--            tools:ignore="Instantiatable" />-->
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false"/> <!-- 검색 페이지 -->
         <activity
             android:name=".ReviewEditActivity"
             android:exported="false"/> <!-- 후기 수정 페이지 -->
