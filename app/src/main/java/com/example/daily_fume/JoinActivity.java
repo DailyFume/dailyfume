@@ -145,8 +145,6 @@ public class JoinActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     class InsertData extends AsyncTask<String, Void, String> {
@@ -155,7 +153,6 @@ public class JoinActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressDialog = ProgressDialog.show(JoinActivity.this, "Please Wait", null, true, true);
         }
 
@@ -177,10 +174,8 @@ public class JoinActivity extends AppCompatActivity {
             String postParameters = "uemail=" + uemail + "&uname=" + uname + "&upassword=" + upassword + "&ubirth=" + ubirth;
 
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
@@ -205,7 +200,6 @@ public class JoinActivity extends AppCompatActivity {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -215,18 +209,10 @@ public class JoinActivity extends AppCompatActivity {
                 while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
                 }
-
-
                 bufferedReader.close();
-
-
                 return sb.toString();
-
-
             } catch (Exception e) {
-
                 Log.d(TAG, "InsertData: Error ", e);
-
                 return new String("Error: " + e.getMessage());
             }
         }

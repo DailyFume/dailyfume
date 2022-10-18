@@ -34,6 +34,10 @@ import com.kakao.auth.Session;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.Account;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static String TAG = "phplogin";
@@ -48,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditTextID, mEditTextPass;
     Button loginBtn, joinBtn;
 
-    String loginSort;
-    String result;
+    private String mJsonString;
+    String result1;
 
     ImageView backBtn;
     TextView title_change;
@@ -117,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
+        String errorString = null;
 
         @Override
         protected void onPreExecute() {
@@ -128,11 +133,11 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             progressDialog.dismiss();
-            Log.d(TAG, "response" + result);
+            Log.d(TAG, "response : " + result);
+            String wrong = "wrong";
 
-
-            if (result == null) {
-                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
+            if (result.equals(wrong)) {
+                Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -149,7 +154,6 @@ public class LoginActivity extends AppCompatActivity {
             String postParameters = "uemail=" + uemail + "&upassword=" + upassword;
 
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -190,6 +194,41 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "InsertData: Error ", e);
                 return new String("Error: " + e.getMessage());
             }
+        }
+    }
+
+    private void showResult() {
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String uemail = item.getString(TAG_EMAIL);
+                String upassword = item.getString(TAG_PASS);
+                String uname = item.getString(TAG_NAME);
+                String ubirth = item.getString(TAG_BIRTH);
+
+                HashMap<String,String> hashMap = new HashMap<>();
+
+                hashMap.put(TAG_EMAIL, uemail);
+                hashMap.put(TAG_PASS, upassword);
+                hashMap.put(TAG_NAME, uname);
+                hashMap.put(TAG_BIRTH, ubirth);
+
+                mArrayList.add(hashMap);
+
+//                if (upassword.equals(mEditTextPass)) {
+//                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
+//                }
+            }
+        } catch (JSONException e) {
+            Log.d(TAG, "showResult: ", e);
         }
     }
 
