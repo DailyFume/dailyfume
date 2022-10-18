@@ -1,0 +1,45 @@
+Index: app/src/main/java/com/example/daily_fume/SearchActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.daily_fume;\r\n\r\npublic class SearchActivity {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/daily_fume/SearchActivity.java b/app/src/main/java/com/example/daily_fume/SearchActivity.java
+--- a/app/src/main/java/com/example/daily_fume/SearchActivity.java	
++++ b/app/src/main/java/com/example/daily_fume/SearchActivity.java	
+@@ -1,4 +1,31 @@
+ package com.example.daily_fume;
+ 
+-public class SearchActivity {
+-}
++import android.os.Bundle;
++import android.widget.ListView;
++import android.widget.TextView;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import java.util.ArrayList;
++import java.util.HashMap;
++
++public class SearchActivity extends AppCompatActivity {
++
++    private static String TAG = "search";
++
++    private static final String TAG_JSON = "fragrance";
++    private static final String TAG_NAME = "name";
++    private static final String TAG_BRAND = "brand";
++    private static final String TAG_IMG = "image";
++
++    private TextView mTextView;
++    ArrayList<HashMap<String, String>> mArrayList;
++    ListView mListView;
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.search_result);
++    }
++}
+\ No newline at end of file
