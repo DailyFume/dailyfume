@@ -22,18 +22,18 @@ import org.json.JSONObject;
 
 public class ResignActivity extends AppCompatActivity {
 
-    Button button3;
+    Button joinOutBtn;
     String listname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resign);
+        setContentView(R.layout.activity_resigns);
 
-        button3 = (Button) findViewById(R.id.button3);
-        button3.setClickable(true);
+        joinOutBtn = (Button) findViewById(R.id.joinOutBtn);
+        //button3.setClickable(true);
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        joinOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
