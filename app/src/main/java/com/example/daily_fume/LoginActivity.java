@@ -36,6 +36,15 @@ import com.kakao.auth.Session;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.Account;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static String TAG = "phplogin";
@@ -109,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
                     login();
+                    redirectSignUpActivity();
                 } else {
                     accountLogin();
                 }
@@ -230,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, user.toString());
                 {
                     Log.i(TAG, "사용자 정보 요청 성공" +
-                            "\n회원번호: " + user.getId() +
+                            "\n닉네임: " + user.getId() +
                             "\n이메일: " + user.getKakaoAccount().getEmail());
                 }
                 Account user1 = user.getKakaoAccount();
@@ -240,6 +250,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    protected void redirectSignUpActivity() {
+        final Intent i = new Intent(this, HomeActivity.class);
+        startActivity(i);
+        finish();
+    }
 
 //        viewInit();
 //
@@ -260,6 +275,33 @@ public class LoginActivity extends AppCompatActivity {
 
     //}
 
+
+//    //카카오톡 로그인 구현
+//    private void viewInit(){
+//        //카카오 로그인 버튼 등록
+//        //linearLayout = findViewById(R.id.linearLayout);
+//        kakaoLogin = findViewById(R.id.kakaoLogin);
+//    }
+//
+//    public void kakaoError(String msg){
+//        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+//            // super.onActivityResult(requestCode, resultCode, data);
+//            return;
+//        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Session.getCurrentSession().removeCallback((ISessionCallback) KakaoCallBack);
+//    }
+//}
 
     void showLoginBack() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(LoginActivity.this)
