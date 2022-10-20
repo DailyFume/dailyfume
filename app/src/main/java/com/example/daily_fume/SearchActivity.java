@@ -86,7 +86,6 @@ public class SearchActivity extends AppCompatActivity {
                     "Please Wait", null, true, true);
         }
 
-
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -101,12 +100,11 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-
         @Override
         protected String doInBackground(String... params) {
 
             String serverURL = params[0];
-            String postParameters = "fname=" + params[1]; // 향수 이름을 영어로 검색했을 때만 결과 출력 가능 수정 필요
+            String postParameters = "fnamek=" + params[1];
 
             try {
                 URL url = new URL(serverURL);
