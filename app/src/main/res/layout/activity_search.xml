@@ -1,0 +1,79 @@
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/topBar"
+            layout="@layout/top_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/searchEditText1"
+                android:layout_width="0dp"
+                android:layout_weight="0.35"
+                android:hint="검색어를 입력하세요."
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/searchButton1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:text="Search" />
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="6" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="80dp"
+                    android:background="@drawable/readmore_btn"
+                    android:text="더보기"
+                    android:textColor="#8E8E8E"
+                    android:textSize="17sp" />
+
+
+            </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/bottom_bar"
+        layout="@layout/bottom_bar_on_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
