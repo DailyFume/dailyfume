@@ -34,10 +34,9 @@
 
                 <ImageView
                     android:id="@+id/fume_picture_01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/fume01" />
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/fume_brand_01"
@@ -45,7 +44,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="브랜드명"
                     android:textSize="12dp" />
 
                 <TextView
@@ -57,7 +55,6 @@
                     android:ellipsize="end"
                     android:maxLength="8"
                     android:maxLines="1"
-                    android:text="상품명"
                     android:textColor="#D976A2"
                     android:textSize="14dp" />
             </LinearLayout>
@@ -75,10 +72,9 @@
 
                 <ImageView
                     android:id="@+id/fume_picture_02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/fume01" />
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/fume_brand_02"
@@ -86,7 +82,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="브랜드명"
                     android:textSize="12dp" />
 
                 <TextView
@@ -98,7 +93,6 @@
                     android:ellipsize="end"
                     android:maxLength="8"
                     android:maxLines="1"
-                    android:text="상품명"
                     android:textColor="#D976A2"
                     android:textSize="14dp" />
             </LinearLayout>
@@ -116,10 +110,9 @@
 
                 <ImageView
                     android:id="@+id/fume_picture_03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/fume01" />
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/fume_brand_03"
@@ -127,7 +120,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="브랜드명"
                     android:textSize="12dp" />
 
                 <TextView
@@ -139,7 +131,6 @@
                     android:ellipsize="end"
                     android:maxLength="8"
                     android:maxLines="1"
-                    android:text="상품명"
                     android:textColor="#D976A2"
                     android:textSize="14dp" />
             </LinearLayout>

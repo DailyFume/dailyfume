@@ -31,7 +31,8 @@ public class TextViewPagerAdapter extends PagerAdapter {
             view = inflater.inflate(R.layout.view_pager, container, false);
 
             TextView textView = view.findViewById(R.id.fume_brand_01);
-            textView.setText("TEXT" + position);
+            textView.setText("");
+            // textView.setText(""+position);// 기존
 
         }
 

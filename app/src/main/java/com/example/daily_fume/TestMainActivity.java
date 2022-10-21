@@ -81,7 +81,7 @@ public class TestMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        buffBtn.setOnClickListener(new View.OnClickListener() {
+        buffBtn.setOnClickListener(new View.OnClickListener() { // 매니아 버튼 클릭시
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TestMainActivity.this, TestBuffActivity.class);
