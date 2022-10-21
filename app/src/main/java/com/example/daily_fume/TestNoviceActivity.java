@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -21,6 +22,8 @@ public class TestNoviceActivity extends AppCompatActivity {
 
     ImageView backBtn;
     TextView title_change;
+    int [] data = new int[10];
+    int progress = 0;
     int progressn = 10; // 프로그래스바 변경할 값 변수 (기본값 10)
     ProgressBar testProgressBar;
     TextView testNumber, testText;
@@ -28,6 +31,15 @@ public class TestNoviceActivity extends AppCompatActivity {
     ImageView aTestSelect, bTestSelect, cTestSelect, dTestSelect;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
+
+    private String[] questions = {
+            "제일 좋아하는 계절은?",
+            "가장 끌리는 향은?",
+            "가장 마음에 드는 키워드는?",
+            "가장 가고싶은 장소는?",
+            "다른 사람들에게 보여주고 싶은 내 이미지는?"
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +51,12 @@ public class TestNoviceActivity extends AppCompatActivity {
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("향수 추천받기");
+
+        BtnOnClickListener onClickListener = new BtnOnClickListener();
+
+        if (progress == 13) {
+
+        }
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
 
