@@ -30,7 +30,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="바이레도"
                     android:textColor="#747474"
                     android:textSize="15dp" />
 
@@ -48,7 +47,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="모하비 고스트"
                     android:textColor="#D976A2"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -109,10 +107,9 @@
 
                     <ImageView
                         android:id="@+id/RImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:srcCompat="@drawable/fume01" />
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center" />
 
                 </LinearLayout>
 
@@ -155,7 +152,6 @@
                             android:ems="20"
                             android:lineSpacingExtra="4sp"
                             android:maxLines="4"
-                            android:text="친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어요! 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
                             android:textColor="#666666"
                             android:textSize="14dp" />
 

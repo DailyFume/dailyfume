@@ -108,7 +108,7 @@ public class ReviewListActivity extends AppCompatActivity {
         });
 
         // 리뷰 리스트 목록
-        this.InitReviewListData();
+//        this.InitReviewListData();
         ReviewList = (ListView) findViewById(R.id.ReviewList);
         ReviewListAdapter reviewListAdapter = new ReviewListAdapter(this, reviewListData);
         ReviewList.setAdapter(reviewListAdapter);
@@ -122,16 +122,16 @@ public class ReviewListActivity extends AppCompatActivity {
         });
 
         // 리뷰가 3개 이상인 경우 아래로 스크롤 하라고 알려주기
-        if (reviewListData.size() >= 3) {
-            Toast.makeText(getApplicationContext(), "↓ 아래로 스크롤하세요", Toast.LENGTH_SHORT).show();
-        }
-
-        for (int i = 1; i <= reviewListData.size(); i++) {
-            //Toast.makeText(getApplicationContext(), ReviewListNum.size()+"", Toast.LENGTH_SHORT).show();
-            ReviewN = ReviewN + 1;
-            //Toast.makeText(getApplicationContext(), ReviewN+"", Toast.LENGTH_SHORT).show();
-            reviewNumRe();
-        }
+//        if (reviewListData.size() >= 3) {
+//            Toast.makeText(getApplicationContext(), "↓ 아래로 스크롤하세요", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        for (int i = 1; i <= reviewListData.size(); i++) {
+//            //Toast.makeText(getApplicationContext(), ReviewListNum.size()+"", Toast.LENGTH_SHORT).show();
+//            ReviewN = ReviewN + 1;
+//            //Toast.makeText(getApplicationContext(), ReviewN+"", Toast.LENGTH_SHORT).show();
+//            reviewNumRe();
+//        }
 
     }
 
@@ -141,16 +141,16 @@ public class ReviewListActivity extends AppCompatActivity {
         ReviewNum.setText("("+ReviewN+")");
     }
 
-    void InitReviewListData() {
-        reviewListData = new ArrayList<ReviewListData>();
-        reviewListData.add(new ReviewListData("바이레도", "모하비 고스트", "친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어서 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
-                ,3,R.drawable.fume02));
-        reviewListData.add(new ReviewListData("딥디크", "플레르 드 뽀", "친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어서 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
-                ,5,R.drawable.fume01));
-
-        // 임시 추가
-        reviewListData.add(new ReviewListData("불가리", "불가리 골데아 더 로만 나이트", "친구한테 선물받아서 써봤는데 맘에 들지 않아요 ㅠㅠㅠㅠ! 패키지가 우아하고 고급스러워서 너무 맘에 들었는데 향이 너무 무겁게 느껴져서 제 타입은 아니라 아쉽네요. 다음에 좀 더 가벼운 향기로 다시 구매해볼 생각이예요 다른 분들 참고해주세요"
-                ,2,R.drawable.fume03));
-
-    }
+//    void InitReviewListData() {
+//        reviewListData = new ArrayList<ReviewListData>();
+//        reviewListData.add(new ReviewListData("바이레도", "모하비 고스트", "친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어서 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
+//                ,3,R.drawable.fume02));
+//        reviewListData.add(new ReviewListData("딥디크", "플레르 드 뽀", "친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어서 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
+//                ,5,R.drawable.fume01));
+//
+//        // 임시 추가
+//        reviewListData.add(new ReviewListData("불가리", "불가리 골데아 더 로만 나이트", "친구한테 선물받아서 써봤는데 맘에 들지 않아요 ㅠㅠㅠㅠ! 패키지가 우아하고 고급스러워서 너무 맘에 들었는데 향이 너무 무겁게 느껴져서 제 타입은 아니라 아쉽네요. 다음에 좀 더 가벼운 향기로 다시 구매해볼 생각이예요 다른 분들 참고해주세요"
+//                ,2,R.drawable.fume03));
+//
+//    }
 }

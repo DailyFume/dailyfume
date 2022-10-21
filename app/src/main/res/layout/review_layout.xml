@@ -15,12 +15,11 @@
 
         <ImageView
             android:id="@+id/reviewImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:srcCompat="@drawable/review_img_01" />
+            android:layout_marginRight="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +38,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:text="cutehyejin**님"
                     android:textColor="#333333"
                     android:textSize="14dp"
                     android:textStyle="bold" />
@@ -63,7 +61,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="말해 뭐해 두말하면  입아픈 스테디셀러 제품이에요 자스민향이 진하게 올라오는게 계속 맡고싶은 냄새에요 !담번엔 같은 계열로 다른향수 사보려구요 ! "
                 android:textColor="#969494"
                 android:textSize="12dp" />
         </LinearLayout>
