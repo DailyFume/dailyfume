@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -47,7 +47,8 @@ public class SearchActivity extends AppCompatActivity {
 
         // mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.main_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
 
         mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText1);
 
@@ -199,5 +200,5 @@ public class SearchActivity extends AppCompatActivity {
             return null;
         }
     }
-}
 
+}
