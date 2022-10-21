@@ -72,7 +72,7 @@ public class TestMainActivity extends AppCompatActivity {
             }
         });
 
-        /*noviceBtn = (Button) findViewById(R.id.noviceBtn);
+        noviceBtn = (Button) findViewById(R.id.noviceBtn);
         buffBtn = (Button) findViewById(R.id.buffBtn);
         noviceBtn.setOnClickListener(new View.OnClickListener() { // 초보자 버튼 클릭시
             @Override
@@ -81,12 +81,12 @@ public class TestMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        buffBtn.setOnClickListener(new View.OnClickListener() {
+        buffBtn.setOnClickListener(new View.OnClickListener() { // 매니아 버튼 클릭시
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TestMainActivity.this, TestBuffActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 }

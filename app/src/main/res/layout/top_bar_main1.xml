@@ -49,6 +49,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dp"
             android:text="향수를 검색하세요"
+            android:textColor="#CCCCCC"
             android:textSize="14dp" />
 
         <ImageView

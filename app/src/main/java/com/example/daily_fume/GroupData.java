@@ -3,9 +3,10 @@ package com.example.daily_fume;
 import java.io.Serializable;
 
 public class GroupData implements Serializable {
-    String groupTitle;
 
-    GroupData(String groupTitle) {
+    private String groupTitle;
+
+    public GroupData(String groupTitle) {
         this.groupTitle = groupTitle;
     }
 

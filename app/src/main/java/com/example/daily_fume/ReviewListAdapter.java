@@ -30,7 +30,8 @@ public class ReviewListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return reviewListData.size();
+        //return reviewListData.size(); // 기존
+        return 0;
     }
 
     @Override

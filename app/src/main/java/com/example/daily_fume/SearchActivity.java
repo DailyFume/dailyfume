@@ -1,6 +1,7 @@
 package com.example.daily_fume;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,9 +49,10 @@ public class SearchActivity extends AppCompatActivity {
 
         // mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.main_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
 
-        mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText1);
+        mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText);
 
         // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
@@ -199,5 +202,5 @@ public class SearchActivity extends AppCompatActivity {
             return null;
         }
     }
-}
 
+}

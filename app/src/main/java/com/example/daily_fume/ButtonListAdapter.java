@@ -17,22 +17,22 @@ public class ButtonListAdapter extends BaseAdapter {
 
     Context context;
     LayoutInflater layoutInflater;
-    ArrayList<String> TitleValues;
+    ArrayList<GroupData> groupData;
 
-    public ButtonListAdapter(Context context, ArrayList<String> TitleValues){
+    public ButtonListAdapter(Context context, ArrayList<GroupData> groupData){
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        this.TitleValues = TitleValues;
+        this.groupData = groupData;
     }
 
     @Override
     public int getCount() {
-        return TitleValues.size();
+        return groupData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return TitleValues.get(position);
+        return groupData.get(position);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ButtonListAdapter extends BaseAdapter {
         View view = layoutInflater.inflate(R.layout.picbox_layout, null);
 
         TextView textView = view.findViewById(R.id.boxTitle);
-        textView.setText(TitleValues.get(position));
+        textView.setText(groupData.get(position).getGroupTitle());
 
         View pickBoxLayout = view.findViewById(R.id.pickBoxLayout);
         Button BoxDeleteBtn = view.findViewById(R.id.BoxDeleteBtn);
@@ -55,8 +55,8 @@ public class ButtonListAdapter extends BaseAdapter {
         pickBoxLayout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(context, "["+TitleValues.get(position)+"]" + " 폴더 클릭", Toast.LENGTH_SHORT).show();
-                switch (TitleValues.get(position)) {
+                Toast.makeText(context, "["+groupData.get(position).getGroupTitle()+"]" + " 폴더 클릭", Toast.LENGTH_SHORT).show();
+                switch (groupData.get(position).getGroupTitle()) {
                     case "기본 그룹" :
                         Intent intent = new Intent(context.getApplicationContext(), PickFumeActivity.class);
                         context.startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
@@ -73,14 +73,14 @@ public class ButtonListAdapter extends BaseAdapter {
         BoxModifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "["+TitleValues.get(position)+"]" + " 수정 클릭", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "["+groupData.get(position).getGroupTitle()+"]" + " 수정 클릭", Toast.LENGTH_SHORT).show();
             }
         });
 
         BoxDeleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "["+TitleValues.get(position)+"]" + " 삭제 클릭", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "["+groupData.get(position).getGroupTitle()+"]" + " 삭제 클릭", Toast.LENGTH_SHORT).show();
             }
         });
 
