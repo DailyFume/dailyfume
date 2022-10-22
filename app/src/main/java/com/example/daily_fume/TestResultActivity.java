@@ -61,11 +61,59 @@ public class TestResultActivity extends AppCompatActivity {
 
         // ★ 나중에 if문 이용하거나 답변 갯수에 따라 setContentView 바꿔주고 아래 메서드 실행하면 가능
         // 현재 임시로 결과 페이지 랜덤하게 나오게 함
-        Random ram = new Random();
-        int num = ram.nextInt(resultPage.length);
-        //setContentView(R.layout.result_citrus);
-        setContentView(resultPage[num]);
-        resultPage();
+
+        Intent resultIntent = getIntent();
+        String resultType = resultIntent.getStringExtra("result");
+
+        //aldehyde, citrus, floral, fruity, green, musk, oceanic, oriental, spicy, woody
+        switch (resultType) {
+            case "aldehyde" :
+                setContentView(R.layout.result_aldehyde);
+                resultPage();
+                break;
+            case "citrus" :
+                setContentView(R.layout.result_citrus);
+                resultPage();
+                break;
+            case "floral" :
+                setContentView(R.layout.result_floral);
+                resultPage();
+                break;
+            case "fruity" :
+                setContentView(R.layout.result_fruity);
+                resultPage();
+                break;
+            case "green" :
+                setContentView(R.layout.result_green);
+                resultPage();
+                break;
+            case "musk" :
+                setContentView(R.layout.result_musk);
+                resultPage();
+                break;
+            case "oceanic" :
+                setContentView(R.layout.result_oceanic);
+                resultPage();
+                break;
+            case "oriental" :
+                setContentView(R.layout.result_oriental);
+                resultPage();
+                break;
+            case "spicy" :
+                setContentView(R.layout.result_spicy);
+                resultPage();
+                break;
+            case "woody" :
+                setContentView(R.layout.result_woody);
+                resultPage();
+                break;
+        }
+
+//        Random ram = new Random();
+//        int num = ram.nextInt(resultPage.length);
+//        //setContentView(R.layout.result_citrus);
+//        setContentView(resultPage[num]);
+//        resultPage();
 
     }
 

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_miniratingbar.xml" value="0.1" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_rating_false.xml" value="0.1" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_rating_true.xml" value="0.1" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_ratingbar.xml" value="0.1" />
@@ -90,7 +91,7 @@
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/layout/trans.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/layout/view_pager.xml" value="0.2234375" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/layout/view_pager_layout.xml" value="0.2234375" />
-        <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/menu/main_menu.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/menu/user_privacy_etc.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/sogoh/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.25364583333333335" />
