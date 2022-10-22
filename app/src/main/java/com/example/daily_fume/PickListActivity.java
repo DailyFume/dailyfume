@@ -199,7 +199,7 @@ public class PickListActivity extends AppCompatActivity {
     // 메서드
 
     void pickBoxLoading() { // 폴더 추가 메서드 - ★ 단 새로고침하면 기존 폴더들이 사라짐 (개선하기)
-        ButtonListAdapter pickboxadapter = new ButtonListAdapter( this, TitleValues);
+        ButtonListAdapter pickboxadapter = new ButtonListAdapter( this, new ArrayList<GroupData>());
         pickBoxList.setAdapter(pickboxadapter);
 
     }
