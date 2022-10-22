@@ -13,7 +13,7 @@ public class DeleteRequest extends StringRequest {
     public DeleteRequest(String uemail, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("email", uemail);
+        parameters.put("uemail", uemail);
     }
 
     @Override

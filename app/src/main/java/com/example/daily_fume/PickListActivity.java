@@ -35,6 +35,12 @@ import com.android.volley.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +60,11 @@ public class PickListActivity extends AppCompatActivity {
     //ArrayList<Integer> PickNumValue = new ArrayList<Integer>();
 
     String listname;
+    String serverURL = "http://43.201.60.239/likelist.php";
     Button BoxModifyBtn, BoxDeleteBtn;
 
+//    private static String IP_ADDRESS = "43.201.60.239";
+    private static String TAG = "likelistphp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,34 +227,18 @@ public class PickListActivity extends AppCompatActivity {
         boxName.setFilters(FilterArray);
         alert.setView(boxName);
 
+
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // ★ 확인 버튼 클릭시 액션
                 listname = boxName.getText().toString();
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        System.out.print(response);
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
 
-                            if(success){
-                                TitleValues.add(listname);
-                                pickBoxLoading();
-                                Toast.makeText(getApplicationContext(), listname + "폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "폴더 생성에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                };
+                Intent intent = getIntent();
+                int uid = intent.getExtras().getInt("uid");
 
-                LikeRequest likeRequest = new LikeRequest(listname, responseListener);
-                RequestQueue queue = Volley.newRequestQueue( PickListActivity.this );
-                queue.add(likeRequest);
+                TaskParams params = new TaskParams(serverURL, listname, uid);
+                InsertData insertData = new InsertData();
+                insertData.execute(params);
             }
         });
 
@@ -257,6 +250,92 @@ public class PickListActivity extends AppCompatActivity {
         });
         alert.show();
 
+    }
+
+    private static class TaskParams {
+        int uid;
+        String listname;
+        String serverURL;
+
+        TaskParams(String serverURL, String listname, int uid) {
+            this.serverURL = serverURL;
+            this.listname = listname;
+            this.uid = uid;
+        }
+    }
+
+    class InsertData extends AsyncTask<TaskParams, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(PickListActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "POST response  - " + result);
+
+            TitleValues.add(listname);
+            pickBoxLoading();
+            Toast.makeText(getApplicationContext(), listname + "폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(TaskParams... params) {
+
+            String serverURL = params[0].serverURL;
+            String listname = params[0].listname;
+            int uid = params[0].uid;
+
+            String postParameters = "listname=" + listname + "&user_uid=" + uid;
+
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                return sb.toString();
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
     }
 
 }

@@ -204,9 +204,9 @@ public class FumeActivity extends AppCompatActivity {
                             })
                             .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                // ★ 취소 버튼 클릭시 액션
-                                dialog.cancel();
-                            }
+                                    // ★ 취소 버튼 클릭시 액션
+                                    dialog.cancel();
+                                }
                             })
                             .create().show();
                 }

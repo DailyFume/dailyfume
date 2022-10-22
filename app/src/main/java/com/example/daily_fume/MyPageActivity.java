@@ -83,6 +83,10 @@ public class MyPageActivity extends AppCompatActivity {
     }
 
     View.OnClickListener menuClick = new View.OnClickListener() {
+
+        Intent intent = getIntent();
+        String uid = intent.getExtras().getString("uid");
+
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -92,10 +96,12 @@ public class MyPageActivity extends AppCompatActivity {
                     break;
                 case R.id.menu2Btn:
                     intent = new Intent(getApplicationContext(), PickListActivity.class);
+                    intent.putExtra("uid", uid);
                     startActivity(intent);
                     break;
                 case R.id.menu3Btn:
                     intent = new Intent(getApplicationContext(), ReviewListActivity.class);
+                    intent.putExtra("uid", uid);
                     startActivity(intent);
                     break;
                 case R.id.menu4Btn:

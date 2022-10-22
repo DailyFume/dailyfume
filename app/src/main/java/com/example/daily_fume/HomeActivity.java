@@ -69,6 +69,9 @@ public class HomeActivity extends AppCompatActivity {
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
         searchIcon = (ImageView) findViewById(R.id.searchIcon);
 
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+
         testIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +92,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -97,6 +101,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -139,12 +144,14 @@ public class HomeActivity extends AppCompatActivity {
 
                     case R.id.nav_2:
                         intent = new Intent(getApplicationContext(), PickListActivity.class);
+                        intent.putExtra("uid", uid);
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
 
                     case R.id.nav_3:
                         intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                        intent.putExtra("uid", uid);
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;

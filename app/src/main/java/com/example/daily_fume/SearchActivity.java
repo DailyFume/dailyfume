@@ -1,6 +1,7 @@
 package com.example.daily_fume;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -50,7 +51,7 @@ public class SearchActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
-        mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText1);
+        mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText);
 
         // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
