@@ -23,7 +23,7 @@ import org.json.JSONObject;
 public class ResignActivity extends AppCompatActivity {
 
     Button joinOutBtn;
-    String listname;
+    String uemail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class ResignActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // 입력된 이메일과 데이터베이스 대조
-                                listname = user_email.getText().toString();
+                                uemail = user_email.getText().toString();
                                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
@@ -59,10 +59,6 @@ public class ResignActivity extends AppCompatActivity {
 
                                             if (success) {
                                                 // 2) 이메일 일치 > 최종 확인 창 출력
-                                                
-                                                //TitleValues.add(listname); -- 안 쓰는 코드
-                                                //pickBoxLoading();
-
                                                 Toast.makeText(getApplicationContext(), "이메일이 일치합니다.", Toast.LENGTH_SHORT).show();
 
                                                 AlertDialog.Builder msg_final = new AlertDialog.Builder(ResignActivity.this)
@@ -100,7 +96,7 @@ public class ResignActivity extends AppCompatActivity {
                                     }
                                 };
 
-                                DeleteRequest delete_user = new DeleteRequest(listname, responseListener);
+                                DeleteRequest delete_user = new DeleteRequest(uemail, responseListener);
                                 RequestQueue queue = Volley.newRequestQueue(ResignActivity.this);
                                 queue.add(delete_user);
 

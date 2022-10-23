@@ -24,50 +24,49 @@
             android:layout_marginBottom="7dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:text="Email"
-                android:textColor="#D77F8F"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="Email"-->
+<!--                android:textColor="#D77F8F"-->
+<!--                android:textSize="15dp"-->
+<!--                android:textStyle="bold" />-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:orientation="horizontal">-->
 
-                <EditText
-                    android:id="@+id/email_box"
-                    android:layout_width="260dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-                    android:background="@drawable/round_4px"
-                    android:ems="10"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text="사용자 이메일"
-                    android:textColor="#666666"
-                    android:textColorHint="#CCCCCC"
-                    android:textSize="14dp" />
+<!--                <EditText-->
+<!--                    android:id="@+id/email_box"-->
+<!--                    android:layout_width="260dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="3dp"-->
+<!--                    android:layout_marginBottom="3dp"-->
+<!--                    android:background="@drawable/round_4px"-->
+<!--                    android:ems="10"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:paddingLeft="15dp"-->
+<!--                    android:paddingRight="15dp"-->
+<!--                    android:textColor="#666666"-->
+<!--                    android:textColorHint="#CCCCCC"-->
+<!--                    android:textSize="14dp" />-->
 
-                <Button
-                    android:id="@+id/chckBtn01"
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
-                    android:text="중복 확인"
-                    android:textColor="#787878"
-                    android:textSize="12dp"
-                    app:strokeColor="#E4E4E4"
-                    app:strokeWidth="47dp" />
-            </LinearLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/chckBtn01"-->
+<!--                    android:layout_width="90dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="중복 확인"-->
+<!--                    android:textColor="#787878"-->
+<!--                    android:textSize="12dp"-->
+<!--                    app:strokeColor="#E4E4E4"-->
+<!--                    app:strokeWidth="47dp" />-->
+<!--            </LinearLayout>-->
 
             <TextView
                 android:id="@+id/tv2"
@@ -99,7 +98,6 @@
                     android:inputType="text"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:text="사용자 닉네임"
                     android:textColor="#666666"
                     android:textColorHint="#CCCCCC"
                     android:textSize="14dp" />
@@ -121,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="8dp"
-                android:text="Age"
+                android:text="Birth"
                 android:textColor="#D77F8F"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -139,54 +137,53 @@
                 android:inputType="text"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="0000-00-00"
                 android:textColor="#666666"
                 android:textColorHint="#CCCCCC"
                 android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/tv4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="8dp"
-                android:text="Gender"
-                android:textColor="#D77F8F"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv4"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="Gender"-->
+<!--                android:textColor="#D77F8F"-->
+<!--                android:textSize="15dp"-->
+<!--                android:textStyle="bold" />-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:orientation="horizontal">-->
 
-                <Button
-                    android:id="@+id/manBtnbox"
-                    android:layout_width="170dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="남자 (M)"
-                    android:textColor="#B3B3B3"
-                    android:textSize="15dp"
-                    app:strokeColor="#F2F2F2"
-                    app:strokeWidth="1dp" />
+<!--                <Button-->
+<!--                    android:id="@+id/manBtnbox"-->
+<!--                    android:layout_width="170dp"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:backgroundTint="#FFFFFF"-->
+<!--                    android:text="남자 (M)"-->
+<!--                    android:textColor="#B3B3B3"-->
+<!--                    android:textSize="15dp"-->
+<!--                    app:strokeColor="#F2F2F2"-->
+<!--                    app:strokeWidth="1dp" />-->
 
-                <Button
-                    android:id="@+id/womanBtnbox"
-                    android:layout_width="170dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="여자 (F)"
-                    android:textColor="#B3B3B3"
-                    android:textSize="15dp"
-                    app:strokeColor="#F2F2F2"
-                    app:strokeWidth="1dp" />
-            </LinearLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/womanBtnbox"-->
+<!--                    android:layout_width="170dp"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:backgroundTint="#FFFFFF"-->
+<!--                    android:text="여자 (F)"-->
+<!--                    android:textColor="#B3B3B3"-->
+<!--                    android:textSize="15dp"-->
+<!--                    app:strokeColor="#F2F2F2"-->
+<!--                    app:strokeWidth="1dp" />-->
+<!--            </LinearLayout>-->
 
             <TextView
                 android:id="@+id/tv5"

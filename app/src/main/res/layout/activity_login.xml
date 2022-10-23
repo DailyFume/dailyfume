@@ -61,13 +61,16 @@
                 app:strokeColor="#E6B6BE"
                 app:strokeWidth="100dp" />
 
-            <ImageView
+            <android.widget.Button
                 android:id="@+id/joinPageBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                app:srcCompat="@drawable/joinimg" />
+
+                android:background="@drawable/joinimg"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView"

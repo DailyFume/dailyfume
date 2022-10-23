@@ -17,15 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.kakao.auth.ISessionCallback;
-import com.kakao.auth.Session;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.Account;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,6 +28,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.sdk.user.model.Account;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,13 +50,15 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> mArrayList;
     private EditText mEditTextID, mEditTextPass;
-    Button loginBtn;
+    Button loginBtn, joinBtn;
 
-    String loginSort;
-    String result;
+    private String mJsonString;
+    String result1;
 
-    ImageView backBtn, joinBtn;
+    ImageView backBtn;
     TextView title_change;
+
+    private long backKeyPressedTime = 0; // 뒤로가기 키 시간 변수
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        joinBtn = (ImageView) findViewById(R.id.joinPageBtn);
+        joinBtn = (Button) findViewById(R.id.joinPageBtn);
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,14 +106,12 @@ public class LoginActivity extends AppCompatActivity {
         mArrayList = new ArrayList<>();
 
         //카카오톡 로그인 구현
-
         ImageButton kakaoLogin = (ImageButton) findViewById(R.id.kakaoLogin);
         kakaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
                     login();
-                    redirectSignUpActivity();
                 } else {
                     accountLogin();
                 }
@@ -118,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
+        String errorString = null;
 
         @Override
         protected void onPreExecute() {
@@ -129,11 +133,11 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             progressDialog.dismiss();
-            Log.d(TAG, "response" + result);
+            Log.d(TAG, "response : " + result);
+            String wrong = "wrong";
 
-
-            if(result == null) {
-                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
+            if (result.equals(wrong)) {
+                Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -143,14 +147,13 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String uemail = (String)params[0];
-            String upassword = (String)params[1];
+            String uemail = (String) params[0];
+            String upassword = (String) params[1];
 
-            String serverURL = "http://43.201.60.239/login.php";
+            String serverURL = "http://43.200.245.161/login.php";
             String postParameters = "uemail=" + uemail + "&upassword=" + upassword;
 
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -168,10 +171,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "POST response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
-                }
-                else{
+                } else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
@@ -181,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 String line;
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
 
@@ -195,7 +197,40 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void showResult() {
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String uemail = item.getString(TAG_EMAIL);
+                String upassword = item.getString(TAG_PASS);
+                String uname = item.getString(TAG_NAME);
+                String ubirth = item.getString(TAG_BIRTH);
+
+                HashMap<String,String> hashMap = new HashMap<>();
+
+                hashMap.put(TAG_EMAIL, uemail);
+                hashMap.put(TAG_PASS, upassword);
+                hashMap.put(TAG_NAME, uname);
+                hashMap.put(TAG_BIRTH, ubirth);
+
+                mArrayList.add(hashMap);
+
+//                if (upassword.equals(mEditTextPass)) {
+//                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
+//                }
+            }
+        } catch (JSONException e) {
+            Log.d(TAG, "showResult: ", e);
+        }
+    }
 
     public void login() {
         String TAG = "login()";
@@ -233,7 +268,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, user.toString());
                 {
                     Log.i(TAG, "사용자 정보 요청 성공" +
-                            "\n닉네임: " + user.getId() +
+                            "\n회원번호: " + user.getId() +
                             "\n이메일: " + user.getKakaoAccount().getEmail());
                 }
                 Account user1 = user.getKakaoAccount();
@@ -243,11 +278,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    protected void redirectSignUpActivity() {
-        final Intent i = new Intent(this, HomeActivity.class);
-        startActivity(i);
-        finish();
-    }
 
 //        viewInit();
 //
@@ -268,33 +298,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //}
 
-
-//    //카카오톡 로그인 구현
-//    private void viewInit(){
-//        //카카오 로그인 버튼 등록
-//        //linearLayout = findViewById(R.id.linearLayout);
-//        kakaoLogin = findViewById(R.id.kakaoLogin);
-//    }
-//
-//    public void kakaoError(String msg){
-//        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
-//            // super.onActivityResult(requestCode, resultCode, data);
-//            return;
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        Session.getCurrentSession().removeCallback((ISessionCallback) KakaoCallBack);
-//    }
-//}
 
     void showLoginBack() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(LoginActivity.this)
