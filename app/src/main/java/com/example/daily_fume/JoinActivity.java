@@ -24,16 +24,30 @@ import android.widget.ProgressBar;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class JoinActivity extends AppCompatActivity {
-    private static String IP_ADDRESS = "43.201.60.239";
+    private static String IP_ADDRESS = "43.200.245.161";
     private static String TAG = "phpsignup";
+    private ArrayList<LoginData> mArrayList;
+
+    private static final String TAG_JSON = "user";
+    private static final String TAG_EMAIL = "uemail";
+    private static final String TAG_PASS = "upassword";
+    private static final String TAG_NAME = "uname";
+    private static final String TAG_UID = "uid";
+
+    String mJsonString;
 
     private EditText mEditTextEmail;
     private EditText mEditTextName;
@@ -66,6 +80,8 @@ public class JoinActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        mArrayList = new ArrayList<>();
 
         mEditTextEmail = (EditText)findViewById(R.id.email_create);
         mEditTextName = (EditText)findViewById(R.id.nickname_create);
@@ -125,19 +141,16 @@ public class JoinActivity extends AppCompatActivity {
                     String Email = mEditTextEmail.getText().toString();
                     String Name = mEditTextName.getText().toString();
                     String Password = mEditTextPassword.getText().toString();
-                    String Birthday = mEditTextBirth.getText().toString();
 
                     InsertData task = new InsertData();
-                    task.execute("http://" + IP_ADDRESS + "/signup.php", Email, Name, Password, Birthday);
+                    task.execute("http://" + IP_ADDRESS + "/signup.php", Email, Name, Password);
 
                     mEditTextEmail.setText("");
                     mEditTextName.setText("");
                     mEditTextPassword.setText("");
                     mEditTextBirth.setText("");
+                    // 회원완료 페이지로 (정확히는 회원가입에 성공한 경우만)
 
-                    Intent intent = new Intent(JoinActivity.this, JoinYesActivity.class);
-                    startActivity(intent); // 회원완료 페이지로 (정확히는 회원가입에 성공한 경우만)
-                    finish();
                 } else { // 동의합니다 체크 안한 경우
                     showJoinNoCheck(); // 팝업창 뜨기
                 }
@@ -158,8 +171,10 @@ public class JoinActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
             progressDialog.dismiss();
+            mJsonString = result;
+            Log.d(TAG, "POST response  - " + result);
+            showResult();
         }
 
         @Override
@@ -167,10 +182,9 @@ public class JoinActivity extends AppCompatActivity {
             String uemail = (String)params[1];
             String uname = (String)params[2];
             String upassword = (String)params[3];
-            String ubirth = (String)params[4];
 
             String serverURL = (String)params[0];
-            String postParameters = "uemail=" + uemail + "&uname=" + uname + "&upassword=" + upassword + "&ubirth=" + ubirth;
+            String postParameters = "uemail=" + uemail + "&uname=" + uname + "&upassword=" + upassword;
 
             try {
                 URL url = new URL(serverURL);
@@ -214,6 +228,37 @@ public class JoinActivity extends AppCompatActivity {
                 Log.d(TAG, "InsertData: Error ", e);
                 return new String("Error: " + e.getMessage());
             }
+        }
+    }
+
+    private void showResult() {
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String uemail = item.getString(TAG_EMAIL);
+                String upassword = item.getString(TAG_PASS);
+                String uname = item.getString(TAG_NAME);
+                Integer uid = item.getInt(TAG_UID);
+
+                LoginData loginData = new LoginData();
+
+                loginData.setUid(uid);
+                loginData.setUemail(uemail);
+                loginData.setUpassword(upassword);
+                loginData.setUname(uname);
+
+                mArrayList.add(loginData);
+
+                Intent intent = new Intent(JoinActivity.this, JoinYesActivity.class);
+                startActivity(intent);
+            }
+        } catch (JSONException e) {
+            Log.d(TAG, "showResult: ", e);
         }
     }
 

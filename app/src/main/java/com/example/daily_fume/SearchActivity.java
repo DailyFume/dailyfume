@@ -2,6 +2,7 @@ package com.example.daily_fume;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -32,10 +33,9 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "43.201.60.239";
-    private static String TAG = "phpexample";
+    private static String IP_ADDRESS = "43.200.245.161";
+    private static String TAG = "phpSearch";
 
-    private TextView mTextViewResult;
     private ArrayList<FragranceData> mArrayList;
     private GridAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -97,7 +97,6 @@ public class SearchActivity extends AppCompatActivity {
             if (result == null) {
                 Log.d(TAG, "response - " + errorString);
             } else {
-
                 mJsonString = result;
                 showResult();
             }

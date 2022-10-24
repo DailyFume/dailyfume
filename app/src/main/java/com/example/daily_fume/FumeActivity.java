@@ -282,9 +282,9 @@ public class FumeActivity extends AppCompatActivity {
 
 
         // 뷰페이저
-        FumeDetailPager = findViewById(R.id.FumeDetailPager);
-        pagerAdapter = new TextViewPagerAdapter(this);
-        FumeDetailPager.setAdapter(pagerAdapter);
+//        FumeDetailPager = findViewById(R.id.FumeDetailPager);
+//        pagerAdapter = new TextViewPagerAdapter(this, pagerAdapter.arrayList);
+//        FumeDetailPager.setAdapter(pagerAdapter);
 
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {

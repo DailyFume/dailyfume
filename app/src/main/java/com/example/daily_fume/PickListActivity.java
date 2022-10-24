@@ -55,10 +55,13 @@ public class PickListActivity extends AppCompatActivity {
     String[] PfItems = { "  기본  ", "  최신순  ", "  이름순  "};
     ListView pickBoxList;
     ArrayList<String> TitleValues = new ArrayList<String>();
-    ArrayList<Integer> PickNumValue = new ArrayList<Integer>();
+    ArrayList<GroupData> groupDataList;
+    ButtonListAdapter pickboxadapter;
+    //ArrayList<String> TitleValues = new ArrayList<String>();
+    //ArrayList<Integer> PickNumValue = new ArrayList<Integer>();
 
     String listname;
-    String serverURL = "http://43.201.60.239/likelist.php";
+    String serverURL = "http://43.200.245.161/likelist.php";
     Button BoxModifyBtn, BoxDeleteBtn;
 
 //    private static String IP_ADDRESS = "43.201.60.239";
@@ -184,6 +187,19 @@ public class PickListActivity extends AppCompatActivity {
             }
         }); */
 
+        groupDataList = new ArrayList<GroupData>();
+        //groupDataList.add(new GroupData("기본 그룹")); // 이렇게 하지말고 하나의 그룹도 없을때 추가해보세요 라는 팝업창 뜨기
+
+        // 찜폴더 관리
+        pickBoxList = (ListView) findViewById(R.id.pickBoxList);
+        pickboxadapter = new ButtonListAdapter( this, groupDataList);
+        pickBoxList.setAdapter(pickboxadapter);
+        pickboxadapter.notifyDataSetChanged();
+
+        if (groupDataList.size() < 1) {
+            groupZero();
+        }
+
         // 새폴더 추가
         pickBoxNew = (ImageView) findViewById(R.id.pickBoxNew);
         pickBoxNew.setOnClickListener(new View.OnClickListener() {
@@ -198,24 +214,25 @@ public class PickListActivity extends AppCompatActivity {
 
     // 메서드
 
+    void groupZero() {
+        android.app.AlertDialog.Builder GroupZeroBuilder = new android.app.AlertDialog.Builder(PickListActivity.this);
+        GroupZeroBuilder.setTitle("")
+                .setMessage("현재 그룹이 없습니다. 그룹을 생성해주세요")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // ★ 해당 리뷰 수정하는 코드
+                        Toast.makeText(PickListActivity.this, "위 그룹추가를 눌러주세요", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .create().show();
+    }
+
     void pickBoxLoading() { // 폴더 추가 메서드 - ★ 단 새로고침하면 기존 폴더들이 사라짐 (개선하기)
         ButtonListAdapter pickboxadapter = new ButtonListAdapter( this, new ArrayList<GroupData>());
         pickBoxList.setAdapter(pickboxadapter);
 
     }
-
-    void pickBoxClick() {
-        pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override  // ★ 각각의 폴더 선택하면 해당 찜한 상품이 저장된 폴더로 이동 나중에 수정하기
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
-                // intent.putExtra("it_listData", TitleValues.get(position));
-                // startActivity(intent); // 임시
-                //Toast.makeText(getApplicationContext(), " 그룹 클릭", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
     void showPickBoxNew() { // 새로 박스 만들기
         AlertDialog.Builder alert = new AlertDialog.Builder(this);

@@ -64,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn, joinBtn;
 
     private String mJsonString;
-    String result1;
-
     ImageView backBtn;
     TextView title_change;
 
@@ -161,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
             String uemail = (String) params[0];
             String upassword = (String) params[1];
 
-            String serverURL = "http://43.201.60.239/login.php";
+            String serverURL = "http://43.200.245.161/login.php";
             String postParameters = "uemail=" + uemail + "&upassword=" + upassword;
 
             try {

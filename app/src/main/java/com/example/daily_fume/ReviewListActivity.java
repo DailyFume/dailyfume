@@ -46,6 +46,9 @@ public class ReviewListActivity extends AppCompatActivity {
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("후기 리스트");
 
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +106,7 @@ public class ReviewListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReviewCreateActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
