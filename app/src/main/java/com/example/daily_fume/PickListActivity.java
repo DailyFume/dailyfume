@@ -4,10 +4,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.InputFilter;
@@ -27,13 +29,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.android.volley.Response;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PickListActivity extends AppCompatActivity {
@@ -48,10 +58,18 @@ public class PickListActivity extends AppCompatActivity {
     ListView pickBoxList;
     ArrayList<GroupData> groupDataList;
     ButtonListAdapter pickboxadapter;
-    //ArrayList<String> TitleValues = new ArrayList<String>();
-    //ArrayList<Integer> PickNumValue = new ArrayList<Integer>();
 
+    // 데이터 가져오기 및 데이터 보내기
     String listname;
+    String serverURL = "http://43.200.245.161/getlikelist.php";
+    String serverURL2 = "http://43.200.245.161/likelist.php";
+    Button BoxModifyBtn, BoxDeleteBtn;
+    private static String TAG1 = "getlikelistphp";
+    private static String TAG2 = "likelistphp";
+    private static final String TAG_JSON = "dailyfume";
+    private static final String TAG_LISTNAME = "listname";
+    String mJsonString;
+    ButtonListAdapter buttonListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +78,18 @@ public class PickListActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+
+        groupDataList = new ArrayList<>();
+        buttonListAdapter = new ButtonListAdapter(PickListActivity.this, groupDataList);
+        pickBoxList = (ListView) findViewById(R.id.pickBoxList);
+        pickBoxList.setAdapter(buttonListAdapter);
+
+        GetoData getoData = new GetoData(serverURL, uid);
+        GetData task1 = new GetData();
+        task1.execute(getoData);
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("찜한 상품");
@@ -164,18 +194,8 @@ public class PickListActivity extends AppCompatActivity {
             }
         }); */
 
-        groupDataList = new ArrayList<GroupData>();
+
         //groupDataList.add(new GroupData("기본 그룹")); // 이렇게 하지말고 하나의 그룹도 없을때 추가해보세요 라는 팝업창 뜨기
-
-        // 찜폴더 관리
-        pickBoxList = (ListView) findViewById(R.id.pickBoxList);
-        pickboxadapter = new ButtonListAdapter( this, groupDataList);
-        pickBoxList.setAdapter(pickboxadapter);
-        pickboxadapter.notifyDataSetChanged();
-
-        if (groupDataList.size() < 1) {
-            groupZero();
-        }
 
         // 새폴더 추가
         pickBoxNew = (ImageView) findViewById(R.id.pickBoxNew);
@@ -214,45 +234,24 @@ public class PickListActivity extends AppCompatActivity {
         boxName.setFilters(FilterArray);
         alert.setView(boxName);
 
+
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // ★ 확인 버튼 클릭시 액션
-
                 listname = boxName.getText().toString();
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
+                Intent intent = getIntent();
+                int uid = intent.getExtras().getInt("uid");
+                TaskParams params = new TaskParams(serverURL2, listname, uid);
+                InsertData insertData = new InsertData();
+                insertData.execute(params);
 
-                            if(success){
-                                groupDataList.add(new GroupData(listname));
-                                pickboxadapter.notifyDataSetChanged();
-                                Toast.makeText(getApplicationContext(), "["+listname+"]"+"폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
-
-                                // intent 값 전달 - 제목 데이터 보내기
-                                // 근데 이렇게 하면 자동으로 그 폴더로 들어가짐...음 다른 방법을 찾아야 될 듯
-                                GroupData groupData = new GroupData(listname);
-                                Intent groupDataIntent = new Intent(getApplicationContext(), PickZeroActivity.class);
-                                groupDataIntent.putExtra("groupData", groupData);
-                                startActivityForResult(groupDataIntent, 0);
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), "폴더 생성에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                };
-
-                LikeRequest likeRequest = new LikeRequest(listname, responseListener);
-                RequestQueue queue = Volley.newRequestQueue( PickListActivity.this );
-                queue.add(likeRequest);
+                GetoData getoData = new GetoData(serverURL, uid);
+                GetData task1 = new GetData();
+                task1.execute(getoData);
 
             }
         });
+
         alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // ★ 취소 버튼 클릭시 액션
@@ -261,6 +260,197 @@ public class PickListActivity extends AppCompatActivity {
         });
         alert.show();
 
+    }
+
+    private static class TaskParams {
+        int uid;
+        String listname;
+        String serverURL2;
+
+        TaskParams(String serverURL2, String listname, int uid) {
+            this.serverURL2 = serverURL2;
+            this.listname = listname;
+            this.uid = uid;
+        }
+    }
+
+    class InsertData extends AsyncTask<TaskParams, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(PickListActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG2, "POST response  - " + result);
+            //pickBoxLoading();
+            Toast.makeText(getApplicationContext(), listname + "폴더가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+            buttonListAdapter.notifyDataSetChanged();
+
+        }
+
+        @Override
+        protected String doInBackground(TaskParams... params) {
+
+            String serverURL2 = params[0].serverURL2;
+            String listname = params[0].listname;
+            int uid = params[0].uid;
+
+            String postParameters = "listname=" + listname + "&user_uid=" + uid;
+
+            try {
+                URL url = new URL(serverURL2);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG2, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                return sb.toString();
+            } catch (Exception e) {
+                Log.d(TAG2, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
+    private static class GetoData {
+        int uid;
+        String serverURL;
+
+        GetoData(String serverURL, int uid) {
+            this.serverURL = serverURL;
+            this.uid = uid;
+        }
+    }
+
+    private class GetData extends AsyncTask<GetoData, Void, String> {
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(PickListActivity.this, "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG1, "response : " + result);
+            mJsonString = result;
+            showResult();
+
+            if (groupDataList.size() == 0) {
+                groupZero();
+            }
+        }
+
+        @Override
+        protected String doInBackground(GetoData... params) {
+            String serverURL = params[0].serverURL;
+            int uid = params[0].uid;
+
+            String postParameters = "user_uid=" + uid;
+
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG1, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString();
+
+            } catch (Exception e) {
+                Log.d(TAG1, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    private void showResult() {
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String listname = item.getString(TAG_LISTNAME);
+
+                GroupData groupData = new GroupData();
+                groupData.setGroupTitle(listname);
+                groupDataList.add(groupData);
+                buttonListAdapter.notifyDataSetChanged();
+            }
+        } catch (JSONException e) {
+            Log.d(TAG1, "showResult: ", e);
+        }
     }
 
 }

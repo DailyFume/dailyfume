@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -48,6 +49,8 @@ public class TestResultActivity extends AppCompatActivity {
     Timer timer;
     final long DELAY_MS = 500;
     final long PERIOD_MS = 3000;
+
+    private ArrayList<FragranceData> arrayList;
 
     // 임시 랜덤함수 (결과페이지 10개)
     Integer[] resultPage = {R.layout.result_citrus, R.layout.result_floral, R.layout.result_green, R.layout.result_woody,
@@ -128,6 +131,7 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -254,8 +258,10 @@ public class TestResultActivity extends AppCompatActivity {
                 .create();
 
         // 뷰페이저
+        arrayList = new ArrayList<FragranceData>(); //
         ResultViewPager = findViewById(R.id.ViewPager);
-        pagerAdapter = new TextViewPagerAdapter(this);
+        // pagerAdapter = new TextViewPagerAdapter(this);
+        pagerAdapter = new TextViewPagerAdapter(this, arrayList);
         ResultViewPager.setAdapter(pagerAdapter);
 
         final Handler handler = new Handler();

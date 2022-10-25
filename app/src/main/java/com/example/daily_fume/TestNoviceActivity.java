@@ -371,6 +371,7 @@ public class TestNoviceActivity extends AppCompatActivity {
         Intent resultIntent = new Intent(getApplicationContext(), TestResultActivity.class);
         resultIntent.putExtra("result", maxEntry.getKey());
         startActivity(resultIntent);
+        finish();
 
     }
 
