@@ -206,9 +206,9 @@ public class TestResultActivity extends AppCompatActivity {
                 .create();
 
         // 뷰페이저
-        ResultViewPager = findViewById(R.id.ViewPager);
-        pagerAdapter = new TextViewPagerAdapter(this);
-        ResultViewPager.setAdapter(pagerAdapter);
+//        ResultViewPager = findViewById(R.id.ViewPager);
+//        pagerAdapter = new TextViewPagerAdapter(this);
+//        ResultViewPager.setAdapter(pagerAdapter);
 
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
