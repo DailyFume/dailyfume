@@ -59,10 +59,6 @@ public class ResignActivity extends AppCompatActivity {
 
                                             if (success) {
                                                 // 2) 이메일 일치 > 최종 확인 창 출력
-
-                                                //TitleValues.add(listname); -- 안 쓰는 코드
-                                                //pickBoxLoading();
-
                                                 Toast.makeText(getApplicationContext(), "이메일이 일치합니다.", Toast.LENGTH_SHORT).show();
 
                                                 AlertDialog.Builder msg_final = new AlertDialog.Builder(ResignActivity.this)

@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Base64;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -96,6 +97,9 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
 
+        Intent intent = getIntent();
+        String uemail = intent.getStringExtra("uemail");
+
         testIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +130,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });

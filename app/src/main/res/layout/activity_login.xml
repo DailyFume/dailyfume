@@ -25,10 +25,54 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/idTextBox"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/storke"
+                android:ems="10"
+                android:hint="아이디"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:textSize="13dp" />
+
+            <EditText
+                android:id="@+id/pwTextBox"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/storke"
+                android:ems="10"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:paddingLeft="15dp"
+                android:textSize="13dp" />
+
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#E6B6BE"
+                android:text="로그인"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                app:strokeColor="#E6B6BE"
+                app:strokeWidth="100dp" />
+
+            <android.widget.Button
+                android:id="@+id/joinPageBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+
+                android:background="@drawable/joinimg"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
