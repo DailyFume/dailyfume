@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyPageActivity extends AppCompatActivity {
 
@@ -19,10 +20,15 @@ public class MyPageActivity extends AppCompatActivity {
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
+    ImageView menu1Btn, menu2Btn, menu3Btn, menu4Btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
+
+        Intent intent = getIntent();
+        String uemail = intent.getExtras().getString("uemail");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
@@ -70,11 +76,61 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.menu1Btn).setOnClickListener(menuClick); // 개인정보 수정 페이지
-        findViewById(R.id.menu2Btn).setOnClickListener(menuClick); // 찜 목록 페이지
-        findViewById(R.id.menu3Btn).setOnClickListener(menuClick); // 후기 리스트 페이지
-        findViewById(R.id.menu4Btn).setOnClickListener(menuClick); // 문의사항
-        findViewById(R.id.menu5Btn).setOnClickListener(menuClick); // 공지사항
+
+
+        menu1Btn = (ImageView) findViewById(R.id.menu1Btn); // 개인정보 수정 페이지
+        menu2Btn = (ImageView) findViewById(R.id.menu2Btn); // 찜 목록 페이지
+        menu3Btn = (ImageView) findViewById(R.id.menu3Btn); // 후기 리스트 페이지
+        menu4Btn = (ImageView) findViewById(R.id.menu4Btn); // 문의사항
+
+        //imgVdf = (ImageView) findViewById(R.id.imgVdf);
+        //imgVdf.setColorFilter(Color.LTGRAY);
+
+        menu1Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UserPrivacyActivity.class);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        menu2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+               //intent.putExtra("uid", uid);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+//        menu3Btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), ReviewListActivity.class);
+//                intent.putExtra("uid", uid);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
+
+        menu4Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), QnaActivity.class);
+                //intent.putExtra("uid", uid);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+//        findViewById(R.id.menu1Btn).setOnClickListener(menuClick); // 개인정보 수정 페이지
+//        findViewById(R.id.menu2Btn).setOnClickListener(menuClick); // 찜 목록 페이지
+//        findViewById(R.id.menu3Btn).setOnClickListener(menuClick); // 후기 리스트 페이지
+//        findViewById(R.id.menu4Btn).setOnClickListener(menuClick); // 문의사항
+//        findViewById(R.id.menu5Btn).setOnClickListener(menuClick); // 공지사항
 
     }
 

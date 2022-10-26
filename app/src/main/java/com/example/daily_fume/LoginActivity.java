@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG_EMAIL = "uemail";
     private static final String TAG_PASS = "upassword";
     private static final String TAG_NAME = "uname";
-    private static final String TAG_BIRTH = "ubirth";
 
     ArrayList<HashMap<String, String>> mArrayList;
     private EditText mEditTextID, mEditTextPass;
@@ -139,9 +138,9 @@ public class LoginActivity extends AppCompatActivity {
             if (result.equals(wrong)) {
                 Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
             } else {
+                mJsonString = result;
                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+                showResult();
             }
         }
 
@@ -209,16 +208,19 @@ public class LoginActivity extends AppCompatActivity {
                 String uemail = item.getString(TAG_EMAIL);
                 String upassword = item.getString(TAG_PASS);
                 String uname = item.getString(TAG_NAME);
-                String ubirth = item.getString(TAG_BIRTH);
 
                 HashMap<String,String> hashMap = new HashMap<>();
 
                 hashMap.put(TAG_EMAIL, uemail);
                 hashMap.put(TAG_PASS, upassword);
                 hashMap.put(TAG_NAME, uname);
-                hashMap.put(TAG_BIRTH, ubirth);
 
                 mArrayList.add(hashMap);
+
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                //intent.putExtra("uid", uid);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
 
 //                if (upassword.equals(mEditTextPass)) {
 //                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
