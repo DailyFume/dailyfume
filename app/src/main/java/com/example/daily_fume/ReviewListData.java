@@ -1,38 +1,52 @@
 package com.example.daily_fume;
 
+import android.graphics.Bitmap;
+
 public class ReviewListData {
-    private String RBrand; // 브랜드명
-    private String RTitle; // 향수명
-    private String Rstr; // 리뷰내용
-    private int IntStars; // 별점
-    private int RImg; // 포토리뷰
+    private String brand; // 브랜드명
+    private String name; // 향수명
+    private String content; // 리뷰내용
+    private double rate; // 별점
+    private Bitmap fimg; // 포토리뷰
 
-    public ReviewListData( String RBrand, String RTitle, String Rstr, int IntStars, int RImg ) {
-        this.RBrand = RBrand;
-        this.RTitle = RTitle;
-        this.Rstr = Rstr;
-        this.IntStars = IntStars;
-        this.RImg = RImg;
-}
 
-    public String getRBrand() {
-        return this.RBrand;
+    public String getBrand() {
+        return brand;
     }
 
-    public String getRTitle() {
-        return this.RTitle;
+    public String getName() {
+        return name;
     }
 
-    public String getRstr() {
-        return this.Rstr;
+    public String getContent() {
+        return content;
     }
 
-    public int getIntStars() {
-        return this.IntStars;
+    public double getRate() {
+        return rate;
     }
 
-    public int getRImg() {
-        return this.RImg;
+    public Bitmap getImage() {
+        return fimg;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public void setImage(Bitmap fimg) {
+        this.fimg = fimg;
+    }
 }

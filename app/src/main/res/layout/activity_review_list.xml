@@ -78,7 +78,7 @@
                 android:scrollbarStyle="outsideOverlay"
                 tools:ignore="SpeakableTextPresentCheck">
 
-                <ListView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ReviewList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

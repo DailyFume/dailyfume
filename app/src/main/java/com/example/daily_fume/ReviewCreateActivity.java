@@ -240,18 +240,21 @@ public class ReviewCreateActivity extends AppCompatActivity {
                 content.setText("");
 
                 int fid = map.get("TAG_ID");
+                // System.out.println(fid);
 
                 PostParams params = new PostParams(serverURL, rcontent, rate, image, uid, fid);
                 InsertData insertData = new InsertData();
                 insertData.execute(params);
 
+                Intent intent = new Intent(ReviewCreateActivity.this, ReviewListActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
             }
         });
 
 
     }
 
-            //    // 메서드
     void title_spinner() {
         // 2) 상품명 검색 스피너
         ArrayList<String> titleList = new ArrayList<>(); // 리스트 생성
@@ -266,16 +269,6 @@ public class ReviewCreateActivity extends AppCompatActivity {
 
                 GetID getfid = new GetID();
                 getfid.execute("http://" + IP_ADDRESS + "/get_id.php", Tnumber);
-
-//                // ★ 나중에 이 변수를 이용해서 후기글이(DB에) 저장되어야 함
-//                switch (String.valueOf(Tnumber)) {
-//                    case "":
-//                        //Toast.makeText(getApplicationContext(), "상품명을 선택해주세요", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case "--- 선택하세요 ---":
-//                        Toast.makeText(getApplicationContext(), "상품명을 선택해주세요", Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
             }
 
             @Override
@@ -375,8 +368,6 @@ public class ReviewCreateActivity extends AppCompatActivity {
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject item = jsonArray.getJSONObject(i);
                 String name = item.getString(TAG_NAME);
-//                HashMap hashMap = new HashMap<>();
-//                hashMap.put(TAG_NAME, name);
                 nameList.add(name);
 
             }
@@ -421,15 +412,16 @@ public class ReviewCreateActivity extends AppCompatActivity {
 
             progressDialog.dismiss();
             Log.d(TAG, "POST response  - " + result);
+            mJsonString = result;
 
             if(result.equals("SUCCESS")){
                 Toast.makeText(getApplicationContext(), "후기가 등록되었습니다.", Toast.LENGTH_SHORT).show();
             } else {
-
+                Toast.makeText(getApplicationContext(), "후기 등록에 실패했습니다.", Toast.LENGTH_SHORT).show();
             }
 
         }
-        
+
         @Override
         protected String doInBackground(PostParams... params) {
 
@@ -577,8 +569,6 @@ public class ReviewCreateActivity extends AppCompatActivity {
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject item = jsonArray.getJSONObject(i);
                 Integer fid = item.getInt(TAG_ID);
-//                HashMap hashMap = new HashMap<>();
-//                hashMap.put(TAG_ID, fid);
                 map.put("TAG_ID", fid);
             }
         } catch (JSONException e) {
