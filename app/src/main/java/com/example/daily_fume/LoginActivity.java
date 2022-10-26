@@ -69,8 +69,6 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn, joinBtn;
 
     private String mJsonString;
-    String result1;
-
     ImageView backBtn;
     TextView title_change;
 

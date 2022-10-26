@@ -54,13 +54,14 @@ public class PickListActivity extends AppCompatActivity {
     Spinner spinnerPick;
     String[] PfItems = { "  기본  ", "  최신순  ", "  이름순  "};
     ListView pickBoxList;
+    ArrayList<String> TitleValues = new ArrayList<String>();
     ArrayList<GroupData> groupDataList;
     ButtonListAdapter pickboxadapter;
     //ArrayList<String> TitleValues = new ArrayList<String>();
     //ArrayList<Integer> PickNumValue = new ArrayList<Integer>();
 
     String listname;
-    String serverURL = "http://43.201.60.239/likelist.php";
+    String serverURL = "http://43.200.245.161/likelist.php";
     Button BoxModifyBtn, BoxDeleteBtn;
 
 //    private static String IP_ADDRESS = "43.201.60.239";
@@ -215,6 +216,12 @@ public class PickListActivity extends AppCompatActivity {
                     }
                 })
                 .create().show();
+    }
+
+    void pickBoxLoading() { // 폴더 추가 메서드 - ★ 단 새로고침하면 기존 폴더들이 사라짐 (개선하기)
+        ButtonListAdapter pickboxadapter = new ButtonListAdapter( this, new ArrayList<GroupData>());
+        pickBoxList.setAdapter(pickboxadapter);
+
     }
 
     void showPickBoxNew() { // 새로 박스 만들기

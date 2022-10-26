@@ -20,6 +20,7 @@ public class MyPageActivity extends AppCompatActivity {
     TextView title_change;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
+    ImageView menu1Btn, menu2Btn, menu3Btn, menu4Btn;
 
     ImageView menu1Btn, menu2Btn, menu3Btn, menu4Btn;
 
@@ -37,6 +38,9 @@ public class MyPageActivity extends AppCompatActivity {
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setTextColor(Color.parseColor("#D77F8F"));
         title_change.setText("회원 님");
+
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -134,36 +138,46 @@ public class MyPageActivity extends AppCompatActivity {
 //        findViewById(R.id.menu4Btn).setOnClickListener(menuClick); // 문의사항
 //        findViewById(R.id.menu5Btn).setOnClickListener(menuClick); // 공지사항
 
+        menu1Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UserPrivacyActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        menu2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        menu3Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReviewListActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        menu4Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), QnaActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
-    // View.OnClickListener menuClick = new View.OnClickListener() {
-    //
-    //     Intent intent = getIntent();
-    //     String uid = intent.getExtras().getString("uid");
-    //
-    //     @Override
-    //     public void onClick(View v) {
-    //         switch (v.getId()) {
-    //             case R.id.menu1Btn:
-    //                 Intent intent = new Intent(getApplicationContext(), UserPrivacyActivity.class);
-    //                 startActivity(intent);
-    //                 break;
-    //             case R.id.menu2Btn:
-    //                 intent = new Intent(getApplicationContext(), PickListActivity.class);
-    //                 intent.putExtra("uid", uid);
-    //                 startActivity(intent);
-    //                 break;
-    //             case R.id.menu3Btn:
-    //                 intent = new Intent(getApplicationContext(), ReviewListActivity.class);
-    //                 intent.putExtra("uid", uid);
-    //                 startActivity(intent);
-    //                 break;
-    //             case R.id.menu4Btn:
-    //                 intent = new Intent(getApplicationContext(), QnaActivity.class);
-    //                 startActivity(intent);
-    //                 break;
-    //         }
-    //     }
-    // };
 
 }
