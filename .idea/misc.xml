@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_minirating_false.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_minirating_true.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_miniratingbar.xml" value="0.1" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_rating_false.xml" value="0.1" />
         <entry key="..\:/Users/sogoh/2005905_project/daily_fume/app/src/main/res/drawable/custom_rating_true.xml" value="0.1" />

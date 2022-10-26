@@ -809,7 +809,7 @@ public class FumeActivity extends AppCompatActivity {
             progressDialog.dismiss();
             Log.d(TAGLIKEFUME, "POST response  - " + result);
             //pickBoxLoading();
-            Toast.makeText(getApplicationContext(), fid + "상품을 "+lid+"에 찜하였습니다.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), fid + "상품을 "+lid+"에 찜하였습니다.", Toast.LENGTH_SHORT).show();
             //buttonListAdapter.notifyDataSetChanged();//
 
         }

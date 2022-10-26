@@ -41,7 +41,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class ReviewCreateActivity extends AppCompatActivity {
@@ -602,7 +601,8 @@ public class ReviewCreateActivity extends AppCompatActivity {
 
     void ratingBarEvent() {
         review_ratingBar = (RatingBar) findViewById(R.id.review_ratingBar);
-        Toast.makeText(getApplicationContext(), String.valueOf(review_ratingBar.getRating()) + "점", Toast.LENGTH_SHORT).show();
+        review_ratingBar.setIsIndicator(false);
+        //Toast.makeText(getApplicationContext(), String.valueOf(review_ratingBar.getRating()) + "점", Toast.LENGTH_SHORT).show();
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(

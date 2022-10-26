@@ -213,7 +213,7 @@ public class ReviewEditActivity extends AppCompatActivity {
 
     void ratingBarEvent() {
         review_ratingBar = (RatingBar) findViewById(R.id.review_ratingBar);
-        Toast.makeText(getApplicationContext(), String.valueOf(review_ratingBar.getRating()) + "점", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), String.valueOf(review_ratingBar.getRating()) + "점", Toast.LENGTH_SHORT).show();
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
