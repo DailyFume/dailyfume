@@ -29,9 +29,7 @@ public class MyPageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
-
-        Intent intent1 = getIntent();
-        String uemail = intent1.getStringExtra("uemail");
+        String uemail = intent.getStringExtra("uemail");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
@@ -58,6 +56,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -66,6 +65,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -74,6 +74,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -82,6 +83,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -95,6 +97,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UserPrivacyActivity.class);
+                intent.putExtra("uid", uid);
                 intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
@@ -105,6 +108,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uemail", uemail);
                 intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
@@ -115,6 +119,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReviewListActivity.class);
+                intent.putExtra("uemail", uemail);
                 intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();

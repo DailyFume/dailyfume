@@ -23,6 +23,9 @@ public class TestMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_main);
 
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
@@ -39,7 +42,7 @@ public class TestMainActivity extends AppCompatActivity {
         });
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
-        // searchIcon = (ImageView) findViewById(R.id.);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
 
@@ -47,17 +50,27 @@ public class TestMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         loveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
@@ -67,6 +80,7 @@ public class TestMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
@@ -78,6 +92,7 @@ public class TestMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TestMainActivity.this, TestNoviceActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -85,6 +100,7 @@ public class TestMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TestMainActivity.this, TestBuffActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });

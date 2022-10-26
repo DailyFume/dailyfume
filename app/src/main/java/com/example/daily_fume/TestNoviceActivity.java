@@ -42,6 +42,9 @@ public class TestNoviceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
@@ -63,27 +66,38 @@ public class TestNoviceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
         });
-        // searchIcon = (ImageView) findViewById(R.id.);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
+
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+            }
+        });
 
         loveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -92,6 +106,7 @@ public class TestNoviceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });
@@ -367,9 +382,13 @@ public class TestNoviceActivity extends AppCompatActivity {
         Map.Entry<String, Integer> maxEntry = Collections.max(map.entrySet(), comparator);
         //Toast.makeText(getApplicationContext(),maxEntry.getKey()+"계열"+maxEntry.getValue()+"값", Toast.LENGTH_SHORT).show();
 
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+
         // 결과값 넘기기
         Intent resultIntent = new Intent(getApplicationContext(), TestResultActivity.class);
         resultIntent.putExtra("result", maxEntry.getKey());
+        resultIntent.putExtra("uid", uid);
         startActivity(resultIntent);
         finish();
 

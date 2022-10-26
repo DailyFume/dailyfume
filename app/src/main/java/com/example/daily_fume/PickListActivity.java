@@ -112,6 +112,7 @@ public class PickListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
@@ -121,6 +122,7 @@ public class PickListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
@@ -133,6 +135,7 @@ public class PickListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }

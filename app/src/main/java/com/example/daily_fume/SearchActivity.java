@@ -35,7 +35,6 @@ public class SearchActivity extends AppCompatActivity {
 
     private static String IP_ADDRESS = "43.200.245.161";
     private static String TAG = "phpSearch";
-    private static String TAG = "phpexample";
     private TextView mTextViewResult;
     private ArrayList<FragranceData> mArrayList;
     private GridAdapter mAdapter;
@@ -50,6 +49,9 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("검색");
