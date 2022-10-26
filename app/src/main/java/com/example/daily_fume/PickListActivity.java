@@ -158,15 +158,6 @@ public class PickListActivity extends AppCompatActivity {
             }
         });
 
-        // 찜폴더 관리
-        pickBoxList = (ListView) findViewById(R.id.pickBoxList);
-        TitleValues.add("기본 그룹");
-
-        for (int i = 0; i < TitleValues.size(); i++) {
-            pickBoxLoading();
-        }
-
-
         // ★ 리스트뷰와 버튼 조합일 시 주의사항
         // 1. 리스트뷰 포커스를 false로 해야 함
         // 2. 리스트뷰에 들어간 레이아웃에서 버튼들 xml에 clickable과 focusable은 false로 해야 함
@@ -210,7 +201,6 @@ public class PickListActivity extends AppCompatActivity {
         });
 
     }
-
 
     // 메서드
 

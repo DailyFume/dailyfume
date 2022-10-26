@@ -86,7 +86,6 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:gravity="left"
-                            android:text="Jo MALONE BLACKBERRY \u0026 BAY"
                             android:textColor="#ffffff"
                             android:textSize="24dp" />
 
@@ -96,7 +95,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/DetailTitle"
                             android:layout_marginLeft="20dp"
-                            android:text="(조말론 블랙베리 앤 베이)"
                             android:textColor="#ffffff"
                             android:textSize="14dp" />
 
@@ -118,7 +116,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/brand_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="jomalone"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -140,7 +137,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/type_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="프루티"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -162,7 +158,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/vol_tv"
                             android:layout_marginLeft="20dp"
-                            android:text="100 ml"
                             android:textColor="#ffffff"
                             android:textSize="15dp" />
 
@@ -170,13 +165,12 @@
 
                     <ImageView
                         android:id="@+id/TitleImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        android:layout_height="250dp"
                         android:layout_alignRight="@id/mainTitle"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="180dp"
-                        android:layout_marginRight="30dp"
-                        app:srcCompat="@drawable/fume10" />
+                        android:layout_marginRight="30dp" />
 
                 </RelativeLayout>
 
@@ -226,7 +220,6 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="블랙베리"
                             android:textAlignment="center"
                             android:textSize="14dp" />
 
@@ -252,7 +245,6 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="월계수잎"
                             android:textSize="14dp" />
 
                         <TextView
@@ -278,7 +270,6 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="시더우드"
                             android:textSize="14dp" />
                     </RelativeLayout>
 
@@ -330,7 +321,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#프루티"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -341,7 +331,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#달달한"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -352,7 +341,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#블랙베리"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -363,7 +351,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#프리지아"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>
@@ -387,7 +374,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#시더우드"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -398,7 +384,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#조말론"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -409,7 +394,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#우디"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
 
@@ -420,7 +404,6 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="#월계수잎"
                                 android:textColor="#333333"
                                 android:textSize="14dp" />
                         </LinearLayout>

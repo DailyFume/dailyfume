@@ -107,12 +107,12 @@ public class ReviewEditActivity extends AppCompatActivity {
         });
 
         // 인텐트 값 전달받기
-        Intent intent = getIntent();
-        String  Edit_RBrand = intent.getStringExtra("RBrand");
-        String  Edit_RTitle = intent.getStringExtra("RTitle");
-        String  Edit_Rstr = intent.getStringExtra("Rstr");
-        int Edit_IntStars = intent.getIntExtra("IntStars", 0);
-        int Edit_RImg = intent.getIntExtra("RImg",0);
+//        Intent intent = getIntent();
+//        String  Edit_RBrand = intent.getStringExtra("RBrand");
+//        String  Edit_RTitle = intent.getStringExtra("RTitle");
+//        String  Edit_Rstr = intent.getStringExtra("Rstr");
+//        int Edit_IntStars = intent.getIntExtra("IntStars", 0);
+//        int Edit_RImg = intent.getIntExtra("RImg",0);
         //Toast.makeText(getApplicationContext(), Edit_RBrand + "", Toast.LENGTH_SHORT).show();
         //Toast.makeText(getApplicationContext(), Edit_RTitle + "", Toast.LENGTH_SHORT).show();
         //Toast.makeText(getApplicationContext(), Edit_Rstr + "", Toast.LENGTH_SHORT).show();
@@ -129,11 +129,11 @@ public class ReviewEditActivity extends AppCompatActivity {
         brandText.setVisibility(View.VISIBLE);
         titleText.setVisibility(View.VISIBLE);
 
-        brandText.setText(Edit_RBrand);
-        titleText.setText(Edit_RTitle);
-        review_ratingBar.setRating(Edit_IntStars);
-        review_box.setText(Edit_Rstr);
-        photo_choiceBtn.setImageResource(Edit_RImg);
+//        brandText.setText(Edit_RBrand);
+//        titleText.setText(Edit_RTitle);
+//        review_ratingBar.setRating(Edit_IntStars);
+//        review_box.setText(Edit_Rstr);
+//        photo_choiceBtn.setImageResource(Edit_RImg);
 
             // 별점 (레이팅바)
             review_ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

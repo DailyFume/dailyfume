@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
-import com.kakao.sdk.user.model.User;
+import com.kakao.usermgmt.response.model.User;
 
 import org.json.JSONObject;
 
@@ -41,12 +41,10 @@ public class UserPrivacyActivity extends AppCompatActivity {
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
-    EditText email_box, nickname_box, date_box, pw_box;
-    //Button manBtnbox, womanBtnbox;
+    String uemail;
 
-    //왜 쓰는지 모름
-    //String loginID;
-    //String loginSort;
+    EditText nickname_box, pw_box;
+    String Name, PW;
 
     //logcat 에서 오류 찾을 때
     private static String TAG = "update_user";
@@ -104,39 +102,26 @@ public class UserPrivacyActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-
-        //사용 x
-        //loginID = intent.getExtras().getString("loginID");
-        //loginSort = intent.getExtras().getString("loginSort");
+        String uemail = intent.getStringExtra("uemail");
 
         // 수정하기 버튼 클릭 이벤트
         // ★ 사용자가 정보를 수정하기 위해 입력하거나 버튼을 클릭했다면 밑에 수정하기 버튼이나 중복확인 버튼이
         // 분홍색으로 바뀌어서 활성화 되어야 함.
-        email_box = (EditText) findViewById(R.id.email_box);
+
         nickname_box = (EditText) findViewById(R.id.nickname_box);
-        //date_box = (EditText) findViewById(R.id.date_box);
         pw_box = (EditText) findViewById(R.id.pw_box);
-        //manBtnbox = (Button) findViewById(R.id.manBtnbox);
-        //womanBtnbox = (Button) findViewById(R.id.womanBtnbox);
 
         priModifyBtn = (Button) findViewById(R.id.priModifyBtn);
         priModifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Email = email_box.getText().toString();
-                String Name = nickname_box.getText().toString();
-                String Birth = date_box.getText().toString();
-                String PW = pw_box.getText().toString();
+                Name = nickname_box.getText().toString();
+                PW = pw_box.getText().toString();
 
                 InsertData task = new InsertData();
-                task.execute("http://43.201.60.239/update_user.php", Email, Name, Birth, PW);
+                task.execute(Name, PW, uemail);
 
-                email_box.setText("");
-                nickname_box.setText("");
-                date_box.setText("");
-                pw_box.setText("");
-
-                showModify(); // 팝업창으로 정말 수정할건지 한번 더 물어보기
+                showModify(); // 팝업창으로 수정할건지 한번 더 물어보기
             }
         });
         // 임시 기본 값
@@ -159,12 +144,10 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 AlertDialog.Builder msgBuilder = new AlertDialog.Builder(UserPrivacyActivity.this)
                         .setTitle("알림")
                         .setMessage("로그아웃 하시겠습니까?")
-
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Toast.makeText(getApplicationContext(), "로그아웃이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                                //스택을 비우고 새로운 액티비티 띄우기
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
@@ -187,19 +170,16 @@ public class UserPrivacyActivity extends AppCompatActivity {
         return false;
     }
 
-
-
     // 수정하기 버튼 팝업창 메서드
     void showModify() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(UserPrivacyActivity.this)
                 .setTitle("알림")
                 .setMessage("회원정보를 수정하시겠습니까?")
-
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                        Toast.makeText(UserPrivacyActivity.this, "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UserPrivacyActivity.this, MyPageActivity.class);
                         startActivity(intent);
                     }
                 })
@@ -213,7 +193,9 @@ public class UserPrivacyActivity extends AppCompatActivity {
     }
 
 
+
     //회원정보 수정 구현
+
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 
@@ -238,14 +220,13 @@ public class UserPrivacyActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String Email = (String)params[1];
-            String Name = (String)params[2];
-            String Birth = (String)params[3];
-            String PW = (String)params[4];
 
-            String serverURL = (String)params[0];
-            //php 파일의 속성명과 동일하게 해봐야될듯
-            String postParameters = "uemail" + Email + "&uname" + Name + "&ubirth" + Birth + "&upassword=" + PW;
+            String Name = (String)params[0];
+            String PW = (String)params[1];
+            String uemail = (String)params[2];
+
+            String serverURL = "http://43.200.245.161/update_user.php";
+            String postParameters = "uname=" + Name + "&upassword=" + PW + "&uemail=" + uemail;
 
 
             try {
@@ -254,8 +235,8 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
 
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setReadTimeout(8000);
+                httpURLConnection.setConnectTimeout(8000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.connect();
 

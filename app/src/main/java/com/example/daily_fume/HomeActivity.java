@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Base64;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -88,13 +89,15 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout whiteBACK = findViewById(R.id.whiteBACK);
 
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        // searchIcon = (ImageView) findViewById(R.id.);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
         searchIcon = (ImageView) findViewById(R.id.searchIcon);
 
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
+
+        Intent intent1 = getIntent();
+        String uemail = intent1.getStringExtra("uemail");
 
         testIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +129,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
