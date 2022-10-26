@@ -183,12 +183,6 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
-
-                    case R.id.nav_4:
-                        //intent = new Intent(getApplicationContext(), .class);
-                        //startActivity(intent);
-                        drawerLayout.closeDrawer(dView);
-                        return true;
                 }
                 return false;
             }

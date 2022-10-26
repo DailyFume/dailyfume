@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,24 +35,38 @@ public class SearchActivity extends AppCompatActivity {
 
     private static String IP_ADDRESS = "43.200.245.161";
     private static String TAG = "phpSearch";
-
+    private static String TAG = "phpexample";
+    private TextView mTextViewResult;
     private ArrayList<FragranceData> mArrayList;
     private GridAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private EditText mEditTextSearchKeyword;
     private String mJsonString;
 
+    TextView title_change;
+    ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        title_change = (TextView) findViewById(R.id.title_change);
+        title_change.setText("검색");
+
+        backBtn = (ImageView) findViewById(R.id.back_icon);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         // mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.main_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
-        mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText);
+        mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText1);
 
         // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
@@ -181,6 +196,8 @@ public class SearchActivity extends AppCompatActivity {
 
                 mArrayList.add(fragranceData);
                 mAdapter.notifyDataSetChanged();
+
+                title_change.setText("검색 결과");
             }
         } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);

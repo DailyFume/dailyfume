@@ -19,7 +19,7 @@ public class JoinYesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join_yes);
+        setContentView(R.layout.activity_join_yes2);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
@@ -40,11 +40,22 @@ public class JoinYesActivity extends AppCompatActivity {
             }
         });
 
+//        gotoHomeBtn = (Button) findViewById(R.id.gotoHomeBtn);
+//        gotoHomeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(JoinYesActivity.this, HomeActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
+
+        // 임시
         gotoHomeBtn = (Button) findViewById(R.id.gotoHomeBtn);
         gotoHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(JoinYesActivity.this, HomeActivity.class);
+                Intent intent = new Intent(JoinYesActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
