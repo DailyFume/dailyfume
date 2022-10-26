@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.drawerlayout.widget.DrawerLayout
-    android:id="@+id/drawerLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PickListActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,10 +71,9 @@
                 android:layout_weight="1"
                 android:clipToPadding="false"
                 android:fillViewport="true"
-                android:scrollbarStyle="outsideOverlay"
-                tools:ignore="SpeakableTextPresentCheck">
+                android:scrollbarStyle="outsideOverlay">
 
-                <ListView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ReviewList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -118,4 +113,4 @@
             android:overScrollMode="never" />
 
     </LinearLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>

@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -207,17 +209,19 @@ public class PickFumeActivity extends AppCompatActivity {
         // 그리드뷰 - 찜한 상품 목록
         pickFumeGridview = (GridView) findViewById(R.id.pickFumeGridview);
         // ★ 해당 상품을 클릭하면 해당 상품의 상세페이지로 이동 해야 함
-//        FumeGridAdapter adapter = new FumeGridAdapter();
-//        adapter.addItem(new Fume("구찌","구찌 블룸", R.drawable.fume14));
-////        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
-////        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
-////        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
-////        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
-////        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
-////        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
-////        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
-////        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
-//        pickFumeGridview.setAdapter(adapter);
+        FumeGridAdapter adapter = new FumeGridAdapter();
+        Drawable drawable = getResources().getDrawable(R.drawable.fume14);
+        Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+        adapter.addItem(new Fume("구찌","구찌 블룸", bitmap));
+//        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
+//        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
+//        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
+//        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
+//        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
+//        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
+//        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
+//        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
+        pickFumeGridview.setAdapter(adapter);
 
     }
 

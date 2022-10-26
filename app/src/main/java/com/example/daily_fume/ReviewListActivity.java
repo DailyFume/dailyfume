@@ -2,9 +2,18 @@ package com.example.daily_fume;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -14,7 +23,19 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ReviewListActivity extends AppCompatActivity {
 
@@ -32,8 +53,27 @@ public class ReviewListActivity extends AppCompatActivity {
     RatingBar Rstars; // 레이팅바(별점)
     ImageView RImg; // 포토리뷰
 
-    ArrayList<ReviewListData> reviewListData;
-    ListView ReviewList;
+    ArrayList<ReviewListData> reviewList;
+    ReviewListAdapter adapter;
+
+    String TAG = "dailyfume";
+    String TAG_JSON = "review";
+    String TAG_UID = "user_uid";
+    String TAG_CONTENT = "rcontent";
+    String TAG_RATE = "rstar";
+    String TAG_FID = "fragrance_fid";
+    String TAG_IMAGE = "fimg";
+    String TAG_BRAND = "fbrand";
+    String TAG_NAME = "fnamek";
+    String mJsonString;
+    String mJsonString1;
+
+    String serverURL = "http://43.200.245.161/selectreview_u.php";
+    String serverURL1 = "http://43.200.245.161/get_review_fragrance.php";
+
+    private RecyclerView ReviewList;
+
+    HashMap<String, Integer> map1 = new HashMap<String, Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +83,26 @@ public class ReviewListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
+        title_change = (TextView) findViewById(R.id.title_change);
+        title_change.setText("후기 리스트");
+
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
         String uname = intent.getStringExtra("uname");
 
-        title_change = (TextView) findViewById(R.id.title_change);
-        title_change.setText("후기 리스트");
+        GetReview getReview = new GetReview(serverURL, uid);
+        GetData getData = new GetData();
+        getData.execute(getReview);
+
+        reviewList = new ArrayList<ReviewListData>();
+        ReviewList = (RecyclerView) findViewById(R.id.ReviewList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        ReviewList.setLayoutManager(linearLayoutManager);
+
+        adapter = new ReviewListAdapter(this, reviewList);
+        ReviewList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -131,31 +185,12 @@ public class ReviewListActivity extends AppCompatActivity {
             }
         });
 
-        // 리뷰 리스트 목록
-//        this.InitReviewListData();
-        ReviewList = (ListView) findViewById(R.id.ReviewList);
-        ReviewListAdapter reviewListAdapter = new ReviewListAdapter(this, reviewListData);
-        ReviewList.setAdapter(reviewListAdapter);
-        //Toast.makeText(getApplicationContext(), ReviewListNum.size()+"", Toast.LENGTH_SHORT).show();
-
-        ReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // 임시용 (어디로 이동해야 할지? 아님 이동이 필요없는지)
-            }
-        });
-
-        // 리뷰가 3개 이상인 경우 아래로 스크롤 하라고 알려주기
-//        if (reviewListData.size() >= 3) {
-//            Toast.makeText(getApplicationContext(), "↓ 아래로 스크롤하세요", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        for (int i = 1; i <= reviewListData.size(); i++) {
-//            //Toast.makeText(getApplicationContext(), ReviewListNum.size()+"", Toast.LENGTH_SHORT).show();
-//            ReviewN = ReviewN + 1;
-//            //Toast.makeText(getApplicationContext(), ReviewN+"", Toast.LENGTH_SHORT).show();
-//            reviewNumRe();
-//        }
+//        ReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                // 임시용 (어디로 이동해야 할지? 아님 이동이 필요없는지)
+//            }
+//        });
 
     }
 
@@ -165,16 +200,124 @@ public class ReviewListActivity extends AppCompatActivity {
         ReviewNum.setText("("+ReviewN+")");
     }
 
-//    void InitReviewListData() {
-//        reviewListData = new ArrayList<ReviewListData>();
-//        reviewListData.add(new ReviewListData("바이레도", "모하비 고스트", "친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어서 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
-//                ,3,R.drawable.fume02));
-//        reviewListData.add(new ReviewListData("딥디크", "플레르 드 뽀", "친구한테 선물받아서 써봤는데 너무 맘에 들어요! 막 전형적인 꽃향기보다 은은한데 뭔가 지나칠때 어? 뭐지? 하고 돌아보게 만드는 그런 매력적인 향이예요! 특히 잔향도 부드럽고 너무 맘에 들어서 다음에 또 구매하려구요 앞으로 제 인생템이 될 것 같아요"
-//                ,5,R.drawable.fume01));
-//
-//        // 임시 추가
-//        reviewListData.add(new ReviewListData("불가리", "불가리 골데아 더 로만 나이트", "친구한테 선물받아서 써봤는데 맘에 들지 않아요 ㅠㅠㅠㅠ! 패키지가 우아하고 고급스러워서 너무 맘에 들었는데 향이 너무 무겁게 느껴져서 제 타입은 아니라 아쉽네요. 다음에 좀 더 가벼운 향기로 다시 구매해볼 생각이예요 다른 분들 참고해주세요"
-//                ,2,R.drawable.fume03));
-//
-//    }
+    private static class GetReview {
+        int uid;
+        String serverURL;
+
+        GetReview(String serverURL, int uid) {
+            this.serverURL = serverURL;
+            this.uid = uid;
+        }
+    }
+
+    private class GetData extends AsyncTask<GetReview, Void, String> {
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(ReviewListActivity.this, "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "response : " + result);
+            mJsonString = result;
+            showResult();
+        }
+
+        @Override
+        protected String doInBackground(GetReview... params) {
+            String serverURL = params[0].serverURL;
+            int uid = params[0].uid;
+
+            String postParameters = "user_uid=" + uid;
+
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString();
+
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    private void showResult() {
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String content = item.getString(TAG_CONTENT);
+                double rate = item.getDouble(TAG_RATE);
+                Bitmap image = StringToBitMap(item.getString(TAG_IMAGE));
+                String brand = item.getString(TAG_BRAND);
+                String name = item.getString(TAG_NAME);
+
+                ReviewListData reviewListData = new ReviewListData();
+                reviewListData.setContent(content);
+                reviewListData.setRate(rate);
+                reviewListData.setImage(image);
+                reviewListData.setBrand(brand);
+                reviewListData.setName(name);
+                reviewList.add(reviewListData);
+            }
+            adapter.notifyDataSetChanged();
+        } catch (JSONException e) {
+            Log.d(TAG, "showResult: ", e);
+        }
+    }
+
+    public static Bitmap StringToBitMap(String image) {
+        Log.e("StringToBitmap", "StringToBitmap");
+        try {
+            byte[] encodeByte = Base64.decode(image, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            Log.e("StringToBitmap", "success");
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
 }

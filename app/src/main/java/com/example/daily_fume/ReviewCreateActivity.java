@@ -84,6 +84,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
+        String uname = intent.getStringExtra("uname");
         String uemail = intent.getStringExtra("uemail");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
@@ -105,6 +106,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
                 finish();
             }
@@ -115,6 +117,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
                 finish();
             }
@@ -124,6 +127,8 @@ public class ReviewCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
                 finish();
             }
@@ -134,6 +139,8 @@ public class ReviewCreateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 finish();
             }
@@ -143,6 +150,8 @@ public class ReviewCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uemail", uemail);
                 startActivity(intent);
@@ -261,6 +270,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ReviewCreateActivity.this, ReviewListActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
             }
         });
