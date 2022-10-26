@@ -28,7 +28,7 @@ public class MyPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_page);
 
         Intent intent = getIntent();
-        String uemail = intent.getExtras().getString("uemail");
+        String uemail = intent.getStringExtra("uemail");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);

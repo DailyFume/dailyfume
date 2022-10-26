@@ -42,15 +42,9 @@ public class UserPrivacyActivity extends AppCompatActivity {
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
     String uemail;
-    //EditText date_box;   //정보 수정 : 이메일 수정 불가
 
-    EditText nickname_box, pw_box, email_box;
-    String Name, PW, Email;
-    //Button manBtnbox, womanBtnbox;
-
-    //왜 쓰는지 모름
-    //String loginID;
-    //String loginSort;
+    EditText nickname_box, pw_box;
+    String Name, PW;
 
     //logcat 에서 오류 찾을 때
     private static String TAG = "update_user";
@@ -108,37 +102,24 @@ public class UserPrivacyActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        uemail = intent.getExtras().getString("uemail");
+        String uemail = intent.getStringExtra("uemail");
 
         // 수정하기 버튼 클릭 이벤트
         // ★ 사용자가 정보를 수정하기 위해 입력하거나 버튼을 클릭했다면 밑에 수정하기 버튼이나 중복확인 버튼이
         // 분홍색으로 바뀌어서 활성화 되어야 함.
-        email_box = (EditText) findViewById(R.id.email_box);
-        nickname_box = (EditText) findViewById(R.id.nickname_box);
-        //date_box = (EditText) findViewById(R.id.date_box);
-        pw_box = (EditText) findViewById(R.id.pw_box);
-        //manBtnbox = (Button) findViewById(R.id.manBtnbox);
-        //womanBtnbox = (Button) findViewById(R.id.womanBtnbox);
 
-        Name = nickname_box.getText().toString();
-        PW = pw_box.getText().toString();
-        Email = email_box.getText().toString();
+        nickname_box = (EditText) findViewById(R.id.nickname_box);
+        pw_box = (EditText) findViewById(R.id.pw_box);
 
         priModifyBtn = (Button) findViewById(R.id.priModifyBtn);
         priModifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String Email = email_box.getText().toString();
-                //String Birth = date_box.getText().toString();
+                Name = nickname_box.getText().toString();
+                PW = pw_box.getText().toString();
 
                 InsertData task = new InsertData();
-                //이메일 넣을지 말지
                 task.execute(Name, PW, uemail);
-
-                //email_box.setText("");
-                //nickname_box.setText("");
-                //date_box.setText("");
-                //pw_box.setText("");
 
                 showModify(); // 팝업창으로 수정할건지 한번 더 물어보기
             }
@@ -247,7 +228,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
             String uemail = (String)params[2];
 
             String serverURL = "http://43.200.245.161/update_user.php";
-            String postParameters = "uemail=" + uemail + "&uname=" + Name + "&upassword=" + PW;
+            String postParameters = "uname=" + Name + "&upassword=" + PW + "&uemail=" + uemail;
 
 
             try {

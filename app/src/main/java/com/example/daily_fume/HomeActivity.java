@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
 
         Intent intent = getIntent();
-        String uemail = intent.getExtras().getString("uemail");
+        String uemail = intent.getStringExtra("uemail");
 
         testIcon.setOnClickListener(new View.OnClickListener() {
             @Override

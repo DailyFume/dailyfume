@@ -218,7 +218,6 @@ public class LoginActivity extends AppCompatActivity {
                 mArrayList.add(hashMap);
 
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                //intent.putExtra("uid", uid);
                 intent.putExtra("uemail", uemail);
                 startActivity(intent);
 
