@@ -52,23 +52,12 @@ public class ButtonListAdapter extends BaseAdapter {
         Button BoxDeleteBtn = view.findViewById(R.id.BoxDeleteBtn);
         Button BoxModifyBtn = view.findViewById(R.id.BoxModifyBtn);
 
-        pickBoxLayout.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(context, "["+groupData.get(position).getGroupTitle()+"]" + " 폴더 클릭", Toast.LENGTH_SHORT).show();
-                switch (groupData.get(position).getGroupTitle()) {
-                    case "기본 그룹" :
-                        Intent intent = new Intent(context.getApplicationContext(), PickFumeActivity.class);
-                        context.startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
-                        break;
-                    case "임시 그룹" :
-                        Intent intent1 = new Intent(context.getApplicationContext(), PickZeroActivity.class);
-                        context.startActivity(intent1); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
-                        break;
-                }
-
-            }
-        });
+//        pickBoxLayout.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//
+//            }
+//        });
 
         BoxModifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override

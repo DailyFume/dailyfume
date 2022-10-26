@@ -36,11 +36,17 @@ public class TestNoviceActivity extends AppCompatActivity {
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
     ArrayList aldehyde, citrus, floral, fruity, green, musk, oceanic, oriental, spicy, woody;
+    int uid;
+    String uname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
@@ -59,31 +65,47 @@ public class TestNoviceActivity extends AppCompatActivity {
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        testIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        // searchIcon = (ImageView) findViewById(R.id.);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
             }
         });
 
-        // searchIcon.setOnClickListener();
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         loveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
             }
         });
@@ -92,6 +114,8 @@ public class TestNoviceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
             }
         });
@@ -370,6 +394,8 @@ public class TestNoviceActivity extends AppCompatActivity {
         // 결과값 넘기기
         Intent resultIntent = new Intent(getApplicationContext(), TestResultActivity.class);
         resultIntent.putExtra("result", maxEntry.getKey());
+        resultIntent.putExtra("uid", uid);
+        resultIntent.putExtra("uname", uname);
         startActivity(resultIntent);
         finish();
 

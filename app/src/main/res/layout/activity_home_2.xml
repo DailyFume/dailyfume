@@ -111,7 +111,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"
-                                    android:max="40"
+                                    android:max="30"
                                     android:progress="10"
                                     android:progressTint="#D97CA5" />
 
@@ -194,7 +194,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="구찌 블룸 오 드 퍼퓸"
+                                                android:text="구찌 블룸"
                                                 android:textColor="#595959"
                                                 android:textSize="14dp" />
                                         </LinearLayout>

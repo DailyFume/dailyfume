@@ -17,9 +17,6 @@ public class GroupData implements Serializable {
 
     private String groupTitle;
 
-    public GroupData(String groupTitle) {
-        this.groupTitle = groupTitle;
-    }
 
     public String getGroupTitle() {
         return groupTitle;

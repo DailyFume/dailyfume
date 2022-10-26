@@ -2,13 +2,16 @@ package com.example.daily_fume;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,12 +47,21 @@ public class SearchActivity extends AppCompatActivity {
 
     TextView title_change;
     ImageView backBtn;
+    ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
+    // 키패드
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+        String uname = intent.getStringExtra("uname");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("검색");
@@ -59,6 +71,64 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        testIcon = (ImageView) findViewById(R.id.testIcon);
+        //searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        loveIcon = (ImageView) findViewById(R.id.loveIcon);
+        mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+//        searchIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        loveIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        mypageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -79,10 +149,12 @@ public class SearchActivity extends AppCompatActivity {
         Button button_search = (Button) findViewById(R.id.searchButton1);
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                imm.showSoftInput(mEditTextSearchKeyword, 0); // 키패드 보이기
                 mArrayList.clear();
                 mAdapter.notifyDataSetChanged();
 
                 String Keyword =  mEditTextSearchKeyword.getText().toString();
+                imm.hideSoftInputFromWindow(mEditTextSearchKeyword.getWindowToken(), 0); // 키패드 숨기기
                 mEditTextSearchKeyword.setText("");
 
                 GetData task = new GetData();

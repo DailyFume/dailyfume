@@ -6,14 +6,14 @@ import java.util.Map;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
-public class LikeRequest extends StringRequest {
-    final static private String URL = "http://43.200.245.161/likelist.php"; // 찜 목록(리스트) 등록 db
+public class DeleteRequest extends StringRequest {
+    final static private String URL = "http://43.200.245.161/delete_user.php";
     private Map<String, String> parameters;
 
-    public LikeRequest(String listname, Response.Listener<String> listener) {
+    public DeleteRequest(String uemail, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("listname", listname);
+        parameters.put("uemail", uemail);
     }
 
     @Override

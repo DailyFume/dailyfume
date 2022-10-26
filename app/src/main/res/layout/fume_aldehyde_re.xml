@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestResultActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/FumeDetailView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:scrollbarStyle="outsideOverlay"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/testbackg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#04558A">
+
+                    <ImageView
+                        android:id="@+id/FumeBackIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        app:srcCompat="@drawable/result_back_wh" />
+
+                    <ImageView
+                        android:id="@+id/pickAfterBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/pickafterbutton" />
+
+                    <ImageView
+                        android:id="@+id/pickBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/pickbutton" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/detailRecycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
+
+                <LinearLayout
+                    android:id="@+id/review_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:text="델리퓸 유저들의 리얼 후기"
+                        android:textColor="#333333"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reviewCountNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="총 리뷰 (10)"
+                        android:textColor="#8C8B8B"
+                        android:textSize="14dp" />
+
+                    <ListView
+                        android:id="@+id/review_listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="440dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/solid"
+                        android:scrollbars="vertical">
+
+                    </ListView>
+
+                    <ImageView
+                        android:id="@+id/review_more_Btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        app:srcCompat="@drawable/review_more" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/review_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:text="델리퓸 유저들의 리얼 후기"
+                        android:textColor="#333333"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="아직 등록된 리뷰가 없어요 !"
+                        android:textColor="#8C8B8B"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:id="@+id/review_create_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        app:srcCompat="@drawable/review_create_go" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/relaFume"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:text="비슷한 향수 찾기"
+                        android:textColor="#747474"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/FumeDetailPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp" />
+
+                    <ImageView
+                        android:id="@+id/FumeTopButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        app:srcCompat="@drawable/topbuttonimg" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/bottom_bar"
+            layout="@layout/bottom_bar_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

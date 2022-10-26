@@ -77,6 +77,57 @@
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:id="@+id/pickzerolatout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/zero_love"
+                    android:layout_width="120dp"
+                    android:layout_height="105dp"
+                    android:layout_above="@id/textView15"
+                    android:layout_centerInParent="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="false"
+                    app:srcCompat="@drawable/lovepickicon" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="찜한 상품이 없습니다."
+                    android:textColor="#D77F8F"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView15"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="좋아하는 상품을 찜해주세요!"
+                    android:textColor="#D77F8F"
+                    android:textSize="15dp" />
+
+                <Button
+                    android:id="@+id/pickfumegoBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView16"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="#E6B6BE"
+                    android:text="상품 찜하러 가기"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
+
             <ScrollView
                 android:id="@+id/FumeScrollView"
                 android:layout_width="fill_parent"

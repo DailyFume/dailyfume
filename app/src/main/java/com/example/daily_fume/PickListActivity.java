@@ -68,8 +68,10 @@ public class PickListActivity extends AppCompatActivity {
     private static String TAG2 = "likelistphp";
     private static final String TAG_JSON = "dailyfume";
     private static final String TAG_LISTNAME = "listname";
+    private static final String TAG_LISTID = "lid";
     String mJsonString;
     ButtonListAdapter buttonListAdapter;
+    int listid; // 폴더로 넘길때
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,7 @@ public class PickListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
+        String uname = intent.getStringExtra("uname");
 
         groupDataList = new ArrayList<>();
         buttonListAdapter = new ButtonListAdapter(PickListActivity.this, groupDataList);
@@ -104,7 +107,7 @@ public class PickListActivity extends AppCompatActivity {
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        // searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         // loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
 
@@ -112,6 +115,8 @@ public class PickListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
                 finish();
             }
@@ -121,19 +126,33 @@ public class PickListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                startActivity(intent);
+                finish();
+            }
+        });
         // loveIcon.setOnClickListener();
 
         mypageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
+                finish();
                 finish();
             }
         });
@@ -179,20 +198,22 @@ public class PickListActivity extends AppCompatActivity {
         // 2. 리스트뷰에 들어간 레이아웃에서 버튼들 xml에 clickable과 focusable은 false로 해야 함
         // 3. getView 메서드로 클릭하게 해줘야 됨.
 
-/*
-        // 어댑터 파일로 이동됨
+
+        // 각 그룹(폴더) 클릭시
         pickBoxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override  // ★ 각각의 폴더 선택하면 해당 찜한 상품이 저장된 폴더로 이동 나중에 수정하기
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String groupName = groupDataList.get(position).getGroupTitle();
+                //Toast.makeText(getApplicationContext(), groupName+"", Toast.LENGTH_SHORT).show();
 
-                switch (TitleValues.get(position)){
-                    case "기본 그룹" :
-                        Intent intent = new Intent(getApplicationContext(), PickFumeActivity.class);
-                        startActivity(intent); // 임시 (찜한 향수들 목록이 있는 페이지로 이동)
-                        break;
-                }
+                Intent groupIntent = new Intent(getApplicationContext(), PickFumeActivity.class);
+                groupIntent.putExtra("groupname", groupName);
+                groupIntent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("listid", listid);
+                startActivity(groupIntent);
             }
-        }); */
+        });
 
 
         //groupDataList.add(new GroupData("기본 그룹")); // 이렇게 하지말고 하나의 그룹도 없을때 추가해보세요 라는 팝업창 뜨기
@@ -426,7 +447,7 @@ public class PickListActivity extends AppCompatActivity {
                 return sb.toString();
 
             } catch (Exception e) {
-                Log.d(TAG1, "InsertData: Error ", e);
+                Log.d(TAG1, "PickListGetData: Error ", e);
                 return new String("Error: " + e.getMessage());
             }
         }
@@ -442,6 +463,7 @@ public class PickListActivity extends AppCompatActivity {
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 String listname = item.getString(TAG_LISTNAME);
+                listid = item.getInt(TAG_LISTID);
 
                 GroupData groupData = new GroupData();
                 groupData.setGroupTitle(listname);
