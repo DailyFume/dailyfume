@@ -25,6 +25,18 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Cu
     //LayoutInflater layoutInflater;
     ArrayList<ReviewListData> reviewListData;
 
+    // 클릭 이벤트 구현을 위해 추가한 코드
+    public interface OnItemClickListener {
+        void onItemClicked(int position);
+    }
+
+    private OnItemClickListener itemClickListener = null; // 참조 변수 선언
+
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        this.itemClickListener = listener;
+
+    }
+
     public ReviewListAdapter(Activity context, ArrayList<ReviewListData> reviewListData) {
         this.context = context;
         // this.layoutInflater = LayoutInflater.from(context);
@@ -45,7 +57,24 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Cu
             this.content = view.findViewById(R.id.Rstr);
             this.rate = view.findViewById(R.id.Rstars);
             this.image = view.findViewById(R.id.RImg);
+
+            // 각 뷰의 삭제 버튼 클릭시 리뷰리스트 액티비티로 전달
+            Button Review_delete_Btn = view.findViewById(R.id.Review_delete_Btn);
+            Review_delete_Btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        if (itemClickListener != null) {
+                            itemClickListener.onItemClicked(position);
+                        }
+                    }
+                }
+            });
+            // 버튼 이벤트 끝
         }
+
+
     }
 
     @Override
@@ -64,12 +93,14 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Cu
         viewholder.name.setText(reviewListData.get(position).getName());
         viewholder.content.setText(reviewListData.get(position).getContent());
         viewholder.rate.setRating((float) reviewListData.get(position).getRate());
+
     }
 
     @Override
     public int getItemCount() {
         return (null != reviewListData ? reviewListData.size() : 0);
     }
+
 }
 
 

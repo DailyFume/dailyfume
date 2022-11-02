@@ -45,6 +45,10 @@ public class SearchActivity extends AppCompatActivity {
     private EditText mEditTextSearchKeyword;
     private String mJsonString;
 
+    public static Context sCon;
+    int uid;
+    String uname;
+
     TextView title_change;
     ImageView backBtn;
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
@@ -59,9 +63,11 @@ public class SearchActivity extends AppCompatActivity {
 
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
+        sCon = this; // 어댑터와 연결
+
         Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-        String uname = intent.getStringExtra("uname");
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("검색");

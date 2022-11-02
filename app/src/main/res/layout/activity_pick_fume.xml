@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/testbackg"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,14 +90,14 @@
                     android:id="@+id/zero_love"
                     android:layout_width="120dp"
                     android:layout_height="105dp"
-                    android:layout_above="@id/textView15"
+                    android:layout_above="@id/tvtv1"
                     android:layout_centerInParent="false"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="false"
                     app:srcCompat="@drawable/lovepickicon" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/tvtv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -105,10 +106,10 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/tvtv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView15"
+                    android:layout_below="@id/tvtv1"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="좋아하는 상품을 찜해주세요!"
@@ -119,7 +120,7 @@
                     android:id="@+id/pickfumegoBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView16"
+                    android:layout_below="@id/tvtv2"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="50dp"
                     android:backgroundTint="#E6B6BE"
@@ -128,26 +129,12 @@
 
             </RelativeLayout>
 
-            <ScrollView
-                android:id="@+id/FumeScrollView"
-                android:layout_width="fill_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pickFumeRecycle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:clipToPadding="false"
-                android:fillViewport="true"
-                android:scrollbarStyle="outsideOverlay"
-                tools:ignore="SpeakableTextPresentCheck">
+                android:layout_weight="1" />
 
-                <GridView
-                    android:id="@+id/pickFumeGridview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:numColumns="2" />
-            </ScrollView>
 
         </LinearLayout>
 

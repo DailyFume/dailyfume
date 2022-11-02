@@ -209,8 +209,8 @@ public class PickListActivity extends AppCompatActivity {
                 Intent groupIntent = new Intent(getApplicationContext(), PickFumeActivity.class);
                 groupIntent.putExtra("groupname", groupName);
                 groupIntent.putExtra("uid", uid);
-                intent.putExtra("uname", uname);
-                intent.putExtra("listid", listid);
+                groupIntent.putExtra("uname", uname);
+                groupIntent.putExtra("listid", listid);
                 startActivity(groupIntent);
             }
         });

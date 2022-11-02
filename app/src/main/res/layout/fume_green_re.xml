@@ -29,6 +29,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/relaColor"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#127A1C">

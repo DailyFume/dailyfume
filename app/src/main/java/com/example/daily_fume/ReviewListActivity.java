@@ -185,6 +185,14 @@ public class ReviewListActivity extends AppCompatActivity {
             }
         });
 
+
+        adapter.setOnItemClickListener(new ReviewListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Toast.makeText(getApplicationContext(),String.valueOf(position)+"삭제 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 //        ReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -302,6 +310,11 @@ public class ReviewListActivity extends AppCompatActivity {
                 reviewListData.setName(name);
                 reviewList.add(reviewListData);
             }
+            // 리뷰 갯수 확인
+            ReviewNum = (TextView) findViewById(R.id.ReviewNum);
+            ReviewN = reviewList.size();
+            ReviewNum.setText("("+ReviewN+")");
+            //Toast.makeText(getApplicationContext(), reviewList.size()+"", Toast.LENGTH_SHORT).show();
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             Log.d(TAG, "showResult: ", e);

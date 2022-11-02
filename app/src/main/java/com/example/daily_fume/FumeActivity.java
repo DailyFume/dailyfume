@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -136,26 +139,21 @@ public class FumeActivity extends AppCompatActivity {
     int lid;
 
     // 디테일 레이아웃
-    HashMap<String, String> map = new HashMap<String, String>();
+    String type;
+    ArrayList<String> types;
+    String typeStr;
+    RelativeLayout relaColor;
+    public static Context fCon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // ★ 임시로 상세페이지 이동
         // 사용자가 클릭한 상품의 이름과 계열에 맞는 상세페이지로 이동되게 변경하기
-//        String type = map.get("TAG_TYPE");
-//        Log.e("type", type);
-//        Toast.makeText(getApplicationContext(), type + "type", Toast.LENGTH_SHORT).show();
-//
-//        switch (type) {
-//            case "1400" :
-//                setContentView(R.layout.fume_green);
-//                Toast.makeText(getApplicationContext(),"그린",Toast.LENGTH_SHORT).show();
-//                FumeDetailPage();
-//                break;
-//        }
+        setContentView(R.layout.fume_green_re); // 임시
+        relaColor = (RelativeLayout) findViewById(R.id.relaColor);
+        fCon = this; // 어댑터와 연결
 
-        setContentView(R.layout.fume_green_re);
         // 데이터 불러오기
         mRecyclerView = (RecyclerView) findViewById(R.id.detailRecycle);
         detailList = new ArrayList<>();
@@ -169,6 +167,7 @@ public class FumeActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(detailAdapter);
         mRecyclerView.setItemViewCacheSize(1);
         mRecyclerView.hasFixedSize();
+        //
         detailIntent = getIntent();
         uid = detailIntent.getExtras().getInt("uid");
         fnamek = detailIntent.getExtras().getString("title is");
@@ -185,13 +184,15 @@ public class FumeActivity extends AppCompatActivity {
         task1.execute(getoData);
         groupDataList = new ArrayList<>();
 
+
     }
 
     // 메서드 (상품 상세페이지 이벤트)
     void FumeDetailPage() {
-            // intent로 향수
-            Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
-            setSupportActionBar(toolbar);
+        // intent로 향수
+        Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
+        setSupportActionBar(toolbar);
+
 
             // 그룹을 담을 리스트
             pickGroupTitle = new ArrayList<String>();
@@ -275,7 +276,7 @@ public class FumeActivity extends AppCompatActivity {
                 }
             });
 
-            // 찜 pick
+        // 찜 pick
         pickBtn = (ImageView) findViewById(R.id.pickBtn);
         pickAfterBtn = (ImageView) findViewById(R.id.pickAfterBtn);
 
@@ -305,7 +306,7 @@ public class FumeActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         // 해당 상품id가 찜목록 해당 그룹폴더에 저장되어야 함
                                         TaskParams params = new TaskParams(likefumeURL, fid, lid);
-                                        //Toast.makeText(getApplicationContext(), fid + "/" + lid, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "해당 상품이 찜등록 되었습니다.", Toast.LENGTH_SHORT).show();
                                         InsertData insertData = new InsertData();
                                         insertData.execute(params);
                                         pickBtn.setVisibility(View.GONE);
@@ -388,6 +389,8 @@ public class FumeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), ReviewCreateActivity.class);
+                    intent.putExtra("uid",uid);
+                    intent.putExtra("uname", uname);
                     startActivity(intent);
                 }
             });
@@ -583,7 +586,7 @@ public class FumeActivity extends AppCompatActivity {
                 String name = item.getString(TAG_FNAME);
                 String namek = item.getString(TAG_FNAMEK);
                 String brand = item.getString(TAG_FBRAND);
-                String type = item.getString(TAG_FTYPE);
+                type = item.getString(TAG_FTYPE);
                 String vol = item.getString(TAG_FVOL);
                 String top = item.getString(TAG_TOPNOTE);
                 String middle = item.getString(TAG_MIDDLENOTE);
@@ -598,7 +601,45 @@ public class FumeActivity extends AppCompatActivity {
                 }
 
                 // 상세페이지
-                map.put("TAG_TYPE", type);
+
+                switch (type) {
+                    case "알데하이드" :
+                        relaColor.setBackgroundColor(Color.rgb(4,85,138));
+                        break;
+                    case "플로럴" :
+                        relaColor.setBackgroundColor(Color.rgb(210,130,170));
+                        break;
+                    case "그린" :
+                        relaColor.setBackgroundColor(Color.rgb(18,122,28));
+                        break;
+                    case "우디" :
+                        relaColor.setBackgroundColor(Color.rgb(98,40,0));
+                        break;
+                    case "시트러스" :
+                        relaColor.setBackgroundColor(Color.rgb(218,109,63));
+                        break;
+                    case "오리엔탈" :
+                        relaColor.setBackgroundColor(Color.rgb(139,15,79));
+                        break;
+                    case "프루티" :
+                        relaColor.setBackgroundColor(Color.rgb(252,184,10));
+                        break;
+                    case "오셔닉" :
+                        relaColor.setBackgroundColor(Color.rgb(25,151,178));
+                        break;
+                    case "머스크" :
+                        relaColor.setBackgroundColor(Color.rgb(99,57,131));
+                        break;
+                    case "스파이시" :
+                        relaColor.setBackgroundColor(Color.rgb(146,29,29));
+                        break;
+                }
+
+
+//                types = new ArrayList<String>();
+//                types.add(type);
+//                Toast.makeText(getApplicationContext(), types.get(0)+"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), type+"", Toast.LENGTH_SHORT).show();
 
                 FragranceData fragranceData = new FragranceData();
 
@@ -767,6 +808,7 @@ public class FumeActivity extends AppCompatActivity {
                 // ★ 확인 버튼 클릭시 액션
                 Intent intent  = new Intent( getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
             }
         });

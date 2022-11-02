@@ -271,6 +271,7 @@ public class ReviewCreateActivity extends AppCompatActivity {
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -33,7 +33,7 @@
             android:layout_alignParentBottom="false"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="상단타이틀"
+            android:text="hyejin"
             android:textColor="#4d4d4d"
             android:textSize="20dp"
             android:textStyle="normal" />

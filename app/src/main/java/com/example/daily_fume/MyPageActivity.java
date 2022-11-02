@@ -41,6 +41,7 @@ public class MyPageActivity extends AppCompatActivity {
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setTextColor(Color.parseColor("#D77F8F"));
+//        title_change.setText("hyejin");
         title_change.setText(uname);
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
