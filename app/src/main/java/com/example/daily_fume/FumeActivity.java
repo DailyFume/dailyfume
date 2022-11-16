@@ -128,6 +128,7 @@ public class FumeActivity extends AppCompatActivity {
     //
     int uid;
     String uname;
+    String uemail;
 
     // 찜 목록에 향수 상품 저장
     //  fragrance_fid 이거랑 likelist_lid 즉 향수아이디랑 찜폴더아이디
@@ -148,9 +149,8 @@ public class FumeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // ★ 임시로 상세페이지 이동
-        // 사용자가 클릭한 상품의 이름과 계열에 맞는 상세페이지로 이동되게 변경하기
-        setContentView(R.layout.fume_green_re); // 임시
+        // 사용자가 클릭한 상품의 이름과 계열에 맞는 상세페이지로 이동되게 변경
+        setContentView(R.layout.fume_green_re);
         relaColor = (RelativeLayout) findViewById(R.id.relaColor);
         fCon = this; // 어댑터와 연결
 
@@ -172,6 +172,7 @@ public class FumeActivity extends AppCompatActivity {
         uid = detailIntent.getExtras().getInt("uid");
         fnamek = detailIntent.getExtras().getString("title is");
         uname = detailIntent.getStringExtra("uname");
+        uemail = detailIntent.getStringExtra("uemail");
 
         // 상품 정보 불러오기
         GetData task = new GetData();
@@ -227,6 +228,7 @@ public class FumeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     intent.putExtra("uid",uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     finish();
                 }
@@ -238,6 +240,7 @@ public class FumeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                     intent.putExtra("uid",uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     finish();
                 }
@@ -249,6 +252,7 @@ public class FumeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                     intent.putExtra("uid",uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     finish();
                 }
@@ -260,6 +264,7 @@ public class FumeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                     intent.putExtra("uid",uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     finish();
                 }
@@ -271,6 +276,7 @@ public class FumeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                     intent.putExtra("uid",uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     finish();
                 }
@@ -355,6 +361,9 @@ public class FumeActivity extends AppCompatActivity {
                     intent.putExtra("nickName", reviewData.get(position).getNickName());
                     intent.putExtra("reviewStr", reviewData.get(position).getReviewStr());
                     intent.putExtra("reviewStars", reviewData.get(position).getReviewStars());
+                    intent.putExtra("uid",uid);
+                    intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent); // 리뷰 상세보기 페이지로 이동
                 }
             });
@@ -391,6 +400,7 @@ public class FumeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), ReviewCreateActivity.class);
                     intent.putExtra("uid",uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                 }
             });
@@ -635,12 +645,6 @@ public class FumeActivity extends AppCompatActivity {
                         break;
                 }
 
-
-//                types = new ArrayList<String>();
-//                types.add(type);
-//                Toast.makeText(getApplicationContext(), types.get(0)+"", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getApplicationContext(), type+"", Toast.LENGTH_SHORT).show();
-
                 FragranceData fragranceData = new FragranceData();
 
                 fragranceData.setFragrance_image(image);
@@ -662,11 +666,6 @@ public class FumeActivity extends AppCompatActivity {
                 fragranceData.setFragrance_tag8("#"+taglist.get(8));
 
                 detailList.add(fragranceData);
-//                detailAdapter.notifyDataSetChanged();
-                //detailAdapter.notifyItemRangeChanged(0, 1);
-//                startActivity(detailIntent);
-
-
 
         } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);
@@ -781,6 +780,7 @@ public class FumeActivity extends AppCompatActivity {
 
                 GroupData groupData = new GroupData();
                 groupData.setGroupTitle(listname);
+                groupData.setListid(lid);
                 groupDataList.add(groupData);
             }
 
@@ -809,6 +809,7 @@ public class FumeActivity extends AppCompatActivity {
                 Intent intent  = new Intent( getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });

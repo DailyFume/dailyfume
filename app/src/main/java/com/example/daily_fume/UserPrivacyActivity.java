@@ -126,6 +126,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
         // ★ 사용자가 정보를 수정하기 위해 입력하거나 버튼을 클릭했다면 밑에 수정하기 버튼이나 중복확인 버튼이
         // 분홍색으로 바뀌어서 활성화 되어야 함.
         email_box = (EditText) findViewById(R.id.email_box);
+        email_box.setText(uemail);
         nickname_box = (EditText) findViewById(R.id.nickname_box);
         //date_box = (EditText) findViewById(R.id.date_box);
         pw_box = (EditText) findViewById(R.id.pw_box);
@@ -186,6 +187,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 // ★ 회원탈퇴 클릭시 액션
                 Intent intent = new Intent(getApplicationContext(), ResignActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
                 intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 return true;

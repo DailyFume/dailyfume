@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -70,7 +71,8 @@
                 android:layout_weight="1"
                 android:clipToPadding="false"
                 android:fillViewport="true"
-                android:scrollbarStyle="outsideOverlay">
+                android:scrollbarStyle="outsideOverlay"
+                android:visibility="visible">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ReviewList"
@@ -78,8 +80,65 @@
                     android:layout_height="wrap_content"
                     android:descendantFocusability="blocksDescendants"
                     android:divider="#ffffff"
-                    android:dividerHeight="0px" />
+                    android:dividerHeight="0px"
+                    android:visibility="visible" />
             </ScrollView>
+
+            <RelativeLayout
+                android:id="@+id/reviewzerolatout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/zero_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/retv1"
+                    android:layout_centerInParent="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="false"
+                    android:layout_marginBottom="30dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/reviewzero_icon" />
+
+                <TextView
+                    android:id="@+id/retv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="작성한 리뷰가 없습니다."
+                    android:textColor="#D77F8F"
+                    android:textSize="15dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/retv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/retv1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="사용한 향수의 리뷰를 작성해주세요"
+                    android:textColor="#D77F8F"
+                    android:textSize="15dp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/reviewCreategoBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/retv2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="#E6B6BE"
+                    android:text="리뷰 작성하러 가기"
+                    android:textSize="14dp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

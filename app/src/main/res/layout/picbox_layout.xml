@@ -9,8 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/pickBoxLayout"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
+            app:srcCompat="@drawable/pickboximg" />
+
+        <LinearLayout
+            android:id="@+id/pickBoxLayout2"
             android:layout_width="350dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
@@ -20,7 +31,10 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/pickboximg"
             android:gravity="center"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/boxTitle"
@@ -52,7 +66,8 @@
             android:layout_toEndOf="@id/boxTitle"
             android:text="0"
             android:textColor="#DB7171"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/BoxDeleteBtn"

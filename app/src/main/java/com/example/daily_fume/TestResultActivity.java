@@ -59,6 +59,7 @@ public class TestResultActivity extends AppCompatActivity {
             R.layout.result_aldehyde, R.layout.result_musk };
     int uid;
     String uname;
+    String uemail;
 
 
     @Override
@@ -73,6 +74,7 @@ public class TestResultActivity extends AppCompatActivity {
         String resultType = resultIntent.getStringExtra("result");
         uid = resultIntent.getExtras().getInt("uid");
         uname = resultIntent.getStringExtra("uname");
+        uemail = resultIntent.getStringExtra("uemail");
 
         //aldehyde, citrus, floral, fruity, green, musk, oceanic, oriental, spicy, woody
         switch (resultType) {
@@ -138,6 +140,7 @@ public class TestResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -165,6 +168,7 @@ public class TestResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -176,6 +180,7 @@ public class TestResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -187,6 +192,7 @@ public class TestResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -198,6 +204,7 @@ public class TestResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -209,6 +216,7 @@ public class TestResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }

@@ -29,6 +29,7 @@ public class TestMainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
         String uname = intent.getStringExtra("uname");
+        String uemail = intent.getStringExtra("uemail");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("향수 추천받기");
@@ -53,6 +54,7 @@ public class TestMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -64,6 +66,7 @@ public class TestMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -75,6 +78,7 @@ public class TestMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -86,6 +90,7 @@ public class TestMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -99,6 +104,7 @@ public class TestMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(TestMainActivity.this, TestNoviceActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -108,6 +114,7 @@ public class TestMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(TestMainActivity.this, TestBuffActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });

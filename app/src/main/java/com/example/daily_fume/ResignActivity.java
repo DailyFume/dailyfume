@@ -45,9 +45,13 @@ public class ResignActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
+
         title_change = (TextView) findViewById(R.id.title_change);
-        title_change.setTextColor(Color.parseColor("#D77F8F"));
-        title_change.setText(uname);
+        title_change.setText("회원 탈퇴");
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,7 @@ public class ResignActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -80,6 +85,7 @@ public class ResignActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -91,6 +97,7 @@ public class ResignActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -102,6 +109,7 @@ public class ResignActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -113,18 +121,13 @@ public class ResignActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
         });
 
         joinOutBtn = (Button) findViewById(R.id.joinOutBtn);
-        //button3.setClickable(true);
-
-        Intent intent = getIntent();
-        uid = intent.getExtras().getInt("uid");
-        uname = intent.getStringExtra("uname");
-        uemail = intent.getStringExtra("uemail");
 
         joinOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +145,7 @@ public class ResignActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // 입력된 이메일과 데이터베이스 대조
                                 uemail = user_email.getText().toString();
+                                Toast.makeText(getApplicationContext(),uemail+"",Toast.LENGTH_SHORT).show();
                                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {

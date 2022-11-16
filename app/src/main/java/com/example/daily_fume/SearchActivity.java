@@ -48,6 +48,7 @@ public class SearchActivity extends AppCompatActivity {
     public static Context sCon;
     int uid;
     String uname;
+    String uemail;
 
     TextView title_change;
     ImageView backBtn;
@@ -68,6 +69,7 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         uid = intent.getExtras().getInt("uid");
         uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("검색");
@@ -92,6 +94,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -103,6 +106,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -122,6 +126,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -133,6 +138,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -145,7 +151,6 @@ public class SearchActivity extends AppCompatActivity {
 
         mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText1);
 
-        // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         mArrayList = new ArrayList<>();
 

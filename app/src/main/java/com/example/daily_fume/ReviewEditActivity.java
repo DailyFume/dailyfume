@@ -55,6 +55,8 @@ public class ReviewEditActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
         String uname = intent.getStringExtra("uname");
+        String uemail = intent.getStringExtra("uemail");
+
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("후기 수정");
@@ -79,6 +81,7 @@ public class ReviewEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -90,6 +93,7 @@ public class ReviewEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -101,6 +105,7 @@ public class ReviewEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -112,6 +117,7 @@ public class ReviewEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -123,23 +129,11 @@ public class ReviewEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
         });
-
-        // 인텐트 값 전달받기
-//        Intent intent = getIntent();
-//        String  Edit_RBrand = intent.getStringExtra("RBrand");
-//        String  Edit_RTitle = intent.getStringExtra("RTitle");
-//        String  Edit_Rstr = intent.getStringExtra("Rstr");
-//        int Edit_IntStars = intent.getIntExtra("IntStars", 0);
-//        int Edit_RImg = intent.getIntExtra("RImg",0);
-        //Toast.makeText(getApplicationContext(), Edit_RBrand + "", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(), Edit_RTitle + "", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(), Edit_Rstr + "", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(), Edit_IntStars + "", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(), Edit_RImg + "", Toast.LENGTH_SHORT).show();
 
 
         // 기본값 (단 수정페이지에서는 브랜드와 상품명은 수정이 안됨) - 대부분의 쇼핑몰도 그렇고, 검색스피너 사용하기 위해
@@ -151,11 +145,6 @@ public class ReviewEditActivity extends AppCompatActivity {
         brandText.setVisibility(View.VISIBLE);
         titleText.setVisibility(View.VISIBLE);
 
-//        brandText.setText(Edit_RBrand);
-//        titleText.setText(Edit_RTitle);
-//        review_ratingBar.setRating(Edit_IntStars);
-//        review_box.setText(Edit_Rstr);
-//        photo_choiceBtn.setImageResource(Edit_RImg);
 
             // 별점 (레이팅바)
             review_ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

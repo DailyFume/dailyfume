@@ -41,7 +41,6 @@ public class MyPageActivity extends AppCompatActivity {
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setTextColor(Color.parseColor("#D77F8F"));
-//        title_change.setText("hyejin");
         title_change.setText(uname);
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
@@ -63,6 +62,7 @@ public class MyPageActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -74,6 +74,7 @@ public class MyPageActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -85,6 +86,7 @@ public class MyPageActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -96,6 +98,7 @@ public class MyPageActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -127,18 +130,21 @@ public class MyPageActivity extends AppCompatActivity {
                     intent = new Intent(getApplicationContext(), PickListActivity.class);
                     intent.putExtra("uid", uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     break;
                 case R.id.menu3Btn:
                     intent = new Intent(getApplicationContext(), ReviewListActivity.class);
                     intent.putExtra("uid", uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     break;
                 case R.id.menu4Btn:
                     intent = new Intent(getApplicationContext(), QnaActivity.class);
                     intent.putExtra("uid", uid);
                     intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
                     startActivity(intent);
                     break;
             }

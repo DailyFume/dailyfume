@@ -1,6 +1,7 @@
 package com.example.daily_fume;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,14 @@ public class pageViewA extends PagerAdapter {
     private Context context;
     private LayoutInflater mInflater;
 
+    // intent
+    int uid;
+    String uname;
+    String uemail;
+
     // Context 를 전달받아 context 에 저장하는 생성자 추가.
     public pageViewA(Context context) {
-        //this.context = context;
+        this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -31,6 +37,10 @@ public class pageViewA extends PagerAdapter {
         View view = null;
         // position이 0부터 시작됨
 
+        uid = ((HomeActivity)HomeActivity.adapterF).uid;
+        uname = ((HomeActivity)HomeActivity.adapterF).uname;
+        uemail = ((HomeActivity)HomeActivity.adapterF).uemail;
+
         switch (position) {
             case 0 :
                 view = mInflater.inflate(R.layout.view_pager1, null);
@@ -39,21 +49,55 @@ public class pageViewA extends PagerAdapter {
                 TextView textView2 = view.findViewById(R.id.fume_brand_02);
                 textView2.setText("바이레도");
                 TextView textView3 = view.findViewById(R.id.fume_brand_03);
-                textView3.setText("불가리");
+                textView3.setText("더바디샵");
 
                 TextView textView11 = view.findViewById(R.id.fume_title_01);
-                textView11.setText("플레르 드 뽀");
+                textView11.setText("우드 팔라오");
                 TextView textView12 = view.findViewById(R.id.fume_title_02);
-                textView12.setText("모하비 고스트");
+                textView12.setText("라 튤립");
                 TextView textView13 = view.findViewById(R.id.fume_title_03);
-                textView13.setText("골데아 더 로만 나이트");
+                textView13.setText("화이트머스크");
 
                 ImageView imageView1 = view.findViewById(R.id.fume_picture_01);
-                imageView1.setImageResource(R.drawable.fume01);
+                imageView1.setImageResource(R.drawable.viewpager1);
                 ImageView imageView2 = view.findViewById(R.id.fume_picture_02);
-                imageView2.setImageResource(R.drawable.fume02);
+                imageView2.setImageResource(R.drawable.viewpager2);
                 ImageView imageView3 = view.findViewById(R.id.fume_picture_03);
-                imageView3.setImageResource(R.drawable.fume03);
+                imageView3.setImageResource(R.drawable.viewpager3);
+
+                imageView1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "딥티크 우드 팔라오");
+                        (context).startActivity(intent);
+                    }
+                });
+                imageView2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "바이레도 라 튤립");
+                        (context).startActivity(intent);
+                    }
+                });
+                imageView3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "더바디샵 화이트머스크");
+                        (context).startActivity(intent);
+                    }
+                });
                 break;
             case 1 :
                 view = mInflater.inflate(R.layout.view_pager2, null);
@@ -77,6 +121,40 @@ public class pageViewA extends PagerAdapter {
                 imageView5.setImageResource(R.drawable.fume05);
                 ImageView imageView6 = view.findViewById(R.id.fume_picture_06);
                 imageView6.setImageResource(R.drawable.fume06);
+
+                imageView4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "샤넬 넘버파이브");
+                        (context).startActivity(intent);
+                    }
+                });
+                imageView5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "디올 자도르");
+                        (context).startActivity(intent);
+                    }
+                });
+                imageView6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "샤넬 넘버나인틴");
+                        (context).startActivity(intent);
+                    }
+                });
                 break;
             case 2 :
                 view = mInflater.inflate(R.layout.view_pager3, null);
@@ -100,61 +178,43 @@ public class pageViewA extends PagerAdapter {
                 imageView8.setImageResource(R.drawable.fume09);
                 ImageView imageView9 = view.findViewById(R.id.fume_picture_09);
                 imageView9.setImageResource(R.drawable.fume10);
+
+                imageView7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "조말론 라임바질 앤 만다린");
+                        (context).startActivity(intent);
+                    }
+                });
+                imageView8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "베르사체 크리스탈 느와르");
+                        (context).startActivity(intent);
+                    }
+                });
+                imageView9.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context,FumeActivity.class);
+                        intent.putExtra("uid", uid);
+                        intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
+                        intent.putExtra("title is", "조말론 블랙베리 앤 베이");
+                        (context).startActivity(intent);
+                    }
+                });
                 break;
 
         }
-
-//        if(context != null) {
-//            // LayoutInflater 를 통해 "/res/layout/page.xml" 을 뷰로 생성.
-//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            view = inflater.inflate(R.layout.view_pager1, container, false);
-//
-//            TextView textView1 = view.findViewById(R.id.fume_brand_01);
-//            textView1.setText("1");
-//            TextView textView2 = view.findViewById(R.id.fume_brand_02);
-//            textView2.setText("2");
-//            TextView textView3 = view.findViewById(R.id.fume_brand_03);
-//            textView3.setText("3");
-//
-//            ImageView imageView1 = view.findViewById(R.id.fume_picture_01);
-//            imageView1.setImageResource(R.drawable.fume01);
-//            ImageView imageView2 = view.findViewById(R.id.fume_picture_02);
-//            imageView2.setImageResource(R.drawable.fume02);
-//            ImageView imageView3 = view.findViewById(R.id.fume_picture_03);
-//            imageView3.setImageResource(R.drawable.fume03);
-//
-//            TextView textView4 = view.findViewById(R.id.fume_brand_04);
-//            textView4.setText("4");
-//            TextView textView5 = view.findViewById(R.id.fume_brand_05);
-//            textView5.setText("5");
-//            TextView textView6 = view.findViewById(R.id.fume_brand_06);
-//            textView6.setText("6");
-//
-//            ImageView imageView4 = view.findViewById(R.id.fume_picture_04);
-//            imageView4.setImageResource(R.drawable.fume04);
-//            ImageView imageView5 = view.findViewById(R.id.fume_picture_05);
-//            imageView5.setImageResource(R.drawable.fume05);
-//            ImageView imageView6 = view.findViewById(R.id.fume_picture_06);
-//            imageView6.setImageResource(R.drawable.fume06);
-//
-//
-//            switch (position) {
-//                case 1:
-//                    view1 = inflater.inflate(R.layout.view_pager1, container, false);
-//                case 2 :
-//                    view2 = inflater.inflate(R.layout.view_pager2, container, false);
-//            }
-//
-//
-//
-//            // textView.setText(""+position);// 기존
-//
-//        }
-
-        // 뷰페이저에 추가
-        //container.addView(view);
-
-        //return view;
         ((ViewPager)container).addView(view, null);
         return view;
     }

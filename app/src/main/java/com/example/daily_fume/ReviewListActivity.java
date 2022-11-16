@@ -16,10 +16,13 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,8 +75,19 @@ public class ReviewListActivity extends AppCompatActivity {
     String serverURL1 = "http://43.200.245.161/get_review_fragrance.php";
 
     private RecyclerView ReviewList;
+    ScrollView ReviewScrollView;
+
+    // 작성 리뷰 없을 때
+    RelativeLayout reviewzerolatout;
+    ImageView zero_review;
+    TextView retv1, retv2;
+    Button reviewCreategoBtn;
 
     HashMap<String, Integer> map1 = new HashMap<String, Integer>();
+
+    int uid;
+    String uname;
+    String uemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +101,9 @@ public class ReviewListActivity extends AppCompatActivity {
         title_change.setText("후기 리스트");
 
         Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-        String uname = intent.getStringExtra("uname");
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
 
         GetReview getReview = new GetReview(serverURL, uid);
         GetData getData = new GetData();
@@ -124,6 +139,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -135,6 +151,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -146,6 +163,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -157,6 +175,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -168,6 +187,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -181,6 +201,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ReviewCreateActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -235,6 +256,17 @@ public class ReviewListActivity extends AppCompatActivity {
             Log.d(TAG, "response : " + result);
             mJsonString = result;
             showResult();
+
+            // 리뷰 갯수 확인
+            ReviewNum = (TextView) findViewById(R.id.ReviewNum);
+            ReviewN = reviewList.size();
+            //Toast.makeText(getApplicationContext(), reviewList.size()+"", Toast.LENGTH_SHORT).show();
+            ReviewNum.setText("("+ReviewN+")");
+
+            // 리뷰 데이터가 비어있을 때
+            if (reviewList.isEmpty()) {
+                reviewZero();
+            }
         }
 
         @Override
@@ -310,11 +342,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 reviewListData.setName(name);
                 reviewList.add(reviewListData);
             }
-            // 리뷰 갯수 확인
-            ReviewNum = (TextView) findViewById(R.id.ReviewNum);
-            ReviewN = reviewList.size();
-            ReviewNum.setText("("+ReviewN+")");
-            //Toast.makeText(getApplicationContext(), reviewList.size()+"", Toast.LENGTH_SHORT).show();
+
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             Log.d(TAG, "showResult: ", e);
@@ -333,4 +361,33 @@ public class ReviewListActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    void reviewZero() { // 작성한 리뷰가 없는 경우
+        ReviewScrollView = (ScrollView) findViewById(R.id.ReviewScrollView);
+        ReviewScrollView.setVisibility(View.GONE);
+        ReviewList.setVisibility(View.GONE);
+        reviewzerolatout = (RelativeLayout) findViewById(R.id.reviewzerolatout);
+        reviewzerolatout.setVisibility(View.VISIBLE);
+
+        zero_review = (ImageView) findViewById(R.id.zero_review);
+        retv1 = (TextView) findViewById(R.id.retv1);
+        retv2 = (TextView) findViewById(R.id.retv2);
+        reviewCreategoBtn = (Button) findViewById(R.id.reviewCreategoBtn);
+        zero_review.setVisibility(View.VISIBLE);
+        retv1.setVisibility(View.VISIBLE);
+        retv2.setVisibility(View.VISIBLE);
+        reviewCreategoBtn.setVisibility(View.VISIBLE);
+
+        reviewCreategoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReviewCreateActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+            }
+        });
+    }
+
 }

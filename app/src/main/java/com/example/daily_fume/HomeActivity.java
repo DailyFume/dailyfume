@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -83,6 +84,10 @@ public class HomeActivity extends AppCompatActivity {
     final long DELAY_MS = 500;
     final long PERIOD_MS = 3000;
 
+    int uid;
+    String uname;
+    String uemail;
+    public static Context adapterF;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -95,10 +100,12 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         LinearLayout whiteBACK = findViewById(R.id.whiteBACK);
 
+        adapterF = this; // 뷰페이저와 연결
+
         Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-        String uname = intent.getStringExtra("uname");
-        String uemail = intent.getStringExtra("uemail");
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
 
         search_icon = findViewById(R.id.search_icon);
         search_icon.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +114,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -122,6 +130,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -132,6 +141,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -142,6 +152,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 //Toast.makeText(getApplicationContext(), uid + "", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
@@ -153,6 +164,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -191,6 +203,7 @@ public class HomeActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                         intent.putExtra("uid", uid);
                         intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
@@ -199,6 +212,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent = new Intent(getApplicationContext(), PickListActivity.class);
                         intent.putExtra("uid", uid);
                         intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
@@ -207,6 +221,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent = new Intent(getApplicationContext(), MyPageActivity.class);
                         intent.putExtra("uid", uid);
                         intent.putExtra("uname", uname);
+                        intent.putExtra("uemail", uemail);
                         startActivity(intent);
                         drawerLayout.closeDrawer(dView);
                         return true;
@@ -224,6 +239,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -298,6 +314,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("title is", fume_01_title.getText());
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -309,6 +326,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("title is", fume_02_title.getText());
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -320,6 +338,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("title is", fume_03_title.getText());
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -334,6 +353,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });

@@ -24,6 +24,7 @@ public class PickFumeAdapter extends RecyclerView.Adapter<PickFumeAdapter.Custom
     // intent
     int uid;
     String uname;
+    String uemail;
 
     public PickFumeAdapter(Activity pfcontext, ArrayList<PickFume> flist) {
         this.pfcontext = pfcontext;
@@ -67,6 +68,7 @@ public class PickFumeAdapter extends RecyclerView.Adapter<PickFumeAdapter.Custom
                 Intent intent = new Intent(pfcontext,FumeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 intent.putExtra("title is", pfitems.get(position).getFumeName());
                 ((PickFumeActivity)pfcontext).startActivity(intent);
             }

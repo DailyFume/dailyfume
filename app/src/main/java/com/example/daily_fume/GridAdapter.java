@@ -27,6 +27,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CustomViewHold
     // intent
     int uid;
     String uname;
+    String uemail;
 
     public GridAdapter(Activity context, ArrayList<FragranceData> list) {
         this.context = context;
@@ -73,6 +74,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CustomViewHold
 
         uid = ((SearchActivity)SearchActivity.sCon).uid;
         uname = ((SearchActivity)SearchActivity.sCon).uname;
+        uemail = ((SearchActivity)SearchActivity.sCon).uemail;
+
         viewholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +83,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CustomViewHold
                 Intent intent = new Intent(context,FumeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 intent.putExtra("title is", mList.get(position).getFragrance_name());
                 ((SearchActivity)context).startActivity(intent);
             }

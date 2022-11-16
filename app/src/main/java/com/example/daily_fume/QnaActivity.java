@@ -30,6 +30,7 @@ public class QnaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
         String uname = intent.getStringExtra("uname");
+        String uemail = intent.getStringExtra("uemail");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("문의 사항");
@@ -54,6 +55,7 @@ public class QnaActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -65,6 +67,7 @@ public class QnaActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -76,6 +79,7 @@ public class QnaActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -87,6 +91,7 @@ public class QnaActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }

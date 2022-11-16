@@ -40,6 +40,8 @@ public class ReviewSelectActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int uid = intent.getExtras().getInt("uid");
         String uname = intent.getStringExtra("uname");
+        String uemail = intent.getStringExtra("uemail");
+
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("리뷰 상세보기");
@@ -64,6 +66,7 @@ public class ReviewSelectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -75,6 +78,7 @@ public class ReviewSelectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -86,6 +90,7 @@ public class ReviewSelectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -97,6 +102,7 @@ public class ReviewSelectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -108,17 +114,12 @@ public class ReviewSelectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
                 intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // 인텐트 값 전달받기
-//        Intent intent = getIntent();
-//        int Select_reviewImg = intent.getIntExtra("reviewImg", 0);
-//        String Select_nickName = intent.getStringExtra("nickName");
-//        String Select_reviewStr = intent.getStringExtra("reviewStr");
-//        int Select_reviewStars = intent.getIntExtra("reviewStars", 0);
 
         // 기본값 (단 모든 값은 수정이 안됨. 보는 용도임)
         review_box = (TextView) findViewById(R.id.review_box);
@@ -143,13 +144,6 @@ public class ReviewSelectActivity extends AppCompatActivity {
         reviewCreateBtn.setVisibility(View.INVISIBLE);
         reviewCreateBtn.setEnabled(false);
 
-//        nickname_st.setText("닉네임 ");
-//        titleText.setText(Select_nickName);
-//        titleText.setTextSize(16);
-//        titleText.setTextColor(Color.GRAY);
-//        review_box.setText(Select_reviewStr);
-//        photo_choiceBtn.setImageResource(Select_reviewImg);
-//        review_ratingBar.setRating(Select_reviewStars);
 
     }
 
