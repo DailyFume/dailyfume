@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -54,6 +53,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static String TAG = "phplogin";
@@ -70,14 +81,34 @@ public class LoginActivity extends AppCompatActivity {
 
     private String mJsonString;
     ImageView backBtn;
+    Button joinBtn, loginBtn;
     TextView title_change;
 
     private long backKeyPressedTime = 0; // 뒤로가기 키 시간 변수
 
+    private static String TAG = "phplogin";
+    private ArrayList<LoginData> mArrayList;
+
+    private static final String TAG_JSON = "user";
+    private static final String TAG_EMAIL = "uemail";
+    private static final String TAG_PASS = "upassword";
+    private static final String TAG_NAME = "uname";
+    private static final String TAG_UID = "uid";
+
+    private EditText mEditTextID, mEditTextPass;
+
+    private String mJsonString;
+    String result1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+//        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
+
+        mEditTextID = (EditText) findViewById(R.id.idTextBox);
+        mEditTextPass = (EditText) findViewById(R.id.pwTextBox);
+        mEditTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         mEditTextID = (EditText) findViewById(R.id.idTextBox);
         mEditTextPass = (EditText) findViewById(R.id.pwTextBox);
@@ -118,20 +149,11 @@ public class LoginActivity extends AppCompatActivity {
         });
         mArrayList = new ArrayList<>();
 
-        //카카오톡 로그인 구현
-        ImageView kakaoLogin = (ImageView) findViewById(R.id.kakaoJoin);
-        kakaoLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
-                    login();
-                } else {
-                    accountLogin();
-                }
-            }
-        });
+
+
     }
 
+    //
     private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
         String errorString = null;
@@ -153,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
             } else {
                 mJsonString = result;
-                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 showResult();
             }
         }
@@ -235,6 +257,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uemail", uemail);
+                intent.putExtra("uname", uname);
                 startActivity(intent);
             }
         } catch (JSONException e) {
@@ -242,71 +266,18 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void login() {
-        String TAG = "login()";
-        UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, (oAuthToken, error) -> {
-            if (error != null) {
-                Log.e(TAG, "로그인 실패", error);
-            } else if (oAuthToken != null) {
-                Log.i(TAG, "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
-                getUserInfo();
-            }
-            return null;
-        });
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            showLoginBack();
+        }
     }
 
-    public void accountLogin() {
-        String TAG = "accountLogin()";
-        UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, (oAuthToken, error) -> {
-            if (error != null) {
-                Log.e(TAG, "로그인 실패", error);
-            } else if (oAuthToken != null) {
-                Log.i(TAG, "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
-                getUserInfo();
-            }
-            return null;
-        });
-    }
-
-    public void getUserInfo() {
-        String TAG = "getUserInfo()";
-        UserApiClient.getInstance().me((user, meError) -> {
-            if (meError != null) {
-                Log.e(TAG, "사용자 정보 요청 실패", meError);
-            } else {
-                System.out.println("로그인 완료");
-                Log.i(TAG, user.toString());
-                {
-                    Log.i(TAG, "사용자 정보 요청 성공" +
-                            "\n회원번호: " + user.getId() +
-                            "\n이메일: " + user.getKakaoAccount().getEmail());
-                }
-                Account user1 = user.getKakaoAccount();
-                System.out.println("사용자 계정" + user1);
-            }
-            return null;
-        });
-    }
-
-
-//        viewInit();
-//
-//        //linearLayout.bringToFront();
-//        //linearLayout.setVisibility(View.INVISIBLE);
-//
-//        KakaoCallBack = new KakaoCallBack();
-//        //Session.getCurrentSession().addCallback(KakaoCallBack);
-//        //Session.getCurrentSession().checkAndImplicitOpen();
-//
-//        kakaoLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                kakaoLogin.performClick();
-//            }
-//        });
-
-
-    //}
 
 
     void showLoginBack() {

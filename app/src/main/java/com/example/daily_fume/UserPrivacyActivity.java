@@ -21,11 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.kakao.usermgmt.response.model.User;
-
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,19 +36,26 @@ public class UserPrivacyActivity extends AppCompatActivity {
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
-    String uemail;
-
-    EditText nickname_box, pw_box;
+    EditText email_box, nickname_box, date_box, pw_box;
+    // Button manBtnbox, womanBtnbox;
     String Name, PW;
-
     //logcat 에서 오류 찾을 때
     private static String TAG = "update_user";
     AlertDialog dialog;
+
+    int uid;
+    String uname;
+    String uemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_privacy);
+
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
@@ -71,7 +73,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        // searchIcon = (ImageView) findViewById(R.id.);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
 
 
@@ -79,6 +81,9 @@ public class UserPrivacyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -87,16 +92,31 @@ public class UserPrivacyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+            }
+        });
 
         loveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -107,7 +127,8 @@ public class UserPrivacyActivity extends AppCompatActivity {
         // 수정하기 버튼 클릭 이벤트
         // ★ 사용자가 정보를 수정하기 위해 입력하거나 버튼을 클릭했다면 밑에 수정하기 버튼이나 중복확인 버튼이
         // 분홍색으로 바뀌어서 활성화 되어야 함.
-
+        email_box = (EditText) findViewById(R.id.email_box);
+        email_box.setText(uemail);
         nickname_box = (EditText) findViewById(R.id.nickname_box);
         pw_box = (EditText) findViewById(R.id.pw_box);
 
@@ -120,8 +141,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
 
                 InsertData task = new InsertData();
                 task.execute(Name, PW, uemail);
-
-                showModify(); // 팝업창으로 수정할건지 한번 더 물어보기
+                showModify(); // 팝업창으로 정말 수정할건지 한번 더 물어보기
             }
         });
         // 임시 기본 값
@@ -141,6 +161,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.etc_logout:
+                // ★ 로그아웃 클릭시 액션
                 AlertDialog.Builder msgBuilder = new AlertDialog.Builder(UserPrivacyActivity.this)
                         .setTitle("알림")
                         .setMessage("로그아웃 하시겠습니까?")
@@ -162,8 +183,11 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 msgDlg.show();
                 return true;
             case R.id.etc_delprivacy:
-                // 회원탈퇴 클릭 > 탈퇴 페이지로 넘어감
+                // ★ 회원탈퇴 클릭시 액션
                 Intent intent = new Intent(getApplicationContext(), ResignActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 return true;
         }
@@ -178,7 +202,8 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UserPrivacyActivity.this, "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                        // 회원정보 수정 작업 있어야 함
+                        Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UserPrivacyActivity.this, MyPageActivity.class);
                         startActivity(intent);
                     }
@@ -191,8 +216,6 @@ public class UserPrivacyActivity extends AppCompatActivity {
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
-
-
 
     //회원정보 수정 구현
 

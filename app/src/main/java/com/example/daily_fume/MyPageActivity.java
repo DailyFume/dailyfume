@@ -20,7 +20,11 @@ public class MyPageActivity extends AppCompatActivity {
     TextView title_change;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
+
     ImageView menu1Btn, menu2Btn, menu3Btn, menu4Btn;
+    int uid;
+    String uemail;
+    String uname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +38,14 @@ public class MyPageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
+
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setTextColor(Color.parseColor("#D77F8F"));
-        title_change.setText("회원 님");
+        title_change.setText(uname);
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,13 +60,15 @@ public class MyPageActivity extends AppCompatActivity {
         searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
 
-
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -66,7 +77,10 @@ public class MyPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -75,7 +89,10 @@ public class MyPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -84,7 +101,10 @@ public class MyPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -138,5 +158,41 @@ public class MyPageActivity extends AppCompatActivity {
 
     }
 
+    View.OnClickListener menuClick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.menu1Btn:
+                    Intent intent = new Intent(getApplicationContext(), UserPrivacyActivity.class);
+                    intent.putExtra("uid", uid);
+                    intent.putExtra("uemail", uemail);
+                    intent.putExtra("uname", uname);
+                    startActivity(intent);
+                    break;
+                case R.id.menu2Btn:
+                    intent = new Intent(getApplicationContext(), PickListActivity.class);
+                    intent.putExtra("uid", uid);
+                    intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
+                    startActivity(intent);
+                    break;
+                case R.id.menu3Btn:
+                    intent = new Intent(getApplicationContext(), ReviewListActivity.class);
+                    intent.putExtra("uid", uid);
+                    intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
+                    startActivity(intent);
+                    break;
+                case R.id.menu4Btn:
+                    intent = new Intent(getApplicationContext(), QnaActivity.class);
+                    intent.putExtra("uid", uid);
+                    intent.putExtra("uname", uname);
+                    intent.putExtra("uemail", uemail);
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
 
 }

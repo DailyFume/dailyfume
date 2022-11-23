@@ -37,17 +37,22 @@ public class TestBuffActivity extends AppCompatActivity {
 
     ArrayList aldehyde, citrus, floral, fruity, green, musk, oceanic, oriental, spicy, woody;
 
+    int uid;
+    String uname;
+    String uemail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
-
-        Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("향수 테스트");
@@ -63,16 +68,6 @@ public class TestBuffActivity extends AppCompatActivity {
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        testIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
-                intent.putExtra("uid", uid);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
@@ -82,7 +77,21 @@ public class TestBuffActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
+            }
+        });
+
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -91,6 +100,8 @@ public class TestBuffActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -100,6 +111,8 @@ public class TestBuffActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -109,6 +122,8 @@ public class TestBuffActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
             }
         });
@@ -391,6 +406,8 @@ public class TestBuffActivity extends AppCompatActivity {
         Intent resultIntent = new Intent(getApplicationContext(), TestResultActivity.class);
         resultIntent.putExtra("result", maxEntry.getKey());
         resultIntent.putExtra("uid", uid);
+        resultIntent.putExtra("uname", uname);
+        resultIntent.putExtra("uemail", uemail);
         startActivity(resultIntent);
         finish();
 

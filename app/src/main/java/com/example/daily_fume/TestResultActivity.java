@@ -44,6 +44,7 @@ public class TestResultActivity extends AppCompatActivity {
     // 뷰페이저 변수
     private ViewPager ResultViewPager;
     private TextViewPagerAdapter pagerAdapter;
+    private pageViewA pagerAdapterA;
 
     int currentPage = 0;
     Timer timer;
@@ -56,6 +57,10 @@ public class TestResultActivity extends AppCompatActivity {
     Integer[] resultPage = {R.layout.result_citrus, R.layout.result_floral, R.layout.result_green, R.layout.result_woody,
             R.layout.result_oriental, R.layout.result_fruity, R.layout.result_oceanic, R.layout.result_spicy,
             R.layout.result_aldehyde, R.layout.result_musk };
+    int uid;
+    String uname;
+    String uemail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,9 @@ public class TestResultActivity extends AppCompatActivity {
 
         Intent resultIntent = getIntent();
         String resultType = resultIntent.getStringExtra("result");
-        int uid = resultIntent.getExtras().getInt("uid");
+        uid = resultIntent.getExtras().getInt("uid");
+        uname = resultIntent.getStringExtra("uname");
+        uemail = resultIntent.getStringExtra("uemail");
 
         //aldehyde, citrus, floral, fruity, green, musk, oceanic, oriental, spicy, woody
         switch (resultType) {
@@ -135,6 +142,8 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -161,6 +170,8 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -171,6 +182,8 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -181,6 +194,8 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -191,6 +206,8 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -201,6 +218,8 @@ public class TestResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -275,17 +294,20 @@ public class TestResultActivity extends AppCompatActivity {
                 .create();
 
         // 뷰페이저
-        arrayList = new ArrayList<FragranceData>(); //
+//        arrayList = new ArrayList<FragranceData>(); //
         ResultViewPager = findViewById(R.id.ViewPager);
-        // pagerAdapter = new TextViewPagerAdapter(this);
-        pagerAdapter = new TextViewPagerAdapter(this, arrayList);
-        ResultViewPager.setAdapter(pagerAdapter);
+//        pagerAdapter = new TextViewPagerAdapter(this, arrayList);
+//        ResultViewPager.setAdapter(pagerAdapter);
+
+        pagerAdapterA = new pageViewA(this);
+        ResultViewPager.setAdapter(pagerAdapterA);
+        pagerAdapterA.notifyDataSetChanged();
 
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             @Override
             public void run() {
-                if(currentPage == 9) {
+                if(currentPage == 3) { // 원래는 9
                     currentPage = 0;
                 }
                 ResultViewPager.setCurrentItem(currentPage++, true);
