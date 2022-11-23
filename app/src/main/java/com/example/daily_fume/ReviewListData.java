@@ -8,6 +8,7 @@ public class ReviewListData {
     private String content; // 리뷰내용
     private double rate; // 별점
     private Bitmap fimg; // 포토리뷰
+    private int rid;
 
 
     public String getBrand() {
@@ -30,6 +31,10 @@ public class ReviewListData {
         return fimg;
     }
 
+    public int getRid() {
+        return rid;
+    }
+
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -48,5 +53,9 @@ public class ReviewListData {
 
     public void setImage(Bitmap fimg) {
         this.fimg = fimg;
+    }
+
+    public void setRid(int rid) {
+        this.rid = rid;
     }
 }

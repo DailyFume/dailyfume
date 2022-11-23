@@ -23,9 +23,6 @@ public class TestMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_main);
 
-        Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 

@@ -11,47 +11,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.KeyEvent;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.kakao.auth.ISessionCallback;
-import com.kakao.auth.Session;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.Account;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.kakao.auth.ISessionCallback;
-import com.kakao.auth.Session;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.Account;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,19 +32,6 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static String TAG = "phplogin";
-    private ArrayList<LoginData> mArrayList;
-
-    private static final String TAG_JSON = "user";
-    private static final String TAG_EMAIL = "uemail";
-    private static final String TAG_PASS = "upassword";
-    private static final String TAG_NAME = "uname";
-    private static final String TAG_UID = "uid";
-
-    private EditText mEditTextID, mEditTextPass;
-    Button loginBtn, joinBtn;
-
-    private String mJsonString;
     ImageView backBtn;
     Button joinBtn, loginBtn;
     TextView title_change;
@@ -110,11 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         mEditTextPass = (EditText) findViewById(R.id.pwTextBox);
         mEditTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        mEditTextID = (EditText) findViewById(R.id.idTextBox);
-        mEditTextPass = (EditText) findViewById(R.id.pwTextBox);
-
-        mEditTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
@@ -135,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
                 startActivity(intent);
+
             }
         });
 

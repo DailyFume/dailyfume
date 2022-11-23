@@ -31,10 +31,6 @@ public class MyPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
 
-        Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-        String uemail = intent.getStringExtra("uemail");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 

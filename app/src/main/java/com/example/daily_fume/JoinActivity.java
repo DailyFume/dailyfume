@@ -7,26 +7,17 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.text.InputType;
 import android.util.Log;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -34,25 +25,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class JoinActivity extends AppCompatActivity {
-    private static String IP_ADDRESS = "43.200.245.161";
-    private static String TAG = "phpsignup";
-    private ArrayList<LoginData> mArrayList;
-
-    private static final String TAG_JSON = "user";
-    private static final String TAG_EMAIL = "uemail";
-    private static final String TAG_PASS = "upassword";
-    private static final String TAG_NAME = "uname";
-    private static final String TAG_UID = "uid";
-
-    String mJsonString;
-
-    private EditText mEditTextEmail;
-    private EditText mEditTextName;
-    private EditText mEditTextPassword;
-    private EditText mEditTextBirth;
 
     private static String IP_ADDRESS = "43.200.245.161";
     private static String TAG = "phpsignup";
@@ -89,8 +63,6 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-        mArrayList = new ArrayList<>();
-
         mEditTextEmail = (EditText)findViewById(R.id.email_create);
         mEditTextName = (EditText)findViewById(R.id.nickname_create);
         mEditTextPassword = (EditText)findViewById(R.id.pw_create);
@@ -98,6 +70,19 @@ public class JoinActivity extends AppCompatActivity {
         mEditTextBirth = (EditText)findViewById(R.id.date_create);
 
         /*
+        manBtn = (Button) findViewById(R.id.manBtn);
+        womanBtn = (Button) findViewById(R.id.womanBtn);
+
+        manBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manBtn.setTextColor(Color.rgb(255,255,255));
+                manBtn.setBackgroundColor(Color.rgb(230,182,190));
+                womanBtn.setTextColor(Color.rgb(179,179,179));
+                womanBtn.setBackgroundColor(Color.rgb(255,255,255));
+            }
+        });
+
         womanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +122,6 @@ public class JoinActivity extends AppCompatActivity {
         }); */
 
         checkYes = (CheckBox) findViewById(R.id.checkYes);
-
         joinBtn = (Button) findViewById(R.id.joinBtn);
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,109 +150,8 @@ public class JoinActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    class InsertData extends AsyncTask<String, Void, String> {
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = ProgressDialog.show(JoinActivity.this, "Please Wait", null, true, true);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            progressDialog.dismiss();
-            mJsonString = result;
-            Log.d(TAG, "POST response  - " + result);
-            showResult();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String uemail = (String)params[1];
-            String uname = (String)params[2];
-            String upassword = (String)params[3];
-
-            String serverURL = (String)params[0];
-            String postParameters = "uemail=" + uemail + "&uname=" + uname + "&upassword=" + upassword;
-
-            try {
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.connect();
 
 
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG, "POST response code - " + responseStatusCode);
-
-                InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                }
-                else{
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                while((line = bufferedReader.readLine()) != null){
-                    sb.append(line);
-                }
-                bufferedReader.close();
-                return sb.toString();
-            } catch (Exception e) {
-                Log.d(TAG, "InsertData: Error ", e);
-                return new String("Error: " + e.getMessage());
-            }
-        }
-    }
-
-    private void showResult() {
-        try {
-            JSONObject jsonObject = new JSONObject(mJsonString);
-            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-
-                JSONObject item = jsonArray.getJSONObject(i);
-
-                String uemail = item.getString(TAG_EMAIL);
-                String upassword = item.getString(TAG_PASS);
-                String uname = item.getString(TAG_NAME);
-                Integer uid = item.getInt(TAG_UID);
-
-                LoginData loginData = new LoginData();
-
-                loginData.setUid(uid);
-                loginData.setUemail(uemail);
-                loginData.setUpassword(upassword);
-                loginData.setUname(uname);
-
-                mArrayList.add(loginData);
-
-                Intent intent = new Intent(JoinActivity.this, JoinYesActivity.class);
-                startActivity(intent);
-            }
-        } catch (JSONException e) {
-            Log.d(TAG, "showResult: ", e);
-        }
     }
 
     class InsertData extends AsyncTask<String, Void, String> {

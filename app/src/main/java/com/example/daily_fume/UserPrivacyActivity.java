@@ -121,8 +121,6 @@ public class UserPrivacyActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        String uemail = intent.getStringExtra("uemail");
 
         // 수정하기 버튼 클릭 이벤트
         // ★ 사용자가 정보를 수정하기 위해 입력하거나 버튼을 클릭했다면 밑에 수정하기 버튼이나 중복확인 버튼이
@@ -130,7 +128,10 @@ public class UserPrivacyActivity extends AppCompatActivity {
         email_box = (EditText) findViewById(R.id.email_box);
         email_box.setText(uemail);
         nickname_box = (EditText) findViewById(R.id.nickname_box);
+        //date_box = (EditText) findViewById(R.id.date_box);
         pw_box = (EditText) findViewById(R.id.pw_box);
+        //manBtnbox = (Button) findViewById(R.id.manBtnbox);
+        //womanBtnbox = (Button) findViewById(R.id.womanBtnbox);
 
         priModifyBtn = (Button) findViewById(R.id.priModifyBtn);
         priModifyBtn.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +145,7 @@ public class UserPrivacyActivity extends AppCompatActivity {
                 showModify(); // 팝업창으로 정말 수정할건지 한번 더 물어보기
             }
         });
-        // 임시 기본 값
+
         //womanBtnbox.setTextColor(Color.rgb(255,255,255));
         //womanBtnbox.setBackgroundColor(Color.rgb(230,182,190));
 
@@ -194,11 +195,12 @@ public class UserPrivacyActivity extends AppCompatActivity {
         return false;
     }
 
-    // 수정하기 버튼 팝업창 메서드
+    // 수정하기 버튼 팝업창
     void showModify() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(UserPrivacyActivity.this)
                 .setTitle("알림")
                 .setMessage("회원정보를 수정하시겠습니까?")
+
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -209,10 +211,10 @@ public class UserPrivacyActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogInterface, int whichButton) {
-                  dialogInterface.cancel();
-                }
-        });
+                    public void onClick(DialogInterface dialogInterface, int whichButton) {
+                        dialogInterface.cancel();
+                    }
+                });
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
