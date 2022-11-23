@@ -209,7 +209,6 @@ public class ReviewListActivity extends AppCompatActivity {
             }
         });
 
-
         adapter.setOnItemClickListener(new ReviewListAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(int position) {
