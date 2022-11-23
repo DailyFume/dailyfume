@@ -210,6 +210,7 @@ public class ReviewListActivity extends AppCompatActivity {
         });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         deleteBtn = (Button) findViewById(R.id.Review_delete_Btn);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +225,8 @@ public class ReviewListActivity extends AppCompatActivity {
 
 
 =======
+=======
+>>>>>>> 70b57d0882c2c528ddee153c345c43d72d4809c1
 
         adapter.setOnItemClickListener(new ReviewListAdapter.OnItemClickListener() {
             @Override
@@ -232,7 +235,10 @@ public class ReviewListActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
 >>>>>>> c733589dfaedc6c93f335de35104ec0873dfc255
+=======
+>>>>>>> 70b57d0882c2c528ddee153c345c43d72d4809c1
 //        ReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
