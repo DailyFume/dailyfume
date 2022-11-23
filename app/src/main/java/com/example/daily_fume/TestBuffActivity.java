@@ -54,10 +54,6 @@ public class TestBuffActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
-
-
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("향수 테스트");
 
