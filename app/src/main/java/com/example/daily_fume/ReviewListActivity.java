@@ -16,6 +16,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -53,12 +54,15 @@ public class ReviewListActivity extends AppCompatActivity {
     RatingBar Rstars; // 레이팅바(별점)
     ImageView RImg; // 포토리뷰
 
+    Button deleteBtn;
+
     ArrayList<ReviewListData> reviewList;
     ReviewListAdapter adapter;
 
     String TAG = "dailyfume";
     String TAG_JSON = "review";
     String TAG_UID = "user_uid";
+    String TAG_RID = "rid";
     String TAG_CONTENT = "rcontent";
     String TAG_RATE = "rstar";
     String TAG_FID = "fragrance_fid";
@@ -69,11 +73,11 @@ public class ReviewListActivity extends AppCompatActivity {
     String mJsonString1;
 
     String serverURL = "http://43.200.245.161/selectreview_u.php";
-    String serverURL1 = "http://43.200.245.161/get_review_fragrance.php";
+    String serverURL1 = "http://43.200.245.161/delete_review.php";
 
     private RecyclerView ReviewList;
 
-    HashMap<String, Integer> map1 = new HashMap<String, Integer>();
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,6 +181,19 @@ public class ReviewListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        deleteBtn = (Button) findViewById(R.id.Review_delete_Btn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int rid = map.get("rid");
+                DeleteReview params = new DeleteReview(serverURL1, rid);
+                DeleteData deleteData = new DeleteData();
+                deleteData.execute(params);
+            }
+        });
+
+
 
 //        ReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -286,6 +303,7 @@ public class ReviewListActivity extends AppCompatActivity {
                 Bitmap image = StringToBitMap(item.getString(TAG_IMAGE));
                 String brand = item.getString(TAG_BRAND);
                 String name = item.getString(TAG_NAME);
+                int rid = item.getInt(TAG_RID);
 
                 ReviewListData reviewListData = new ReviewListData();
                 reviewListData.setContent(content);
@@ -294,10 +312,92 @@ public class ReviewListActivity extends AppCompatActivity {
                 reviewListData.setBrand(brand);
                 reviewListData.setName(name);
                 reviewList.add(reviewListData);
+
+                map.put("rid", rid);
             }
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             Log.d(TAG, "showResult: ", e);
+        }
+    }
+
+    private static class DeleteReview {
+        int rid;
+        String serverURL1;
+
+        DeleteReview(String serverURL1, int rid) {
+            this.serverURL1 = serverURL1;
+            this.rid = rid;
+        }
+    }
+
+    private class DeleteData extends AsyncTask<DeleteReview, Void, String> {
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(ReviewListActivity.this, "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "response : " + result);
+            mJsonString = result;
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        protected String doInBackground(DeleteReview... params) {
+            String serverURL = params[0].serverURL1;
+            int rid = params[0].rid;
+
+            String postParameters = "rid=" + rid;
+
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString();
+
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
         }
     }
 
