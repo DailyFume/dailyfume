@@ -27,6 +27,11 @@ public class QnaActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        int uid = intent.getExtras().getInt("uid");
+        String uname = intent.getStringExtra("uname");
+        String uemail = intent.getStringExtra("uemail");
+
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("문의 사항");
 
@@ -40,7 +45,7 @@ public class QnaActivity extends AppCompatActivity {
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        // searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         loveIcon = (ImageView) findViewById(R.id.loveIcon);
         // mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
 
@@ -48,6 +53,9 @@ public class QnaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -57,18 +65,35 @@ public class QnaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         loveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
+                finish();
             }
         });
 

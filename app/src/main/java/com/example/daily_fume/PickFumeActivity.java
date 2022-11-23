@@ -1,42 +1,91 @@
 package com.example.daily_fume;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.gridlayout.widget.GridLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class PickFumeActivity extends AppCompatActivity {
 
     ImageView backBtn, pickFumeDel;
     TextView title_change;
+    TextView pickfumnum;
+    int Numpick;
 
     ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
 
+    // 찜이 없을때
+    RelativeLayout pickzerolatout;
+    Button pickfumegoBtn;
+    ImageView zero_love;
+    TextView tvtv1, tvtv2;
+
     Spinner spinnerPickFume;
-    String[] PfItemsFume = { "  기본  ", "  최신순  ", "  이름순  "};
+    String[] PfItemsFume = { "  기본  ", "  최신순  ", "  이름순  ", "  브랜드순  "};
     GridView pickFumeGridview;
+
+    //
+    ArrayList<PickFume> pfArrayList;
+    private PickFumeAdapter pickFumeAdapter;
+    private RecyclerView pickFumeRecycle;
+
+    // 데이터 가져오기
+    String serverURL = "http://43.200.245.161/get_likefume.php";
+    private static final String TAG_JSON = "dailyfume";
+    private static String TAG = "getlikefumephp";
+    private static final String TAG_LIKEID = "like_id";
+    private static final String TAG_FID = "fragrance_fid";
+    private static final String TAG_LISTID = "likelist_lid";
+    private static final String TAG_FIMG = "fimg";
+    private static final String TAG_FBRAND = "fbrand";
+    private static final String TAG_FNAMEK = "fnamek";
+    String mJsonString;
+    int listid;
+
+    int uid;
+    String uname;
+    String uemail;
+    public static Context pfCon;
+    String groupname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +95,41 @@ public class PickFumeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
 
+        pfCon = this; // 어댑터와 연결
+
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
+        groupname = intent.getStringExtra("groupname");
+        listid = intent.getExtras().getInt("picklistid");
+        //Toast.makeText(getApplicationContext(), listid+"리스트숫자",Toast.LENGTH_SHORT).show();//
+
+        GetoData getoData = new GetoData(serverURL, listid);
+        GetData task1 = new GetData();
+        task1.execute(getoData);
+
         title_change = (TextView) findViewById(R.id.title_change);
-        title_change.setText("기본 그룹"); // ★ 나중에는 사용자가 입력한 박스이름으로 변경되게 하기
+        title_change.setText(groupname); // 사용자가 클릭한 박스 이름으로
+
+        pickfumnum = (TextView) findViewById(R.id.pickfumnum);
 
         backBtn = (ImageView) findViewById(R.id.back_icon);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent1 = new Intent(getApplicationContext(), PickListActivity.class);
+                intent1.putExtra("uid", uid);
+                intent1.putExtra("uname", uname);
+                intent1.putExtra("uemail", uemail);
+                startActivity(intent1);
+                finish();
             }
         });
 
         homeIcon = (ImageView) findViewById(R.id.homeIcon);
         testIcon = (ImageView) findViewById(R.id.testIcon);
-        // searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
         // loveIcon = (ImageView) findViewById(R.id.loveIcon);
         mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
 
@@ -67,6 +137,9 @@ public class PickFumeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
@@ -76,25 +149,39 @@ public class PickFumeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // searchIcon.setOnClickListener();
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
         // loveIcon.setOnClickListener();
 
         mypageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // ★ 찜한 상품이 없을경우 pick_zero 레이아웃으로 변경
-        // 위 경우에는 스피너와 상품삭제 클릭 안되게 하기 (FALSE)로
 
         // 스피너 - 폴더정렬
         spinnerPickFume = (Spinner) findViewById(R.id.spinnerPickFume);
@@ -105,6 +192,7 @@ public class PickFumeActivity extends AppCompatActivity {
         spinnerPickFume.setAdapter(fadapter);
 
         spinnerPickFume.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //PfItemsBox.setText(PfItems[position]);
@@ -112,13 +200,24 @@ public class PickFumeActivity extends AppCompatActivity {
                 ((TextView)parent.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 switch(position) {
                     case 0 :
-                        // ★ 임시 (기본)
+                        // ★ (기본 - 최근등록이 아래로)
+                        Collections.sort(pfArrayList);
+                        pickFumeAdapter.notifyDataSetChanged();
                         break;
                     case 1 :
-                        // ★ 임시 (최신순)
+                        // ★ (최신순 - 최근등록이 위로)
+                        Collections.sort(pfArrayList, Collections.reverseOrder());
+                        pickFumeAdapter.notifyDataSetChanged();
                         break;
                     case 2 :
-                        // ★ 임시 (이름순)
+                        // ★ (향수 이름순)
+                        pfArrayList.sort(new PickFumeNameSort());
+                        pickFumeAdapter.notifyDataSetChanged();
+                        break;
+                    case 3 :
+                        // ★ (향수 브랜드순)
+                        pfArrayList.sort(new PickFumeBrandSort());
+                        pickFumeAdapter.notifyDataSetChanged();
                         break;
                 }
             }
@@ -142,130 +241,198 @@ public class PickFumeActivity extends AppCompatActivity {
         });
 
 
-        // 그리드뷰 - 찜한 상품 목록
-        pickFumeGridview = (GridView) findViewById(R.id.pickFumeGridview);
-        // ★ 해당 상품을 클릭하면 해당 상품의 상세페이지로 이동 해야 함
-        FumeGridAdapter adapter = new FumeGridAdapter();
-        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
-        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
-        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
-        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
-        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
-        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
-        adapter.addItem(new Fume("딥디크","플레르 드 뽀", R.drawable.fume01));
-        adapter.addItem(new Fume("바이레도","모하비 고스트", R.drawable.fume02));
-        adapter.addItem(new Fume("불가리","골데아 더 로만 나이트", R.drawable.fume03));
-        pickFumeGridview.setAdapter(adapter);
+        // 리사이클러뷰
+        pickFumeRecycle = (RecyclerView) findViewById(R.id.pickFumeRecycle);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        pickFumeRecycle.setLayoutManager(gridLayoutManager);
 
-    }
+        pfArrayList = new ArrayList<>();
 
-    // 그리드뷰 생성자 클래스
-    public class Fume {
-        String brand;
-        String fumeName;
-        int iamgesResId;
-
-        public Fume(String brand, String fumeName, int iamgesResId) {
-            this.brand = brand;
-            this.fumeName = fumeName;
-            this.iamgesResId = iamgesResId;
-        }
-
-        public String getBrand() {
-            return brand;
-        }
-
-        public void setBrand(String brand) {
-            this.brand = brand;
-        }
-
-        public String getFumeName() {
-            return fumeName;
-        }
-
-        public void setFumeName(String fumeName) {
-            this.fumeName = fumeName;
-        }
-
-        public int getIamgesResId() {
-            return iamgesResId;
-        }
-
-        public void setIamgesResId(int iamgesResId) {
-            this.iamgesResId = iamgesResId;
-        }
-    }
-
-    public class Fumes_View extends LinearLayout {
-        ImageView fumeImages;
-        TextView pickFumeBrand;
-        TextView pickFumeTitle;
-
-        public Fumes_View(Context context) {
-            super(context);
-            init(context);
-        }
-
-        public Fumes_View(Context context, @Nullable AttributeSet attrs) {
-            super(context, attrs);
-            init(context);
-        }
-
-        public void init(Context context){
-            LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.pick_fumelist_layout, this, true);
-            fumeImages = findViewById(R.id.fumeImages);
-            pickFumeBrand = findViewById(R.id.pickFumeBrand);
-            pickFumeTitle = findViewById(R.id.pickFumeTitle);
-        }
-
-        public void setImageView(int ResId){
-            fumeImages.setImageResource(ResId);
-        }
-        public void setBrand(String brand){
-            pickFumeBrand.setText(brand);
-        }
-        public void setFumeName(String fumeName){
-            pickFumeTitle.setText(fumeName);
-        }
+        pickFumeAdapter = new PickFumeAdapter(this, pfArrayList);
+        pickFumeRecycle.setAdapter(pickFumeAdapter);
 
     }
 
 
-    public class FumeGridAdapter extends BaseAdapter{
-        ArrayList<Fume> items = new ArrayList<>();
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-        @Override
-        public Object getItem(int position) {
-            return items.get(position);
-        }
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+    // 데이터 (찜 상품) 가져오기
+    private static class GetoData {
+        String serverURL;
+        int lid;
 
-        public void addItem(Fume fume){
-            this.items.add(fume);
+
+        GetoData(String serverURL, int lid) {
+            this.serverURL = serverURL;
+            this.lid = lid;
         }
+    }
+
+    private class GetData extends AsyncTask<GetoData, Void, String> {
+        ProgressDialog progressDialog;
+        String errorString = null;
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            Fumes_View fumes_view = null;
-            if(convertView == null){
-                fumes_view = new Fumes_View(getApplicationContext());
-            }else{
-                fumes_view = (Fumes_View) convertView;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(PickFumeActivity.this, "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "response : " + result);
+            mJsonString = result;
+            showResult();
+
+            Numpick = pfArrayList.size();
+            pickfumnum.setText("총 "+Numpick+"개");
+
+            if (pfArrayList.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "찜한 상품이 없습니다.", Toast.LENGTH_SHORT).show();
+                fumePickZero();
             }
-            Fume fume = items.get(position);
-            fumes_view.setBrand(fume.getBrand());
-            fumes_view.setFumeName(fume.getFumeName());
-            fumes_view.setImageView(fume.getIamgesResId());
 
-            return fumes_view;
+        }
+
+        @Override
+        protected String doInBackground(GetoData... params) {
+            String serverURL = params[0].serverURL;
+            int lid = params[0].lid;
+
+            String postParameters = "likelist_lid=" + lid;
+
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString();
+
+            } catch (Exception e) {
+                Log.d(TAG, "ListFumeGetData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
         }
     }
 
+    private void showResult() {
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+            // Toast.makeText(getApplicationContext(), jsonArray.length()+"", Toast.LENGTH_SHORT).show();
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                //int likeid = item.getInt(TAG_LIKEID); // 찜한 순서 정렬을 위해 필요
+                int fid = item.getInt(TAG_FID);
+                listid = item.getInt(TAG_LISTID);
+                Bitmap fimage = StringToBitMap(item.getString(TAG_FIMG));
+                String fbrand = item.getString(TAG_FBRAND);
+                String fnamek = item.getString(TAG_FNAMEK);
+
+                PickFume pickFume = new PickFume();
+                //pickFume.setLikeid(likeid);
+                pickFume.setFid(fid);
+                pickFume.setFumeName(fnamek);
+                pickFume.setBrand(fbrand);
+                pickFume.setIamgesResId(fimage);
+
+                pfArrayList.add(pickFume);
+                pickFumeAdapter.notifyDataSetChanged();
+
+            }
+
+        } catch (JSONException e) {
+            Log.d(TAG, "showResult: ", e);
+        }
+    }
+
+    public static Bitmap StringToBitMap(String image) {
+        Log.e("StringToBitmap", "StringToBitmap");
+        try {
+            byte[] encodeByte = Base64.decode(image, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            Log.e("StringToBitmap", "success");
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    void fumePickZero() { // 찜한 상품이 없는 경우
+        pickzerolatout = (RelativeLayout) findViewById(R.id.pickzerolatout);
+        pickFumeRecycle = (RecyclerView) findViewById(R.id.pickFumeRecycle);
+        pickFumeRecycle.setVisibility(View.GONE);
+        pickzerolatout.setVisibility(View.VISIBLE);
+
+        zero_love = (ImageView) findViewById(R.id.zero_love);
+        tvtv1 = (TextView) findViewById(R.id.tvtv1);
+        tvtv2 = (TextView) findViewById(R.id.tvtv2);
+        zero_love.setVisibility(View.VISIBLE);
+        tvtv1.setVisibility(View.VISIBLE);
+        tvtv2.setVisibility(View.VISIBLE);
+
+        pickfumegoBtn = (Button) findViewById(R.id.pickfumegoBtn);
+        pickfumegoBtn.setVisibility(View.VISIBLE);
+        pickfumegoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class); // 홈으로 유도 (배너광고 많은 곳으로)
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+}
+
+class PickFumeNameSort implements Comparator<PickFume> {
+    @Override
+    public int compare(PickFume o1, PickFume o2) {
+        return o1.getFumeName().compareTo(o2.getFumeName());
+    }
+}
+
+class PickFumeBrandSort implements Comparator<PickFume> {
+    @Override
+    public int compare(PickFume o1, PickFume o2) {
+        return o1.getBrand().compareTo(o2.getBrand());
+    }
 }

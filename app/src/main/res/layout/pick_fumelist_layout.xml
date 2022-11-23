@@ -34,11 +34,9 @@
 
             <ImageView
                 android:id="@+id/fumeImages"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/fume01" />
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:id="@+id/pickFumeBrand"
@@ -46,7 +44,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="TextView"
                 android:textColor="#747474"
                 android:textSize="14dp" />
 
@@ -58,7 +55,6 @@
                 android:ellipsize="end"
                 android:maxLength="8"
                 android:maxLines="1"
-                android:text="TextView"
                 android:textColor="#D976A2"
                 android:textSize="14dp" />
         </LinearLayout>

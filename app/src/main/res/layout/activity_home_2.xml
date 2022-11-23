@@ -111,7 +111,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"
-                                    android:max="40"
+                                    android:max="30"
                                     android:progress="10"
                                     android:progressTint="#D97CA5" />
 
@@ -194,7 +194,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="구찌 블룸 오 드 퍼퓸"
+                                                android:text="구찌 블룸"
                                                 android:textColor="#595959"
                                                 android:textSize="14dp" />
                                         </LinearLayout>
@@ -241,7 +241,7 @@
                                             android:layout_marginLeft="30dp"
                                             android:layout_marginTop="10dp"
                                             android:layout_marginBottom="10dp"
-                                            app:srcCompat="@drawable/main_b_fume_2" />
+                                            app:srcCompat="@drawable/main_b_fume_4" />
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -265,7 +265,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="샹스 오 땅드르 오 드 퍼퓸"
+                                                android:text="샤넬 넘버파이브"
                                                 android:textColor="#595959"
                                                 android:textSize="14dp" />
                                         </LinearLayout>
@@ -338,7 +338,7 @@
                                             android:layout_marginLeft="30dp"
                                             android:layout_marginTop="10dp"
                                             android:layout_marginBottom="10dp"
-                                            app:srcCompat="@drawable/main_b_fume_3" />
+                                            app:srcCompat="@drawable/main_b_fume_5" />
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -353,7 +353,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="ACQUA DI PARMA"
+                                                android:text="FRESH"
                                                 android:textColor="#04558A"
                                                 android:textSize="12dp" />
 
@@ -362,7 +362,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="미르토 디 파나레아 오드뚜왈렛"
+                                                android:text="프레쉬 헤스페리데스"
                                                 android:textColor="#595959"
                                                 android:textSize="14dp" />
                                         </LinearLayout>

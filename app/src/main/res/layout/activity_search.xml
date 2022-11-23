@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <include
@@ -20,15 +21,22 @@
 
             <EditText
                 android:id="@+id/searchEditText1"
+                style="@style/lineEditText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="0.35"
-                android:hint="검색어를 입력하세요." />
+                android:hint="검색어를 입력하세요."
+                android:minLines="1"
+                android:paddingLeft="10dp"
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/searchButton1"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.2"
                 android:backgroundTint="#686565"
                 android:text="Search" />
@@ -46,8 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
-                android:layout_weight="6" />
-
+                android:layout_weight="6"
+                android:visibility="visible" />
 
 
         </LinearLayout>

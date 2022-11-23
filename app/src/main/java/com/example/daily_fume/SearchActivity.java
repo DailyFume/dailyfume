@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,16 +44,31 @@ public class SearchActivity extends AppCompatActivity {
     private EditText mEditTextSearchKeyword;
     private String mJsonString;
 
+    public static Context sCon;
+    int uid;
+    String uname;
+    String uemail;
+
     TextView title_change;
     ImageView backBtn;
+    ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
+
+    // 키패드
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+        sCon = this; // 어댑터와 연결
+
         Intent intent = getIntent();
-        int uid = intent.getExtras().getInt("uid");
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
 
         title_change = (TextView) findViewById(R.id.title_change);
         title_change.setText("검색");
@@ -63,6 +80,69 @@ public class SearchActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        testIcon = (ImageView) findViewById(R.id.testIcon);
+        //searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        loveIcon = (ImageView) findViewById(R.id.loveIcon);
+        mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+//        searchIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        loveIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        mypageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         // mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.main_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
@@ -70,7 +150,6 @@ public class SearchActivity extends AppCompatActivity {
 
         mEditTextSearchKeyword = (EditText) findViewById(R.id.searchEditText1);
 
-        // mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         mArrayList = new ArrayList<>();
 
@@ -80,10 +159,12 @@ public class SearchActivity extends AppCompatActivity {
         Button button_search = (Button) findViewById(R.id.searchButton1);
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                imm.showSoftInput(mEditTextSearchKeyword, 0); // 키패드 보이기
                 mArrayList.clear();
                 mAdapter.notifyDataSetChanged();
 
                 String Keyword =  mEditTextSearchKeyword.getText().toString();
+                imm.hideSoftInputFromWindow(mEditTextSearchKeyword.getWindowToken(), 0); // 키패드 숨기기
                 mEditTextSearchKeyword.setText("");
 
                 GetData task = new GetData();

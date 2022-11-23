@@ -2,20 +2,24 @@ package com.example.daily_fume;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.kakao.sdk.user.model.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,15 +27,107 @@ import org.json.JSONObject;
 public class ResignActivity extends AppCompatActivity {
 
     Button joinOutBtn;
+
+    ImageView backBtn;
+    TextView title_change;
+
+    ImageView homeIcon, testIcon, searchIcon, loveIcon, mypageIcon;
+
+    int uid;
     String uemail;
+    String uname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resigns);
+        setContentView(R.layout.activity_resign);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.topBar);
+        setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        uid = intent.getExtras().getInt("uid");
+        uname = intent.getStringExtra("uname");
+        uemail = intent.getStringExtra("uemail");
+
+        title_change = (TextView) findViewById(R.id.title_change);
+        title_change.setText("회원 탈퇴");
+
+        backBtn = (ImageView) findViewById(R.id.back_icon);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        testIcon = (ImageView) findViewById(R.id.testIcon);
+        searchIcon = (ImageView) findViewById(R.id.searchIcon);
+        loveIcon = (ImageView) findViewById(R.id.loveIcon);
+        mypageIcon = (ImageView) findViewById(R.id.mypageIcon);
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        testIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestMainActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        loveIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PickListActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        mypageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("uid", uid);
+                intent.putExtra("uname", uname);
+                intent.putExtra("uemail", uemail);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         joinOutBtn = (Button) findViewById(R.id.joinOutBtn);
-        //button3.setClickable(true);
 
         joinOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +145,7 @@ public class ResignActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // 입력된 이메일과 데이터베이스 대조
                                 uemail = user_email.getText().toString();
+                                Toast.makeText(getApplicationContext(),uemail+"",Toast.LENGTH_SHORT).show();
                                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
