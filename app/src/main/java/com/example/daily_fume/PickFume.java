@@ -44,6 +44,6 @@ public class PickFume implements  Comparable<PickFume> {
 
     @Override
     public int compareTo(PickFume o) {
-        return this.likeid - o.likeid;
+        return this.likeid - o.likeid; // 정렬
     }
 }

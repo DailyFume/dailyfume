@@ -355,7 +355,7 @@ public class PickFumeActivity extends AppCompatActivity {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
-                //int likeid = item.getInt(TAG_LIKEID); // 찜한 순서 정렬을 위해 필요
+                int likeid = item.getInt(TAG_LIKEID); // 찜한 순서 정렬을 위해 필요
                 int fid = item.getInt(TAG_FID);
                 listid = item.getInt(TAG_LISTID);
                 Bitmap fimage = StringToBitMap(item.getString(TAG_FIMG));
@@ -363,7 +363,7 @@ public class PickFumeActivity extends AppCompatActivity {
                 String fnamek = item.getString(TAG_FNAMEK);
 
                 PickFume pickFume = new PickFume();
-                //pickFume.setLikeid(likeid);
+                pickFume.setLikeid(likeid);
                 pickFume.setFid(fid);
                 pickFume.setFumeName(fnamek);
                 pickFume.setBrand(fbrand);
