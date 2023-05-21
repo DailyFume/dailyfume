@@ -1,8 +1,7 @@
 package com.example.daily_fume;
 
-import android.app.Activity;
 import android.app.Application;
-import com.kakao.auth.KakaoSDK;
+
 import com.kakao.sdk.common.KakaoSdk;
 
 public class KakaoSDKInit extends Application {

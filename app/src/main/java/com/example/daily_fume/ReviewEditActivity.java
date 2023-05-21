@@ -9,12 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +25,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 
 public class ReviewEditActivity extends AppCompatActivity {
 

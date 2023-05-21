@@ -2,7 +2,6 @@ package com.example.daily_fume;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;

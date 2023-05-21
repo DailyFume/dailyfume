@@ -79,7 +79,6 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TextViewPagerAdapter extends PagerAdapter {
 
